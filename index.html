@@ -158,38 +158,84 @@ p{font-size:1.0625rem;color:var(--muted);line-height:1.75;font-weight:400}
 }
 
 /* ═══════════════════════════════════════════════════════
-   2. HERO
+   2. HERO — MULTI-LAYER PARALLAX
    ═══════════════════════════════════════════════════════ */
 #hero{
   position:relative;height:100vh;min-height:640px;
   display:flex;align-items:center;overflow:hidden;
+  background:#0d1520;
 }
 
-/* Parallax layers */
-.hero-layer{
-  position:absolute;inset:0;will-change:transform;
-}
-/* ░░ PLACEHOLDER: Replace bg image with brand hero photo ░░ */
-.hero-bg{
-  background:url('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
-  transform:scale(1.1);
-}
-.hero-overlay{
-  background:linear-gradient(
-    135deg,
-    rgba(0,0,0,.62) 0%,
-    rgba(0,0,0,.35) 50%,
-    rgba(0,0,0,.18) 100%
-  );
+/* ── Layer base ── */
+.hl{position:absolute;will-change:transform}
+
+/* Layer 1 — Sky (slowest, scale so edges never show) */
+/* ░░ PLACEHOLDER: Replace with wide sky/city photo ░░ */
+.hl-sky{
+  inset:-15% -5%;
+  background:url('https://images.pexels.com/photos/210012/pexels-photo-210012.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
   z-index:1;
 }
 
-/* Floating property card */
+/* Layer 2 — House / building (fast parallax, positioned bottom-center) */
+/* ░░ PLACEHOLDER: Replace with property exterior photo ░░ */
+.hl-house{
+  left:30%;right:-5%;
+  bottom:-10%;top:10%;
+  background:url('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1400') center bottom/cover no-repeat;
+  z-index:2;
+  /* subtle vignette so house blends with sky */
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.6) 18%,black 40%,black 80%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.6) 18%,black 40%,black 80%,transparent 100%);
+}
+
+/* Layer 3 — Clouds top (drift over sky) */
+/* ░░ PLACEHOLDER: Can swap for real cloud PNG with transparency ░░ */
+.hl-clouds-top{
+  top:-8%;left:-5%;right:-5%;height:55%;
+  background:url('https://images.pexels.com/photos/531767/pexels-photo-531767.jpeg?auto=compress&cs=tinysrgb&w=1600') center top/cover no-repeat;
+  z-index:3;
+  opacity:.65;
+  mix-blend-mode:screen;
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.9) 0%,rgba(0,0,0,.5) 60%,transparent 100%);
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.9) 0%,rgba(0,0,0,.5) 60%,transparent 100%);
+}
+
+/* Layer 4 — Ground fog (fixed over house bottom — creates "sinks into clouds" effect) */
+.hl-fog{
+  bottom:-2px;left:0;right:0;height:46%;
+  background:linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(180,200,230,.22) 35%,
+    rgba(200,215,240,.58) 65%,
+    rgba(215,228,248,.88) 85%,
+    #d8e8f8 100%
+  );
+  z-index:4;
+  pointer-events:none;
+  filter:blur(2px);
+}
+
+/* Layer 5 — Dark text overlay (left-side gradient so text is readable) */
+.hl-overlay{
+  inset:0;
+  background:linear-gradient(
+    105deg,
+    rgba(8,14,30,.82) 0%,
+    rgba(8,14,30,.55) 45%,
+    rgba(8,14,30,.08) 100%
+  );
+  z-index:5;
+}
+
+/* ── Floating property card ── */
 .hero-card{
-  position:absolute;right:8%;bottom:18%;z-index:10;
+  position:absolute;right:8%;bottom:22%;z-index:10;
   background:rgba(255,255,255,.95);backdrop-filter:blur(20px);
   border-radius:var(--r3);padding:20px 24px;width:260px;
   box-shadow:0 24px 64px rgba(0,0,0,.25);
+  transform:translateY(0);
 }
 .hero-card-tag{
   font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
@@ -207,53 +253,71 @@ p{font-size:1.0625rem;color:var(--muted);line-height:1.75;font-weight:400}
 }
 .hero-card-meta span{display:flex;align-items:center;gap:5px}
 
+/* ── Hero text content ── */
 .hero-content{
-  position:relative;z-index:5;width:100%;max-width:1280px;margin:0 auto;padding:0 48px;
+  position:relative;z-index:8;
+  width:100%;max-width:1280px;margin:0 auto;padding:0 48px;
 }
-/* ░░ PLACEHOLDER: Replace hero headline ░░ */
+/* ░░ PLACEHOLDER: Replace eyebrow text ░░ */
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
   font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.6);margin-bottom:24px;
+  color:rgba(255,255,255,.55);margin-bottom:28px;
+  opacity:0;transform:translateY(20px);
 }
 .hero-eyebrow::before{
-  content:'';display:inline-block;width:32px;height:1px;background:rgba(255,255,255,.4);
+  content:'';display:inline-block;width:32px;height:1px;background:rgba(255,255,255,.35);
 }
+
+/* ░░ PLACEHOLDER: Replace hero headline ░░ */
 .hero-h1{
   font-size:clamp(3rem,6.5vw,7rem);font-weight:800;line-height:1.02;
   letter-spacing:-.04em;color:#fff;max-width:780px;margin-bottom:28px;
+  overflow:hidden;
 }
-.hero-h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.7)}
+/* Each word wrapped in .hw for stagger animation */
+.hw{
+  display:inline-block;
+  opacity:0;transform:translateY(90px);
+  will-change:transform,opacity;
+}
+.hw.italic{font-style:italic;font-weight:300;color:rgba(255,255,255,.72)}
+
 /* ░░ PLACEHOLDER: Replace hero subtext ░░ */
 .hero-sub{
-  font-size:clamp(1rem,1.4vw,1.2rem);color:rgba(255,255,255,.65);
+  font-size:clamp(1rem,1.4vw,1.2rem);color:rgba(255,255,255,.6);
   max-width:480px;line-height:1.7;font-weight:300;margin-bottom:40px;
+  opacity:0;transform:translateY(24px);
 }
-.hero-btns{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hero-btns{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  opacity:0;transform:translateY(20px);
+}
 
 /* Scroll hint */
 .hero-scroll{
-  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
   z-index:10;display:flex;flex-direction:column;align-items:center;gap:10px;
-  opacity:.5;
+  opacity:0;
 }
 .hero-scroll-line{
   width:1px;height:44px;
-  background:linear-gradient(to bottom,transparent,rgba(255,255,255,.7));
-  animation:scrollpulse 2s ease-in-out infinite;
+  background:linear-gradient(to bottom,transparent,rgba(255,255,255,.6));
+  animation:scrollpulse 2.2s ease-in-out infinite;
 }
 .hero-scroll-txt{
-  font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5);
+  font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.4);
 }
 @keyframes scrollpulse{
-  0%,100%{transform:scaleY(1);opacity:.4}
-  50%{transform:scaleY(1.15);opacity:.9}
+  0%,100%{opacity:.3;transform:scaleY(.9)}
+  50%{opacity:.8;transform:scaleY(1)}
 }
 
 @media(max-width:768px){
   .hero-card{display:none}
   .hero-content{padding:0 24px}
   .hero-h1{font-size:clamp(2.6rem,10vw,4rem)}
+  .hl-house{left:0}
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -771,9 +835,18 @@ p{font-size:1.0625rem;color:var(--muted);line-height:1.75;font-weight:400}
      ░░ PLACEHOLDER: All hero text + images ░░
      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
 <section id="hero">
-  <!-- Parallax background layers -->
-  <div class="hero-layer hero-bg" id="heroBg"></div>
-  <div class="hero-layer hero-overlay"></div>
+  <!-- ── Parallax Layers (back → front) ── -->
+  <!-- Layer 1: Sky (slow) -->
+  <div class="hl hl-sky" id="hlSky"></div>
+  <!-- Layer 2: House (fast — sinks into fog on scroll) -->
+  <!-- ░░ PLACEHOLDER: Replace with exterior property photo ░░ -->
+  <div class="hl hl-house" id="hlHouse"></div>
+  <!-- Layer 3: Clouds top (medium) -->
+  <div class="hl hl-clouds-top" id="hlClouds"></div>
+  <!-- Layer 4: Ground fog (stays — house disappears into this) -->
+  <div class="hl hl-fog"></div>
+  <!-- Layer 5: Dark overlay for text legibility -->
+  <div class="hl hl-overlay"></div>
 
   <!-- Floating property card -->
   <div class="hero-card" id="heroCard">
@@ -793,21 +866,27 @@ p{font-size:1.0625rem;color:var(--muted);line-height:1.75;font-weight:400}
     </div>
   </div>
 
+  <!-- Text content -->
   <div class="hero-content">
     <!-- ░░ PLACEHOLDER: Eyebrow label ░░ -->
-    <div class="hero-eyebrow">Immobilienmakler · [STADT]</div>
-    <!-- ░░ PLACEHOLDER: Main headline ░░ -->
-    <h1 class="hero-h1">Finden Sie, was<br><em>Sie bewegt.</em></h1>
+    <div class="hero-eyebrow" id="heroEyebrow">Immobilienmakler · [STADT]</div>
+
+    <!-- ░░ PLACEHOLDER: Headline words — each .hw animates in separately ░░ -->
+    <h1 class="hero-h1">
+      <span class="hw">Finden</span> <span class="hw">Sie,</span> <span class="hw">was</span><br>
+      <span class="hw italic">Sie</span> <span class="hw italic">bewegt.</span>
+    </h1>
+
     <!-- ░░ PLACEHOLDER: Sub headline ░░ -->
-    <p class="hero-sub">Erfahrene Beratung. Echte Ergebnisse. Ein klarer Weg zu Ihrer Immobilie.</p>
-    <div class="hero-btns">
+    <p class="hero-sub" id="heroSub">Erfahrene Beratung. Echte Ergebnisse. Ein klarer Weg zu Ihrer Immobilie.</p>
+    <div class="hero-btns" id="heroBtns">
       <!-- ░░ PLACEHOLDER: CTA buttons ░░ -->
       <a href="#services" class="btn btn-accent">Immobilien entdecken</a>
       <a href="#cta" class="btn btn-outline-white">Kostenlos bewerten</a>
     </div>
   </div>
 
-  <div class="hero-scroll">
+  <div class="hero-scroll" id="heroScroll">
     <div class="hero-scroll-line"></div>
     <div class="hero-scroll-txt">Scrollen</div>
   </div>
@@ -1359,35 +1438,70 @@ window.addEventListener('scroll', () => {
 
 /* ─── Scroll progress bar ──────────────── */
 gsap.to('#progress', {
-  scaleX: 1,
-  ease: 'none',
-  scrollTrigger: {
-    trigger: document.body,
-    start: 'top top',
-    end: 'bottom bottom',
-    scrub: true,
-  }
+  scaleX: 1, ease: 'none',
+  scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: true }
 });
 
-/* ─── Hero parallax ────────────────────── */
-gsap.to('#heroBg', {
-  yPercent: 25,
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '#hero',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-  }
+/* ─── Hero: multi-layer parallax on scroll ─── */
+// Sky: slow drift
+gsap.to('#hlSky', {
+  yPercent: 18, ease: 'none',
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+});
+// House: fastest — sinks down (disappears into fog at bottom)
+gsap.to('#hlHouse', {
+  yPercent: 55, ease: 'none',
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+});
+// Clouds top: medium speed opposite direction (descend slightly)
+gsap.to('#hlClouds', {
+  yPercent: -10, ease: 'none',
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+});
+// Text content: slight upward drift
+gsap.to('.hero-content', {
+  yPercent: 18, ease: 'none',
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
 });
 
-/* Hero card float */
+/* ─── Hero entrance animation (on load) ── */
+const heroTL = gsap.timeline({ delay: 0.15 });
+
+// 1. Eyebrow fades up first
+heroTL.to('#heroEyebrow', {
+  opacity: 1, y: 0, duration: 0.7, ease: 'power3.out'
+});
+
+// 2. Headline words stagger in (clip from below)
+heroTL.to('.hw', {
+  opacity: 1, y: 0,
+  duration: 0.75,
+  ease: 'power3.out',
+  stagger: 0.09,
+}, '-=0.3');
+
+// 3. Subtext
+heroTL.to('#heroSub', {
+  opacity: 1, y: 0, duration: 0.7, ease: 'power2.out'
+}, '-=0.35');
+
+// 4. Buttons
+heroTL.to('#heroBtns', {
+  opacity: 1, y: 0, duration: 0.6, ease: 'power2.out'
+}, '-=0.4');
+
+// 5. Floating card slides in from right
+heroTL.fromTo('#heroCard',
+  { opacity: 0, x: 40 },
+  { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' },
+'-=0.5');
+
+// 6. Scroll hint
+heroTL.to('#heroScroll', { opacity: 0.55, duration: 0.6 }, '-=0.2');
+
+/* Hero card float loop */
 gsap.to('#heroCard', {
-  y: -18,
-  duration: 3,
-  ease: 'sine.inOut',
-  yoyo: true,
-  repeat: -1,
+  y: -14, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.5
 });
 
 /* ─── Scroll reveals — single elements ─── */
