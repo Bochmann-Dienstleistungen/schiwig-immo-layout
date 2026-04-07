@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- ░░ PLACEHOLDER: Update title, description, OG tags with real data ░░ -->
+<title>[MAKLER NAME] – Immobilien [STADT]</title>
+<meta name="description" content="[MAKLER NAME] – Ihr persönlicher Immobilienmakler in [STADT]. Kaufen, Verkaufen, Mieten.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,300;1,14..32,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS
+   ░░ PLACEHOLDER: Replace accent color with brand color ░░
+   ═══════════════════════════════════════════════════════ */
+:root {
+  --bg:      #ffffff;
+  --bg2:     #f9f8f6;
+  --bg3:     #f0ede8;
+  --dark:    #111111;
+  --dark2:   #222222;
+  --muted:   #6b7280;
+  --light:   #9ca3af;
+  --line:    #e5e7eb;
+  /* ░░ PLACEHOLDER: Brand accent color ░░ */
+  --accent:  #b89060;
+  --accent2: #a07840;
+  --accent-light: rgba(184,144,96,.12);
+  --r:       4px;
+  --r2:      8px;
+  --r3:      16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--dark);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+
+/* ─── TYPOGRAPHY ──────────────────────── */
+.eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(2.8rem,5.5vw,5.5rem);font-weight:800;line-height:1.06;letter-spacing:-.03em;color:var(--dark)}
+h2{font-size:clamp(2rem,3.5vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:-.025em;color:var(--dark)}
+h3{font-size:clamp(1.25rem,2vw,1.75rem);font-weight:600;line-height:1.25;letter-spacing:-.015em}
+p{font-size:1.0625rem;color:var(--muted);line-height:1.75;font-weight:400}
+.lead{font-size:clamp(1.05rem,1.5vw,1.25rem);color:var(--muted);line-height:1.7;font-weight:300}
+
+/* ─── UTILITIES ───────────────────────── */
+.container{width:100%;max-width:1280px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.container{padding:0 24px}}
+.section{padding:120px 0}
+@media(max-width:768px){.section{padding:72px 0}}
+.section-alt{background:var(--bg2)}
+.reveal{opacity:0;transform:translateY(32px)}
+
+/* ─── BUTTONS ─────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:60px;font-size:.8125rem;font-weight:600;letter-spacing:.04em;transition:all .25s;cursor:pointer}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(184,144,96,.3)}
+.btn-outline{border:1.5px solid var(--dark);color:var(--dark)}
+.btn-outline:hover{background:var(--dark);color:#fff}
+.btn-outline-white{border:1.5px solid rgba(255,255,255,.45);color:#fff}
+.btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+.btn-ghost{color:var(--dark);font-size:.8125rem;font-weight:600;letter-spacing:.04em;display:inline-flex;align-items:center;gap:8px;padding:0;transition:gap .2s}
+.btn-ghost:hover{gap:14px}
+.btn-ghost svg{transition:transform .2s}
+.btn-ghost:hover svg{transform:translateX(4px)}
+.arrow{display:inline-block;width:18px;height:18px}
+
+/* ═══════════════════════════════════════════════════════
+   1. NAVIGATION
+   ═══════════════════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:72px;display:flex;align-items:center;
+  transition:background .3s,box-shadow .3s,backdrop-filter .3s;
+}
+#nav.scrolled{
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  box-shadow:0 1px 0 var(--line);
+}
+.nav-inner{
+  width:100%;max-width:1280px;margin:0 auto;padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+}
+/* ░░ PLACEHOLDER: Replace with real logo ░░ */
+.nav-logo{
+  display:flex;flex-direction:column;line-height:1;gap:2px;flex-shrink:0;
+}
+.nav-logo-name{
+  font-size:1.125rem;font-weight:800;letter-spacing:.02em;color:#fff;
+  transition:color .3s;
+}
+#nav.scrolled .nav-logo-name{color:var(--dark)}
+.nav-logo-name span{color:var(--accent)}
+.nav-logo-sub{
+  font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);transition:color .3s;
+}
+#nav.scrolled .nav-logo-sub{color:var(--light)}
+
+.nav-links{
+  display:flex;align-items:center;gap:4px;list-style:none;flex:1;justify-content:center;
+}
+/* ░░ PLACEHOLDER: Update nav link labels ░░ */
+.nav-links a{
+  padding:8px 14px;font-size:.8125rem;font-weight:500;
+  color:rgba(255,255,255,.75);border-radius:60px;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.1)}
+#nav.scrolled .nav-links a{color:var(--muted)}
+#nav.scrolled .nav-links a:hover{color:var(--dark);background:var(--bg2)}
+
+.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-signin{
+  font-size:.8125rem;font-weight:500;color:rgba(255,255,255,.7);
+  padding:8px 14px;border-radius:60px;transition:all .2s;
+}
+.nav-signin:hover{color:#fff;background:rgba(255,255,255,.1)}
+#nav.scrolled .nav-signin{color:var(--muted)}
+#nav.scrolled .nav-signin:hover{color:var(--dark);background:var(--bg2)}
+/* ░░ PLACEHOLDER: Update CTA label ░░ */
+.nav-cta{
+  padding:10px 22px;background:var(--accent);color:#fff;border-radius:60px;
+  font-size:.8125rem;font-weight:600;transition:all .2s;
+}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(184,144,96,.35)}
+
+/* Mobile nav */
+.nav-ham{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;
+  margin-right:-8px;
+}
+.nav-ham span{display:block;width:22px;height:1.5px;background:#fff;transition:.3s;border-radius:2px}
+#nav.scrolled .nav-ham span{background:var(--dark)}
+.nav-mob{
+  display:none;position:fixed;inset:0;z-index:800;
+  background:rgba(255,255,255,.97);backdrop-filter:blur(32px);
+  padding:96px 48px 48px;flex-direction:column;gap:0;
+}
+.nav-mob.open{display:flex}
+.nav-mob a{
+  font-size:2.25rem;font-weight:700;color:var(--dark);
+  border-bottom:1px solid var(--line);padding:20px 0;
+  display:block;transition:color .2s;
+}
+.nav-mob a:hover{color:var(--accent)}
+@media(max-width:900px){
+  .nav-links,.nav-signin{display:none}
+  .nav-ham{display:flex}
+  .nav-inner{padding:0 24px}
+}
+
+/* ═══════════════════════════════════════════════════════
+   2. HERO
+   ═══════════════════════════════════════════════════════ */
+#hero{
+  position:relative;height:100vh;min-height:640px;
+  display:flex;align-items:center;overflow:hidden;
+}
+
+/* Parallax layers */
+.hero-layer{
+  position:absolute;inset:0;will-change:transform;
+}
+/* ░░ PLACEHOLDER: Replace bg image with brand hero photo ░░ */
+.hero-bg{
+  background:url('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+  transform:scale(1.1);
+}
+.hero-overlay{
+  background:linear-gradient(
+    135deg,
+    rgba(0,0,0,.62) 0%,
+    rgba(0,0,0,.35) 50%,
+    rgba(0,0,0,.18) 100%
+  );
+  z-index:1;
+}
+
+/* Floating property card */
+.hero-card{
+  position:absolute;right:8%;bottom:18%;z-index:10;
+  background:rgba(255,255,255,.95);backdrop-filter:blur(20px);
+  border-radius:var(--r3);padding:20px 24px;width:260px;
+  box-shadow:0 24px 64px rgba(0,0,0,.25);
+}
+.hero-card-tag{
+  font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:8px;
+}
+.hero-card-address{
+  font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:4px;line-height:1.3;
+}
+/* ░░ PLACEHOLDER: Replace with real property details ░░ */
+.hero-card-price{
+  font-size:1.25rem;font-weight:800;color:var(--dark);margin-bottom:12px;
+}
+.hero-card-meta{
+  display:flex;gap:16px;font-size:.72rem;color:var(--muted);font-weight:500;
+}
+.hero-card-meta span{display:flex;align-items:center;gap:5px}
+
+.hero-content{
+  position:relative;z-index:5;width:100%;max-width:1280px;margin:0 auto;padding:0 48px;
+}
+/* ░░ PLACEHOLDER: Replace hero headline ░░ */
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);margin-bottom:24px;
+}
+.hero-eyebrow::before{
+  content:'';display:inline-block;width:32px;height:1px;background:rgba(255,255,255,.4);
+}
+.hero-h1{
+  font-size:clamp(3rem,6.5vw,7rem);font-weight:800;line-height:1.02;
+  letter-spacing:-.04em;color:#fff;max-width:780px;margin-bottom:28px;
+}
+.hero-h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.7)}
+/* ░░ PLACEHOLDER: Replace hero subtext ░░ */
+.hero-sub{
+  font-size:clamp(1rem,1.4vw,1.2rem);color:rgba(255,255,255,.65);
+  max-width:480px;line-height:1.7;font-weight:300;margin-bottom:40px;
+}
+.hero-btns{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+
+/* Scroll hint */
+.hero-scroll{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  z-index:10;display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:.5;
+}
+.hero-scroll-line{
+  width:1px;height:44px;
+  background:linear-gradient(to bottom,transparent,rgba(255,255,255,.7));
+  animation:scrollpulse 2s ease-in-out infinite;
+}
+.hero-scroll-txt{
+  font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5);
+}
+@keyframes scrollpulse{
+  0%,100%{transform:scaleY(1);opacity:.4}
+  50%{transform:scaleY(1.15);opacity:.9}
+}
+
+@media(max-width:768px){
+  .hero-card{display:none}
+  .hero-content{padding:0 24px}
+  .hero-h1{font-size:clamp(2.6rem,10vw,4rem)}
+}
+
+/* ═══════════════════════════════════════════════════════
+   3. WHY [NAME] — VALUE PROPOSITION
+   ═══════════════════════════════════════════════════════ */
+#why .why-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+#why .why-text{max-width:520px}
+#why .why-text h2{margin-bottom:24px}
+#why .why-text p{margin-bottom:32px}
+#why .why-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+}
+.stat-card{
+  padding:32px 28px;background:var(--bg2);border-radius:var(--r3);
+  border:1px solid var(--line);
+}
+/* ░░ PLACEHOLDER: Replace stats with real data ░░ */
+.stat-num{
+  font-size:clamp(2.5rem,4vw,3.5rem);font-weight:800;color:var(--dark);
+  letter-spacing:-.03em;line-height:1;margin-bottom:8px;
+}
+.stat-num span{color:var(--accent)}
+.stat-label{font-size:.85rem;color:var(--muted);font-weight:500;line-height:1.4}
+@media(max-width:900px){
+  #why .why-inner{grid-template-columns:1fr;gap:48px}
+  #why .why-text{max-width:100%}
+}
+
+/* ═══════════════════════════════════════════════════════
+   4. 4-IMAGE GALLERY
+   ═══════════════════════════════════════════════════════ */
+#gallery{padding-bottom:0}
+.gallery-header{text-align:center;max-width:640px;margin:0 auto 64px}
+.gallery-header h2{margin-bottom:16px}
+/* ░░ PLACEHOLDER: Replace all gallery images with real property photos ░░ */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  grid-template-rows:280px 280px;
+  gap:4px;
+}
+.gallery-item{overflow:hidden;position:relative}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .7s cubic-bezier(.4,0,.2,1);
+}
+.gallery-item:hover img{transform:scale(1.04)}
+.gallery-item:nth-child(1){grid-row:1/span 2}
+.gallery-caption{
+  position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
+  display:flex;align-items:flex-end;padding:24px;opacity:0;
+  transition:opacity .3s;
+}
+.gallery-item:hover .gallery-caption{opacity:1}
+.gallery-caption-txt{
+  font-size:.8rem;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:#fff;
+}
+.gallery-subtext{
+  text-align:center;padding:64px 0 120px;max-width:680px;margin:0 auto;
+}
+.gallery-subtext p{font-size:1.15rem;line-height:1.8}
+@media(max-width:768px){
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto;
+  }
+  .gallery-item:nth-child(1){grid-row:auto}
+  .gallery-item img{height:200px}
+}
+
+/* ═══════════════════════════════════════════════════════
+   5. 3-STEP PROCESS
+   ═══════════════════════════════════════════════════════ */
+#process{background:var(--dark);color:#fff}
+#process h2{color:#fff;text-align:center;margin-bottom:16px}
+#process .process-sub{
+  text-align:center;max-width:560px;margin:0 auto 72px;
+  color:rgba(255,255,255,.5);
+}
+.process-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;margin-bottom:64px;
+}
+.process-step{
+  padding:48px 40px;background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  position:relative;
+}
+.process-step:first-child{border-radius:var(--r3) 0 0 var(--r3)}
+.process-step:last-child{border-radius:0 var(--r3) var(--r3) 0}
+.step-num{
+  font-size:4rem;font-weight:800;color:rgba(255,255,255,.07);
+  line-height:1;margin-bottom:24px;letter-spacing:-.04em;
+}
+/* ░░ PLACEHOLDER: Replace step labels ░░ */
+.step-title{
+  font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:12px;
+}
+.step-desc{
+  font-size:.925rem;color:rgba(255,255,255,.45);line-height:1.7;font-weight:300;
+}
+.process-cta{display:flex;justify-content:center}
+@media(max-width:768px){
+  .process-steps{grid-template-columns:1fr}
+  .process-step:first-child,.process-step:last-child{border-radius:var(--r3)}
+  .process-step:not(:first-child){border-radius:var(--r3)}
+}
+
+/* ═══════════════════════════════════════════════════════
+   6. DUAL IMAGE + TEXT (ALTERNATING)
+   ═══════════════════════════════════════════════════════ */
+.dual{padding:120px 0}
+.dual-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+.dual-inner.reverse{direction:rtl}
+.dual-inner.reverse > *{direction:ltr}
+/* ░░ PLACEHOLDER: Replace dual images ░░ */
+.dual-images{
+  display:grid;grid-template-rows:1fr 1fr;gap:12px;height:580px;
+}
+.dual-img{
+  overflow:hidden;border-radius:var(--r3);
+}
+.dual-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .7s cubic-bezier(.4,0,.2,1);
+}
+.dual-img:hover img{transform:scale(1.03)}
+.dual-img:first-child{border-radius:var(--r3) var(--r3) var(--r2) var(--r3)}
+.dual-img:last-child{border-radius:var(--r3) var(--r2) var(--r3) var(--r3)}
+.dual-text .eyebrow{margin-bottom:20px;display:block}
+/* ░░ PLACEHOLDER: Replace dual section heading + body ░░ */
+.dual-text h2{margin-bottom:24px}
+.dual-text .lead{margin-bottom:16px}
+.dual-text p{margin-bottom:40px}
+.dual-text .dual-btns{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+@media(max-width:900px){
+  .dual-inner,.dual-inner.reverse{
+    grid-template-columns:1fr;direction:ltr;gap:48px;
+  }
+  .dual-images{height:380px}
+}
+
+/* ═══════════════════════════════════════════════════════
+   7. TESTIMONIALS
+   ═══════════════════════════════════════════════════════ */
+#testimonials{background:var(--bg2)}
+.testimonials-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:56px;
+}
+.testimonials-header h2{max-width:480px}
+/* ░░ PLACEHOLDER: Replace all testimonial content ░░ */
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.testi-card{
+  background:var(--bg);border-radius:var(--r3);
+  padding:36px 32px;border:1px solid var(--line);
+  display:flex;flex-direction:column;gap:20px;
+  transition:box-shadow .3s,transform .3s;
+}
+.testi-card:hover{
+  box-shadow:0 12px 48px rgba(0,0,0,.08);
+  transform:translateY(-4px);
+}
+.testi-stars{color:var(--accent);font-size:.9rem;letter-spacing:3px}
+.testi-text{
+  font-size:.9625rem;color:var(--dark2);line-height:1.75;
+  font-weight:400;flex:1;
+  /* Decorative quote mark */
+  position:relative;
+}
+.testi-text::before{
+  content:'\201C';
+  font-size:3rem;line-height:.5;color:var(--accent-light);
+  font-weight:700;display:block;margin-bottom:8px;
+}
+.testi-author{
+  display:flex;align-items:center;gap:12px;
+  padding-top:20px;border-top:1px solid var(--line);
+}
+.testi-avatar{
+  width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  background:var(--bg3);
+}
+.testi-avatar img{width:100%;height:100%;object-fit:cover}
+.testi-name{font-size:.875rem;font-weight:700;color:var(--dark)}
+.testi-role{font-size:.75rem;color:var(--light)}
+/* Featured card */
+.testi-card.featured{
+  background:var(--dark);border-color:var(--dark);
+}
+.testi-card.featured .testi-text{color:rgba(255,255,255,.8)}
+.testi-card.featured .testi-name{color:#fff}
+.testi-card.featured .testi-role{color:rgba(255,255,255,.4)}
+.testi-card.featured .testi-author{border-top-color:rgba(255,255,255,.1)}
+.testi-card.featured .testi-stars{color:#f8c94a}
+@media(max-width:900px){
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .testimonials-header{flex-direction:column;align-items:flex-start;gap:16px}
+}
+@media(max-width:600px){
+  .testi-grid{grid-template-columns:1fr}
+}
+
+/* ═══════════════════════════════════════════════════════
+   8. SERVICE CARDS (BUY / SELL / RENT)
+   ═══════════════════════════════════════════════════════ */
+#services .services-header{
+  text-align:center;max-width:560px;margin:0 auto 64px;
+}
+#services .services-header h2{margin-bottom:16px}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.service-card{
+  border-radius:var(--r3);overflow:hidden;
+  border:1px solid var(--line);
+  transition:box-shadow .3s,transform .3s;
+}
+.service-card:hover{
+  box-shadow:0 16px 56px rgba(0,0,0,.1);
+  transform:translateY(-6px);
+}
+/* ░░ PLACEHOLDER: Replace service card images ░░ */
+.service-img{
+  height:260px;overflow:hidden;
+}
+.service-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .7s cubic-bezier(.4,0,.2,1);
+}
+.service-card:hover .service-img img{transform:scale(1.05)}
+.service-body{padding:28px 28px 32px}
+.service-tag{
+  display:inline-block;padding:4px 12px;border-radius:60px;
+  background:var(--accent-light);color:var(--accent);
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:14px;
+}
+/* ░░ PLACEHOLDER: Replace service names + descriptions ░░ */
+.service-body h3{margin-bottom:10px}
+.service-body p{font-size:.9rem;line-height:1.65}
+.service-body .btn-ghost{margin-top:24px}
+@media(max-width:900px){
+  .services-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr}
+}
+
+/* ═══════════════════════════════════════════════════════
+   9. SUPPORT CARDS (3 ADDITIONAL SERVICES)
+   ═══════════════════════════════════════════════════════ */
+#support{background:var(--bg2)}
+.support-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:56px;
+}
+.support-header h2{max-width:480px}
+.support-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.support-card{
+  padding:40px 36px;background:var(--bg);border-radius:var(--r3);
+  border:1px solid var(--line);
+  transition:box-shadow .3s,transform .3s;
+  display:flex;flex-direction:column;gap:16px;
+}
+.support-card:hover{
+  box-shadow:0 12px 40px rgba(0,0,0,.07);
+  transform:translateY(-4px);
+}
+.support-icon{
+  width:52px;height:52px;border-radius:var(--r2);
+  background:var(--accent-light);
+  display:flex;align-items:center;justify-content:center;
+}
+.support-icon svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.75}
+/* ░░ PLACEHOLDER: Replace support service names + descriptions ░░ */
+.support-card h3{font-size:1.15rem}
+.support-card p{font-size:.9rem;line-height:1.65;flex:1}
+.support-card .btn-ghost{margin-top:4px}
+@media(max-width:900px){
+  .support-grid{grid-template-columns:1fr 1fr}
+  .support-header{flex-direction:column;align-items:flex-start;gap:16px}
+}
+@media(max-width:600px){
+  .support-grid{grid-template-columns:1fr}
+}
+
+/* ═══════════════════════════════════════════════════════
+   10. BLOG
+   ═══════════════════════════════════════════════════════ */
+#blog .blog-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:56px;
+}
+.blog-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.blog-card{
+  border-radius:var(--r3);overflow:hidden;
+  border:1px solid var(--line);
+  transition:box-shadow .3s,transform .3s;
+}
+.blog-card:hover{
+  box-shadow:0 12px 48px rgba(0,0,0,.08);
+  transform:translateY(-4px);
+}
+/* ░░ PLACEHOLDER: Replace blog post images ░░ */
+.blog-thumb{
+  height:220px;overflow:hidden;position:relative;
+}
+.blog-thumb img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .7s cubic-bezier(.4,0,.2,1);
+}
+.blog-card:hover .blog-thumb img{transform:scale(1.05)}
+.blog-cat{
+  position:absolute;top:16px;left:16px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+  padding:5px 14px;border-radius:60px;
+  font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dark);
+}
+.blog-body{padding:24px 24px 28px}
+/* ░░ PLACEHOLDER: Replace blog post dates, titles, excerpts ░░ */
+.blog-date{
+  font-size:.7rem;color:var(--light);font-weight:500;margin-bottom:10px;
+}
+.blog-body h3{font-size:1.1rem;margin-bottom:10px;line-height:1.35}
+.blog-body p{font-size:.875rem;line-height:1.65}
+.blog-body .btn-ghost{margin-top:20px}
+@media(max-width:900px){
+  .blog-grid{grid-template-columns:1fr 1fr}
+  .blog-header{flex-direction:column;align-items:flex-start;gap:16px}
+}
+@media(max-width:600px){
+  .blog-grid{grid-template-columns:1fr}
+}
+
+/* ═══════════════════════════════════════════════════════
+   11. CTA SECTION
+   ═══════════════════════════════════════════════════════ */
+#cta{
+  position:relative;overflow:hidden;
+  background:var(--dark);color:#fff;
+  text-align:center;padding:140px 0;
+}
+.cta-bg{
+  position:absolute;inset:0;
+  /* ░░ PLACEHOLDER: Replace CTA background image ░░ */
+  background:url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover;
+  opacity:.18;
+}
+.cta-inner{position:relative;z-index:2;max-width:700px;margin:0 auto;padding:0 48px}
+.cta-inner .eyebrow{color:var(--accent);margin-bottom:24px;display:block}
+/* ░░ PLACEHOLDER: Replace CTA headline + subtext ░░ */
+.cta-inner h2{color:#fff;margin-bottom:20px}
+.cta-inner p{color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 48px;font-size:1.075rem}
+.cta-form{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+}
+.cta-input{
+  padding:14px 24px;border-radius:60px;border:1.5px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.07);color:#fff;font-size:.875rem;
+  outline:none;transition:border-color .2s;width:280px;font-family:inherit;
+}
+.cta-input::placeholder{color:rgba(255,255,255,.35)}
+.cta-input:focus{border-color:rgba(255,255,255,.5)}
+
+/* ═══════════════════════════════════════════════════════
+   12. FOOTER
+   ═══════════════════════════════════════════════════════ */
+#footer{
+  background:var(--dark);color:rgba(255,255,255,.5);
+  border-top:1px solid rgba(255,255,255,.07);
+  padding:80px 0 48px;
+}
+.footer-inner{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:48px;margin-bottom:64px;
+}
+.footer-brand{}
+/* ░░ PLACEHOLDER: Replace footer logo + description ░░ */
+.footer-logo-name{
+  font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:.02em;margin-bottom:4px;
+}
+.footer-logo-name span{color:var(--accent)}
+.footer-logo-sub{
+  font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.25);margin-bottom:20px;
+}
+.footer-desc{font-size:.875rem;line-height:1.7;max-width:280px}
+.footer-social{display:flex;gap:12px;margin-top:28px}
+.footer-social a{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.4);
+  transition:all .2s;
+}
+.footer-social a:hover{border-color:rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.07)}
+.footer-social svg{width:16px;height:16px;fill:currentColor}
+/* ░░ PLACEHOLDER: Replace footer link column headings + links ░░ */
+.footer-col h4{
+  font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);margin-bottom:20px;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul a{
+  font-size:.875rem;transition:color .2s;
+}
+.footer-col ul a:hover{color:#fff}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:32px;border-top:1px solid rgba(255,255,255,.07);
+  flex-wrap:wrap;gap:16px;
+}
+.footer-legal{display:flex;gap:24px;flex-wrap:wrap}
+.footer-legal a{
+  font-size:.75rem;transition:color .2s;
+}
+.footer-legal a:hover{color:#fff}
+.footer-copy{font-size:.75rem}
+@media(max-width:900px){
+  .footer-inner{grid-template-columns:1fr 1fr;gap:36px}
+  .footer-brand{grid-column:1/span 2}
+}
+@media(max-width:600px){
+  .footer-inner{grid-template-columns:1fr;gap:36px}
+  .footer-brand{grid-column:auto}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+
+/* ─── SCROLL PROGRESS BAR ─────────────── */
+#progress{
+  position:fixed;top:0;left:0;right:0;height:2px;z-index:1000;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform-origin:left;transform:scaleX(0);
+}
+
+/* ─── WHATSAPP FLOAT ──────────────────── */
+.wa-float{
+  position:fixed;bottom:32px;right:32px;z-index:800;
+  width:52px;height:52px;border-radius:50%;
+  background:#25d366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);
+  transition:transform .2s,box-shadow .2s;
+  opacity:0;
+}
+.wa-float:hover{transform:scale(1.08);box-shadow:0 8px 32px rgba(37,211,102,.45)}
+.wa-float svg{width:26px;height:26px;fill:#fff}
+</style>
+</head>
+<body>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     SCROLL PROGRESS
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<div id="progress"></div>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     1. NAVIGATION
+     ░░ PLACEHOLDER: Update all nav text + links ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <!-- ░░ PLACEHOLDER: Logo ░░ -->
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-name">[MAKLER]<span>.</span></div>
+      <div class="nav-logo-sub">Immobilien · [STADT]</div>
+    </a>
+
+    <!-- ░░ PLACEHOLDER: Nav links ░░ -->
+    <ul class="nav-links">
+      <li><a href="#services">Kaufen</a></li>
+      <li><a href="#services">Verkaufen</a></li>
+      <li><a href="#services">Mieten</a></li>
+      <li><a href="#about">Über uns</a></li>
+      <li><a href="#blog">Blog</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="#" class="nav-signin">Anmelden</a>
+      <!-- ░░ PLACEHOLDER: CTA label + link ░░ -->
+      <a href="#cta" class="nav-cta">Kontakt</a>
+    </div>
+
+    <button class="nav-ham" id="navHam" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="nav-mob" id="navMob">
+  <a href="#services" onclick="closeMob()">Kaufen</a>
+  <a href="#services" onclick="closeMob()">Verkaufen</a>
+  <a href="#services" onclick="closeMob()">Mieten</a>
+  <a href="#about" onclick="closeMob()">Über uns</a>
+  <a href="#blog" onclick="closeMob()">Blog</a>
+  <a href="#cta" onclick="closeMob()">Kontakt</a>
+</div>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     2. HERO
+     ░░ PLACEHOLDER: All hero text + images ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="hero">
+  <!-- Parallax background layers -->
+  <div class="hero-layer hero-bg" id="heroBg"></div>
+  <div class="hero-layer hero-overlay"></div>
+
+  <!-- Floating property card -->
+  <div class="hero-card" id="heroCard">
+    <!-- ░░ PLACEHOLDER: Real property card data ░░ -->
+    <div class="hero-card-tag">Neu eingestellt</div>
+    <div class="hero-card-address">[Straße & Nr.], [Stadt]</div>
+    <div class="hero-card-price">[€ Preis]</div>
+    <div class="hero-card-meta">
+      <span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        [X] Zimmer
+      </span>
+      <span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        [X] m²
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <!-- ░░ PLACEHOLDER: Eyebrow label ░░ -->
+    <div class="hero-eyebrow">Immobilienmakler · [STADT]</div>
+    <!-- ░░ PLACEHOLDER: Main headline ░░ -->
+    <h1 class="hero-h1">Finden Sie, was<br><em>Sie bewegt.</em></h1>
+    <!-- ░░ PLACEHOLDER: Sub headline ░░ -->
+    <p class="hero-sub">Erfahrene Beratung. Echte Ergebnisse. Ein klarer Weg zu Ihrer Immobilie.</p>
+    <div class="hero-btns">
+      <!-- ░░ PLACEHOLDER: CTA buttons ░░ -->
+      <a href="#services" class="btn btn-accent">Immobilien entdecken</a>
+      <a href="#cta" class="btn btn-outline-white">Kostenlos bewerten</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <div class="hero-scroll-txt">Scrollen</div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     3. WHY [NAME]
+     ░░ PLACEHOLDER: All text + stats ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="why-inner">
+      <div class="why-text reveal">
+        <!-- ░░ PLACEHOLDER: Replace [MAKLER NAME] ░░ -->
+        <span class="eyebrow">Warum [MAKLER NAME]</span>
+        <h2>Ihr Erfolg ist unser Antrieb.</h2>
+        <p class="lead">Wir glauben, dass jede Immobilientransaktion mehr ist als ein Geschäft — es ist ein Lebensabschnitt. Deshalb begleiten wir Sie persönlich, transparent und mit vollem Einsatz.</p>
+        <p>Seit über [X] Jahren vermitteln wir Immobilien in [STADT] und Umgebung. Unser Netzwerk, unsere Erfahrung und unser Engagement für Sie machen den Unterschied.</p>
+        <a href="#about" class="btn btn-outline" style="margin-top:8px">Mehr über uns
+          <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="why-stats reveal">
+        <!-- ░░ PLACEHOLDER: Replace all stat numbers + labels ░░ -->
+        <div class="stat-card">
+          <div class="stat-num">[X]<span>+</span></div>
+          <div class="stat-label">Erfolgreich vermittelte Immobilien</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">[X]<span>★</span></div>
+          <div class="stat-label">Durchschnittliche Kundenbewertung</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">[X]<span>J</span></div>
+          <div class="stat-label">Jahre Erfahrung in der Region</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">[X]<span>%</span></div>
+          <div class="stat-label">Kunden empfehlen uns weiter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     4. 4-IMAGE GALLERY
+     ░░ PLACEHOLDER: All images + caption texts ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="gallery" class="section section-alt">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <!-- ░░ PLACEHOLDER: Section headline ░░ -->
+      <span class="eyebrow">Unsere Objekte</span>
+      <h2>Mehr als nur vier Wände.</h2>
+    </div>
+  </div>
+
+  <div class="gallery-grid">
+    <!-- ░░ PLACEHOLDER: Replace all 4 gallery images with real properties ░░ -->
+    <div class="gallery-item reveal">
+      <img src="https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Immobilie 1" loading="lazy">
+      <div class="gallery-caption"><span class="gallery-caption-txt">[Objekt 1]</span></div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Immobilie 2" loading="lazy">
+      <div class="gallery-caption"><span class="gallery-caption-txt">[Objekt 2]</span></div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Immobilie 3" loading="lazy">
+      <div class="gallery-caption"><span class="gallery-caption-txt">[Objekt 3]</span></div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Immobilie 4" loading="lazy">
+      <div class="gallery-caption"><span class="gallery-caption-txt">[Objekt 4]</span></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="gallery-subtext reveal">
+      <!-- ░░ PLACEHOLDER: Gallery subtext ░░ -->
+      <p>"Wir zeigen Ihnen nicht einfach Immobilien — wir zeigen Ihnen Möglichkeiten. Jedes Objekt hat eine Geschichte. Unsere Aufgabe ist es, die richtige für Sie zu finden."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     5. 3-STEP PROCESS
+     ░░ PLACEHOLDER: Section title + step content ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="process" class="section">
+  <div class="container">
+    <!-- ░░ PLACEHOLDER: Section headline ░░ -->
+    <span class="eyebrow" style="display:block;text-align:center;margin-bottom:16px">Unser Prozess</span>
+    <h2 class="reveal" style="text-align:center">Immobilien. Neu gedacht.</h2>
+    <p class="process-sub reveal">Einfach. Persönlich. Transparent. So begleiten wir Sie von der ersten Anfrage bis zum Schlüssel.</p>
+
+    <div class="process-steps">
+      <!-- ░░ PLACEHOLDER: Step 1 ░░ -->
+      <div class="process-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Persönliches Gespräch</div>
+        <p class="step-desc">Wir nehmen uns Zeit für Ihre Situation, Ihre Wünsche und Ihre Ziele — ohne Zeitdruck und ohne versteckte Agenda.</p>
+      </div>
+      <!-- ░░ PLACEHOLDER: Step 2 ░░ -->
+      <div class="process-step reveal">
+        <div class="step-num">02</div>
+        <div class="step-title">Klarheit gewinnen</div>
+        <p class="step-desc">Marktanalyse, Bewertung, Strategie — wir schaffen die Grundlage für Ihre beste Entscheidung.</p>
+      </div>
+      <!-- ░░ PLACEHOLDER: Step 3 ░░ -->
+      <div class="process-step reveal">
+        <div class="step-num">03</div>
+        <div class="step-title">Vorwärts gehen</div>
+        <p class="step-desc">Von der Besichtigung bis zur Vertragsunterzeichnung — wir sind an Ihrer Seite und kümmern uns um alles.</p>
+      </div>
+    </div>
+
+    <div class="process-cta reveal">
+      <!-- ░░ PLACEHOLDER: CTA ░░ -->
+      <a href="#cta" class="btn btn-accent">Suche starten</a>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     6A. DUAL SECTION — VERKÄUFER
+     ░░ PLACEHOLDER: Images + all text ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<div id="about" class="dual">
+  <div class="container">
+    <div class="dual-inner">
+      <!-- ░░ PLACEHOLDER: 2 stacked images links ░░ -->
+      <div class="dual-images reveal">
+        <div class="dual-img">
+          <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" alt="[Makler im Gespräch]" loading="lazy">
+        </div>
+        <div class="dual-img">
+          <img src="https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=800" alt="[Immobilien]" loading="lazy">
+        </div>
+      </div>
+      <div class="dual-text reveal">
+        <!-- ░░ PLACEHOLDER: Section eyebrow + headline ░░ -->
+        <span class="eyebrow">Für Verkäufer</span>
+        <h2>Verkaufen Sie nicht Ihr Zuhause.<br>Verkaufen Sie es <em style="font-style:italic;color:var(--accent)">richtig.</em></h2>
+        <p class="lead">Der Unterschied zwischen einem guten und einem großartigen Verkauf liegt in der Vorbereitung, der Präsentation und dem richtigen Netzwerk.</p>
+        <p>Wir übernehmen professionelle Fotografie, digitales Marketing, gezielte Käuferansprache und die komplette Verhandlungsführung — damit Sie das Maximum aus Ihrer Immobilie herausholen.</p>
+        <div class="dual-btns">
+          <a href="#cta" class="btn btn-accent">Jetzt verkaufen</a>
+          <a href="#process" class="btn-ghost">Wie es funktioniert
+            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     6B. DUAL SECTION — KÄUFER (reversed)
+     ░░ PLACEHOLDER: Images + all text ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<div class="dual section-alt">
+  <div class="container">
+    <div class="dual-inner reverse">
+      <!-- ░░ PLACEHOLDER: 2 stacked images rechts ░░ -->
+      <div class="dual-images reveal">
+        <div class="dual-img">
+          <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800" alt="[Hauskauf]" loading="lazy">
+        </div>
+        <div class="dual-img">
+          <img src="https://images.pexels.com/photos/2079246/pexels-photo-2079246.jpeg?auto=compress&cs=tinysrgb&w=800" alt="[Wohnen]" loading="lazy">
+        </div>
+      </div>
+      <div class="dual-text reveal">
+        <!-- ░░ PLACEHOLDER: Section eyebrow + headline ░░ -->
+        <span class="eyebrow">Für Käufer</span>
+        <h2>Ihr Traumhaus wartet.<br>Wir finden <em style="font-style:italic;color:var(--accent)">es.</em></h2>
+        <p class="lead">Hunderte von Suchenden auf den gleichen Portalen — und trotzdem das Richtige finden. Das geht nur mit dem richtigen Makler an Ihrer Seite.</p>
+        <p>Unser Netzwerk gibt Ihnen Zugang zu Immobilien, bevor sie auf dem Markt erscheinen. Wir kennen die Region, die Preise und die Verkäufer.</p>
+        <div class="dual-btns">
+          <a href="#services" class="btn btn-accent">Angebote ansehen</a>
+          <a href="#cta" class="btn-ghost">Suchauftrag stellen
+            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     7. TESTIMONIALS
+     ░░ PLACEHOLDER: All 5 testimonials ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="reveal">
+        <span class="eyebrow">Kundenstimmen</span>
+        <h2>Was unsere Kunden sagen.</h2>
+      </div>
+      <a href="#" class="btn-ghost reveal">Alle Bewertungen
+        <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="testi-grid">
+      <!-- ░░ PLACEHOLDER: Testimonial 1 ░░ -->
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">[Testimonial Text 1 — ca. 2–3 Sätze aus einer echten Kundenstimme]</div>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
+          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+        </div>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Testimonial 2 (featured/dark) ░░ -->
+      <div class="testi-card featured reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">[Testimonial Text 2 — die stärkste Kundenstimme hier hervorheben]</div>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
+          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+        </div>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Testimonial 3 ░░ -->
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">[Testimonial Text 3]</div>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
+          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+        </div>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Testimonial 4 ░░ -->
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">[Testimonial Text 4]</div>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
+          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+        </div>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Testimonial 5 ░░ -->
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">[Testimonial Text 5]</div>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
+          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     8. SERVICE CARDS
+     ░░ PLACEHOLDER: All service content ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="eyebrow">Leistungen</span>
+      <h2>Was wir für Sie tun.</h2>
+      <p>Egal ob Kauf, Verkauf oder Vermietung — wir begleiten Sie mit dem gleichen Engagement.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- ░░ PLACEHOLDER: Service 1 — Kaufen ░░ -->
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Immobilie kaufen" loading="lazy">
+        </div>
+        <div class="service-body">
+          <div class="service-tag">Kaufen</div>
+          <h3>Die perfekte Immobilie finden</h3>
+          <p>Von der Suche bis zum Einzug — wir begleiten Sie durch den gesamten Kaufprozess und sorgen für Transparenz und Sicherheit.</p>
+          <a href="#cta" class="btn-ghost">Jetzt starten
+            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Service 2 — Verkaufen ░░ -->
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Immobilie verkaufen" loading="lazy">
+        </div>
+        <div class="service-body">
+          <div class="service-tag">Verkaufen</div>
+          <h3>Den besten Preis erzielen</h3>
+          <p>Professionelle Bewertung, gezieltes Marketing und erfahrene Verhandlungsführung — für den optimalen Verkaufspreis.</p>
+          <a href="#cta" class="btn-ghost">Bewertung anfordern
+            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Service 3 — Vermieten ░░ -->
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Immobilie vermieten" loading="lazy">
+        </div>
+        <div class="service-body">
+          <div class="service-tag">Mieten</div>
+          <h3>Die richtige Wohnung finden</h3>
+          <p>Wir kennen die lokalen Mietermärkte und helfen Ihnen, schnell und sicher die passende Mietimmobilie zu finden.</p>
+          <a href="#cta" class="btn-ghost">Angebote ansehen
+            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     9. SUPPORT CARDS
+     ░░ PLACEHOLDER: All support service content ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="support" class="section">
+  <div class="container">
+    <div class="support-header">
+      <div class="reveal">
+        <span class="eyebrow">Mehr als der Kauf</span>
+        <h2>Rundum-Betreuung<br>aus einer Hand.</h2>
+      </div>
+      <a href="#" class="btn-outline reveal" style="flex-shrink:0">Alle Leistungen</a>
+    </div>
+
+    <div class="support-grid">
+      <!-- ░░ PLACEHOLDER: Support Service 1 — Finanzierung ░░ -->
+      <div class="support-card reveal">
+        <div class="support-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <h3>Finanzierungsberatung</h3>
+        <p>Wir helfen Ihnen, die optimale Finanzierungslösung zu finden — mit unserem Netzwerk aus Bankpartnern und unabhängigen Beratern.</p>
+        <a href="#cta" class="btn-ghost">Beratung anfragen
+          <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Support Service 2 — Verwaltung ░░ -->
+      <div class="support-card reveal">
+        <div class="support-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        </div>
+        <h3>Hausverwaltung</h3>
+        <p>Sie investieren, wir kümmern uns. Von der Mietersuche bis zur laufenden Verwaltung — professionell und zuverlässig.</p>
+        <a href="#cta" class="btn-ghost">Mehr erfahren
+          <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Support Service 3 — Renovierung/Entwicklung ░░ -->
+      <div class="support-card reveal">
+        <div class="support-icon">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Renovierung & Aufwertung</h3>
+        <p>Wir vernetzen Sie mit zuverlässigen Handwerkern und Architekten — damit Ihre Immobilie ihr volles Potenzial entfaltet.</p>
+        <a href="#cta" class="btn-ghost">Kontakt aufnehmen
+          <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     10. BLOG
+     ░░ PLACEHOLDER: All 3 blog posts (date, title, excerpt, image) ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="blog" class="section section-alt">
+  <div class="container">
+    <div class="blog-header">
+      <div class="reveal">
+        <span class="eyebrow">Ratgeber</span>
+        <h2>Blog & Wissen.</h2>
+      </div>
+      <a href="#" class="btn-outline reveal">Zum Blog</a>
+    </div>
+
+    <div class="blog-grid">
+      <!-- ░░ PLACEHOLDER: Blog Post 1 ░░ -->
+      <div class="blog-card reveal">
+        <div class="blog-thumb">
+          <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=700" alt="[Blog Beitrag 1]" loading="lazy">
+          <div class="blog-cat">[Kategorie]</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">[TT. Monat JJJJ]</div>
+          <h3>[Blog-Titel 1: z.B. "5 Tipps für den erfolgreichen Hausverkauf"]</h3>
+          <p>[Kurzer Einleitungstext zum Artikel — 2–3 Sätze die neugierig machen.]</p>
+          <a href="#" class="btn-ghost">Weiterlesen
+            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Blog Post 2 ░░ -->
+      <div class="blog-card reveal">
+        <div class="blog-thumb">
+          <img src="https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&w=700" alt="[Blog Beitrag 2]" loading="lazy">
+          <div class="blog-cat">[Kategorie]</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">[TT. Monat JJJJ]</div>
+          <h3>[Blog-Titel 2]</h3>
+          <p>[Kurzer Einleitungstext.]</p>
+          <a href="#" class="btn-ghost">Weiterlesen
+            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- ░░ PLACEHOLDER: Blog Post 3 ░░ -->
+      <div class="blog-card reveal">
+        <div class="blog-thumb">
+          <img src="https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=700" alt="[Blog Beitrag 3]" loading="lazy">
+          <div class="blog-cat">[Kategorie]</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">[TT. Monat JJJJ]</div>
+          <h3>[Blog-Titel 3]</h3>
+          <p>[Kurzer Einleitungstext.]</p>
+          <a href="#" class="btn-ghost">Weiterlesen
+            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     11. CTA SECTION
+     ░░ PLACEHOLDER: Headline + subtext + form action ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <span class="eyebrow reveal">Kostenloses Erstgespräch</span>
+    <!-- ░░ PLACEHOLDER: CTA headline ░░ -->
+    <h2 class="reveal">Ihr Zuhause.<br>Wir helfen Ihnen,<br>es zu finden.</h2>
+    <p class="reveal">Kein Druck. Kein Aufwand. Einfach ein ehrliches Gespräch über Ihre Möglichkeiten.</p>
+    <!-- ░░ PLACEHOLDER: Replace form action with Formspree ID or real contact link ░░ -->
+    <form class="cta-form reveal" action="https://formspree.io/f/[FORMSPREE_ID]" method="POST">
+      <input class="cta-input" type="email" name="email" placeholder="Ihre E-Mail-Adresse" required>
+      <button type="submit" class="btn btn-accent">Jetzt Kontakt aufnehmen</button>
+    </form>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     12. FOOTER
+     ░░ PLACEHOLDER: All footer content ░░
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <!-- ░░ PLACEHOLDER: Footer logo + description ░░ -->
+        <div class="footer-logo-name">[MAKLER]<span>.</span></div>
+        <div class="footer-logo-sub">Immobilien · [STADT]</div>
+        <p class="footer-desc">[Kurze Beschreibung des Maklers — 1–2 Sätze, persönlich und regional]</p>
+        <div class="footer-social">
+          <!-- ░░ PLACEHOLDER: Real social links ░░ -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M6.5 6.5h11a1 1 0 011 1v11a1 1 0 01-1 1h-11a1 1 0 01-1-1v-11a1 1 0 011-1z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Link col 1 -->
+      <div class="footer-col">
+        <!-- ░░ PLACEHOLDER: Link column ░░ -->
+        <h4>Suchen</h4>
+        <ul>
+          <li><a href="#">Kaufen</a></li>
+          <li><a href="#">Verkaufen</a></li>
+          <li><a href="#">Mieten</a></li>
+          <li><a href="#">Neue Objekte</a></li>
+        </ul>
+      </div>
+
+      <!-- Link col 2 -->
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <ul>
+          <li><a href="#">Über uns</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <!-- Link col 3 — Contact -->
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <!-- ░░ PLACEHOLDER: Real address, phone, email ░░ -->
+          <li><a href="#">[Straße, PLZ Ort]</a></li>
+          <li><a href="tel:[TELEFON]">[Telefon]</a></li>
+          <li><a href="mailto:[EMAIL]">[E-Mail]</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <!-- ░░ PLACEHOLDER: Year + legal links ░░ -->
+      <div class="footer-copy">© 2026 [MAKLER NAME]. Alle Rechte vorbehalten.</div>
+      <div class="footer-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="#">AGB</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ░░ WhatsApp Float ░░ -->
+<!-- ░░ PLACEHOLDER: Replace with real phone number ░░ -->
+<a href="https://wa.me/4915254190819" class="wa-float" target="_blank" rel="noopener" id="waFloat" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.484 2 12.017c0 1.987.518 3.9 1.497 5.572L2 22l4.518-1.482A9.933 9.933 0 0012 21.999c5.522 0 10-4.484 10-10.017C22 6.484 17.522 2 12 2z"/></svg>
+</a>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* ─── NAV scroll state ─────────────────── */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ─── Scroll progress bar ──────────────── */
+gsap.to('#progress', {
+  scaleX: 1,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: document.body,
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: true,
+  }
+});
+
+/* ─── Hero parallax ────────────────────── */
+gsap.to('#heroBg', {
+  yPercent: 25,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '#hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true,
+  }
+});
+
+/* Hero card float */
+gsap.to('#heroCard', {
+  y: -18,
+  duration: 3,
+  ease: 'sine.inOut',
+  yoyo: true,
+  repeat: -1,
+});
+
+/* ─── Scroll reveals ───────────────────── */
+gsap.utils.toArray('.reveal').forEach((el, i) => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1, y: 0,
+      duration: 0.75,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 88%',
+        toggleActions: 'play none none none',
+      },
+      delay: (i % 3) * 0.08,
+    }
+  );
+});
+
+/* ─── Mobile nav ───────────────────────── */
+const ham = document.getElementById('navHam');
+const mob = document.getElementById('navMob');
+ham.addEventListener('click', () => mob.classList.toggle('open'));
+function closeMob() { mob.classList.remove('open'); }
+
+/* ─── WhatsApp float in ────────────────── */
+gsap.to('#waFloat', {
+  opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.4)',
+  scrollTrigger: { trigger: '#why', start: 'top 80%' }
+});
+</script>
+</body>
+</html>
