@@ -158,89 +158,108 @@ p{font-size:1.0625rem;color:var(--muted);line-height:1.75;font-weight:400}
 }
 
 /* ═══════════════════════════════════════════════════════
-   2. HERO — 5-LAYER PARALLAX (house rises into clouds)
+   2. HERO — PINNED PARALLAX (house.png effect via CSS)
+   Reference: findrealestate.com — back.jpg + house.png +
+   cloud.png×2 + smoke.png×2
    ═══════════════════════════════════════════════════════ */
 #hero{
   position:relative;height:100vh;min-height:640px;
   display:flex;align-items:center;overflow:hidden;
-  background:#0a1628;
+  /* sky color so cloud gradient blends seamlessly */
+  background:#c8daf2;
 }
 .hl{position:absolute;pointer-events:none;will-change:transform}
 
-/* ── L1: Sky — slowest (barely drifts) ── */
-/* ░░ PLACEHOLDER: wide sky/clouds photo ░░ */
+/* ── L1: back.jpg equivalent — scenic sky/city photo ── */
+/* ░░ PLACEHOLDER: wide panoramic property/city photo ░░ */
 .hl-sky{
-  inset:-18% -6%;
-  background:url('https://images.pexels.com/photos/531767/pexels-photo-531767.jpeg?auto=compress&cs=tinysrgb&w=1920') center 30%/cover no-repeat;
+  inset:-14% -5%;
+  background:url('https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=1920') center 55%/cover no-repeat;
   z-index:1;
 }
 
-/* ── L2: Back cloud texture (slow) ── */
-.hl-cloud-back{
-  inset:-20% -6%;
-  background:url('https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1600') center 20%/cover no-repeat;
-  z-index:2;
-  opacity:.45;
-  -webkit-mask-image:linear-gradient(to bottom,black 0%,black 55%,transparent 82%);
-  mask-image:linear-gradient(to bottom,black 0%,black 55%,transparent 82%);
-}
-
-/* ── L3: House — FASTEST (rises up, goes behind clouds) ── */
-/* ░░ PLACEHOLDER: property exterior ░░ */
+/* ── L2: house.png equivalent ──
+   Positioned bottom-right, rises fast on scroll.
+   Mask simulates transparent PNG edges.
+   ░░ PLACEHOLDER: exterior property photo ░░ */
 .hl-house{
   position:absolute;
-  /* starts filling right 65% of hero, vertically centered-low */
-  left:28%;right:-4%;top:0;bottom:-18%;
+  /* Key: starts in LOWER half so it's visible, cloud layer covers upper half */
+  right:-5%;left:22%;
+  top:28%;bottom:-22%;
   z-index:3;overflow:hidden;
 }
 .hl-house img{
-  width:100%;height:100%;object-fit:cover;object-position:center 70%;
-  -webkit-mask-image:linear-gradient(to left,black 40%,rgba(0,0,0,.5) 70%,transparent 100%),
-                     linear-gradient(to bottom,transparent 0%,black 15%,black 78%,transparent 100%);
-  mask-image:linear-gradient(to left,black 40%,rgba(0,0,0,.5) 70%,transparent 100%),
-             linear-gradient(to bottom,transparent 0%,black 15%,black 78%,transparent 100%);
-  -webkit-mask-composite:source-in;
-  mask-composite:intersect;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 65%;
+  /* Simulate PNG transparency: fade left edge + top edge */
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.7) 10%,black 22%,black 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.7) 10%,black 22%,black 100%);
 }
 
-/* ── L4: Cloud Front — slow (house rises BEHIND this) ── */
-/* High z-index = in FRONT of house */
-.hl-cloud-front{
-  /* Covers upper 65% — house rises into this zone */
-  top:-22%;left:-6%;right:-6%;height:80%;
-  z-index:6;
-
-  /* CSS cloud blobs — white radial shapes, transparent background */
+/* ── L3: smoke.png equivalent — ground mist layer ──
+   Sits in FRONT of house bottom, gives atmospheric ground fog */
+.hl-smoke{
+  bottom:0;left:0;right:0;height:38%;
+  z-index:4;
   background:
-    radial-gradient(ellipse 72% 60% at 12% 38%, rgba(255,255,255,.78) 0%,rgba(255,255,255,.3) 45%,transparent 68%),
-    radial-gradient(ellipse 58% 52% at 48% 22%, rgba(255,255,255,.72) 0%,rgba(255,255,255,.25) 50%,transparent 70%),
-    radial-gradient(ellipse 65% 55% at 82% 40%, rgba(255,255,255,.75) 0%,rgba(255,255,255,.28) 48%,transparent 68%),
-    radial-gradient(ellipse 42% 38% at 30% 60%, rgba(255,255,255,.55) 0%,rgba(255,255,255,.2) 52%,transparent 72%),
-    radial-gradient(ellipse 38% 32% at 65% 55%, rgba(255,255,255,.5)  0%,rgba(255,255,255,.18) 55%,transparent 75%),
-    radial-gradient(ellipse 28% 25% at 92% 65%, rgba(255,255,255,.45) 0%,transparent 65%);
-
-  /* fade out at very bottom so transition is natural */
-  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.9) 0%,rgba(0,0,0,.85) 50%,rgba(0,0,0,.35) 80%,transparent 100%);
-  mask-image:linear-gradient(to bottom,rgba(0,0,0,.9) 0%,rgba(0,0,0,.85) 50%,rgba(0,0,0,.35) 80%,transparent 100%);
+    radial-gradient(ellipse 140% 80% at 50% 110%,rgba(200,220,248,.82) 0%,rgba(210,228,250,.45) 45%,transparent 72%),
+    radial-gradient(ellipse 80% 50% at 20% 120%,rgba(205,222,246,.65) 0%,transparent 60%),
+    radial-gradient(ellipse 80% 50% at 80% 115%,rgba(205,222,246,.65) 0%,transparent 60%);
 }
 
-/* Photo texture over CSS clouds for realism */
-.hl-cloud-front::after{
-  content:'';
-  position:absolute;inset:0;
-  background:url('https://images.pexels.com/photos/2114014/pexels-photo-2114014.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover;
-  mix-blend-mode:screen;
-  opacity:.28;
+/* ── L4a: cloud.png equivalent (back layer, behind house) ── */
+/* ░░ PLACEHOLDER: cloud photo — can swap for real cloud PNG ░░ */
+.hl-cloud-back{
+  /* positioned upper half, BEHIND house */
+  top:-18%;left:-6%;right:-6%;height:72%;
+  z-index:2;
+  background:url('https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1600') center 25%/cover no-repeat;
+  opacity:.55;
+  -webkit-mask-image:linear-gradient(to bottom,black 0%,black 45%,rgba(0,0,0,.35) 72%,transparent 100%);
+  mask-image:linear-gradient(to bottom,black 0%,black 45%,rgba(0,0,0,.35) 72%,transparent 100%);
 }
 
-/* ── L5: Left vignette (text readability) ── */
+/* ── L4b: cloud.png×2 equivalent (FRONT layer, z > house) ──
+   This is the KEY layer — house rises BEHIND this.
+   Dense cloud zone covering upper 55% of hero. */
+.hl-cloud-front{
+  top:0;left:0;right:0;
+  /* height = 60% of hero — cloud zone the house disappears into */
+  height:62%;
+  z-index:5; /* must be > house z-index (3) */
+
+  /* Dense sky-white gradient — solid at top, transparent at bottom */
+  background:
+    /* Large base cloud mass */
+    radial-gradient(ellipse 120% 65% at 50% -5%,  rgba(230,240,255,.98) 0%,rgba(215,232,252,.85) 35%,rgba(200,222,250,.45) 65%,transparent 85%),
+    /* Left cloud bulge */
+    radial-gradient(ellipse 70% 55% at 5%   38%, rgba(235,243,255,.9)  0%,rgba(218,234,253,.55) 45%,transparent 70%),
+    /* Right cloud bulge */
+    radial-gradient(ellipse 60% 50% at 96%  32%, rgba(232,241,255,.88) 0%,rgba(215,232,252,.5)  48%,transparent 72%),
+    /* Center gap slight thinning */
+    radial-gradient(ellipse 50% 40% at 50%  55%, rgba(220,235,255,.7)  0%,rgba(205,225,250,.35) 52%,transparent 75%),
+    /* Soft overall fill */
+    linear-gradient(to bottom,rgba(218,232,252,.92) 0%,rgba(212,228,250,.62) 32%,rgba(205,225,248,.22) 56%,transparent 78%);
+}
+/* Cloud photo texture on top for realism */
+.hl-cloud-front::before{
+  content:'';position:absolute;inset:0;
+  background:url('https://images.pexels.com/photos/531767/pexels-photo-531767.jpeg?auto=compress&cs=tinysrgb&w=1920') center top/cover no-repeat;
+  opacity:.35;
+  mix-blend-mode:multiply;
+  -webkit-mask-image:linear-gradient(to bottom,black 0%,black 40%,transparent 90%);
+  mask-image:linear-gradient(to bottom,black 0%,black 40%,transparent 90%);
+}
+
+/* ── L5: Dark left vignette — text legibility ── */
 .hl-overlay{
-  inset:0;z-index:7;
+  inset:0;z-index:6;
   background:linear-gradient(
-    108deg,
-    rgba(6,12,28,.85) 0%,
-    rgba(6,12,28,.6)  38%,
-    rgba(6,12,28,.22) 62%,
+    106deg,
+    rgba(4,10,26,.80) 0%,
+    rgba(4,10,26,.52) 35%,
+    rgba(4,10,26,.18) 58%,
     transparent 100%
   );
 }
@@ -845,16 +864,18 @@ p{font-size:1.0625rem;color:var(--muted);line-height:1.75;font-weight:400}
 <section id="hero">
   <!-- L1: Sky bg -->
   <div class="hl hl-sky" id="hlSky"></div>
-  <!-- L2: Back cloud texture -->
+  <!-- L2: cloud back (behind house) -->
   <div class="hl hl-cloud-back" id="hlCloudBack"></div>
-  <!-- L3: House — rises up on scroll (fastest layer) -->
+  <!-- L3: HOUSE — fastest, rises into cloud zone -->
   <!-- ░░ PLACEHOLDER: property exterior photo ░░ -->
   <div class="hl hl-house" id="hlHouse">
-    <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="">
+    <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="">
   </div>
-  <!-- L4: Front clouds — high z-index, barely moves → house rises BEHIND this -->
+  <!-- L4: smoke / ground mist (z:4, in front of house bottom) -->
+  <div class="hl hl-smoke" id="hlSmoke"></div>
+  <!-- L5: cloud front — z:5, house rises BEHIND this -->
   <div class="hl hl-cloud-front" id="hlCloudFront"></div>
-  <!-- L5: Left vignette overlay -->
+  <!-- L6: Dark overlay left -->
   <div class="hl hl-overlay"></div>
 
   <!-- Floating property card (right side, above clouds) -->
@@ -1449,19 +1470,33 @@ gsap.to('#progress', {
   scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: true }
 });
 
-/* ─── Hero: differential parallax ─────── */
-const heroST = { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.2 };
+/* ─── Hero: pinned parallax ────────────── */
+// Pin hero for 700px of scroll = full effect plays out while hero stays in view
+const PIN_DUR = 700;
+ScrollTrigger.create({
+  trigger: '#hero',
+  start: 'top top',
+  end: `+=${PIN_DUR}`,
+  pin: true,
+  pinSpacing: true,
+  anticipatePin: 1,
+});
 
-// L1 Sky: very slow upward drift
-gsap.to('#hlSky',        { yPercent: -12, ease: 'none', scrollTrigger: heroST });
-// L2 Back clouds: slightly faster
-gsap.to('#hlCloudBack',  { yPercent: -18, ease: 'none', scrollTrigger: heroST });
-// L3 House: FASTEST — shoots up, disappears behind front cloud layer
-gsap.to('#hlHouse',      { yPercent: -58, ease: 'none', scrollTrigger: heroST });
-// L4 Front clouds: barely moves → house rises THROUGH/BEHIND it
-gsap.to('#hlCloudFront', { yPercent: -6,  ease: 'none', scrollTrigger: heroST });
-// Text: subtle drift
-gsap.to('.hero-content', { yPercent: -14, ease: 'none', scrollTrigger: heroST });
+const hST = { trigger: '#hero', start: 'top top', end: `+=${PIN_DUR}`, scrub: 0.6 };
+
+// L1 Sky: very slow positive drift (sinks slightly)
+gsap.to('#hlSky',       { y: 55,   ease: 'none', scrollTrigger: hST });
+// L2 Cloud back: slow (behind house, sinks a little)
+gsap.to('#hlCloudBack', { y: 35,   ease: 'none', scrollTrigger: hST });
+// L3 House: RISES fast — negative y = moves up
+// House top starts at 28% of viewport. Rises ~320px → enters cloud zone (top 0-62%)
+gsap.to('#hlHouse',     { y: -320, ease: 'none', scrollTrigger: hST });
+// L4 Smoke: slight drift down (stays with ground)
+gsap.to('#hlSmoke',     { y: 30,   ease: 'none', scrollTrigger: hST });
+// L5 Cloud front: barely moves — house rises BEHIND it (key to the effect)
+gsap.to('#hlCloudFront',{ y: 18,   ease: 'none', scrollTrigger: hST });
+// Text: gentle drift up with scroll
+gsap.to('.hero-content',{ y: 80,   ease: 'none', scrollTrigger: hST });
 
 /* ─── Hero entrance animation ─────────── */
 const heroTL = gsap.timeline({ delay: 0.2 });
