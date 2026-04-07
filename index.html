@@ -54,7 +54,7 @@ p{font-size:1.0625rem;color:var(--muted);line-height:1.75;font-weight:400}
 .section{padding:120px 0}
 @media(max-width:768px){.section{padding:72px 0}}
 .section-alt{background:var(--bg2)}
-.reveal{opacity:0;transform:translateY(32px)}
+.reveal{opacity:0;transform:translateY(40px)}
 
 /* ─── BUTTONS ─────────────────────────── */
 .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:60px;font-size:.8125rem;font-weight:600;letter-spacing:.04em;transition:all .25s;cursor:pointer}
@@ -1390,22 +1390,40 @@ gsap.to('#heroCard', {
   repeat: -1,
 });
 
-/* ─── Scroll reveals ───────────────────── */
-gsap.utils.toArray('.reveal').forEach((el, i) => {
+/* ─── Scroll reveals — single elements ─── */
+// Non-grid reveals: headings, text blocks, lone elements
+const soloReveal = '.why-text.reveal, .why-stats.reveal, .gallery-header.reveal, .gallery-subtext.reveal, .dual-text.reveal, .dual-images.reveal, .testimonials-header .reveal, .blog-header .reveal, .support-header .reveal, .services-header.reveal, .cta-inner .reveal, #process .reveal:not(.process-step)';
+gsap.utils.toArray(soloReveal).forEach(el => {
   gsap.fromTo(el,
-    { opacity: 0, y: 40 },
+    { opacity: 0, y: 56 },
     {
       opacity: 1, y: 0,
-      duration: 0.75,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none',
-      },
-      delay: (i % 3) * 0.08,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
     }
   );
+});
+
+/* ─── Batch stagger for grids ──────────── */
+// Cards inside grids animate in with a clean left-to-right stagger
+[
+  { sel: '.process-step',    y: 50, stagger: 0.18 },
+  { sel: '.stat-card',       y: 40, stagger: 0.14 },
+  { sel: '.testi-card',      y: 48, stagger: 0.13 },
+  { sel: '.service-card',    y: 52, stagger: 0.15 },
+  { sel: '.support-card',    y: 44, stagger: 0.15 },
+  { sel: '.blog-card',       y: 48, stagger: 0.15 },
+  { sel: '.gallery-item',    y: 36, stagger: 0.12 },
+].forEach(({ sel, y, stagger }) => {
+  ScrollTrigger.batch(sel, {
+    start: 'top 88%',
+    onEnter: batch => gsap.fromTo(batch,
+      { opacity: 0, y },
+      { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger }
+    ),
+    once: true,
+  });
 });
 
 /* ─── Mobile nav ───────────────────────── */
