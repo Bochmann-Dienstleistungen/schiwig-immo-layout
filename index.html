@@ -30,7 +30,7 @@
   --color-surface: #f4f7fd;
   --color-text: #0a1a3c;
   --color-text-muted: #6b7ea8;
-  --fs-hero: clamp(3.5rem, 9vw, 8.5rem);
+  --fs-hero: clamp(4.5rem, 11vw, 11rem);
   --fs-h2: clamp(2.2rem, 5vw, 4.5rem);
   --fs-h3: clamp(1.4rem, 2.5vw, 2rem);
   --fs-body: clamp(0.95rem, 1.3vw, 1.05rem);
@@ -266,58 +266,119 @@ nav.scrolled .nav-hamburger span { background: var(--color-dark); }
 .hero-bg-image {
   position: absolute;
   inset: -20% 0 -20% 0;
-  background-image: url('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920');
+  /* ░░ PLACEHOLDER: luxury property photo ░░ */
+  background-image: url('https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1920');
   background-size: cover;
-  background-position: center;
+  background-position: center 60%;
   z-index: 1;
   will-change: transform;
 }
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    105deg,
-    rgba(15,15,13,0.82) 0%,
-    rgba(15,15,13,0.55) 55%,
-    rgba(15,15,13,0.25) 100%
-  );
+  /* Maison-style: heavy bottom-left, lighter top-right */
+  background:
+    linear-gradient(to top, rgba(4,8,20,0.72) 0%, rgba(4,8,20,0.3) 55%, transparent 100%),
+    linear-gradient(to right, rgba(4,8,20,0.65) 0%, rgba(4,8,20,0.15) 60%, transparent 100%);
   z-index: 2;
 }
 .hero-content {
   position: absolute;
-  left: 6%;
-  top: 50%;
-  transform: translateY(-50%);
+  left: var(--pad-x);
+  bottom: 10vh;           /* bottom-left like Maison */
   z-index: 3;
-  max-width: min(660px, 55vw);
+  max-width: min(900px, 80vw);
 }
+
+/* Tiny brand label above headline */
+.hero-brand-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+.hero-brand-label::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: rgba(255,255,255,0.35);
+}
+
+/* Headline: two lines, different weights like "The Art of / Inhabiting" */
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--fs-hero);
   font-weight: 300;
   color: #fff;
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.4rem;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin-bottom: 2.4rem;
 }
-.hero-rotating-word {
-  color: var(--color-accent-light);
+.hero-title-line1 {
+  display: block;
+  /* lighter, smaller — like "The Art of" */
+  opacity: 0.88;
+}
+.hero-title-line2 {
+  display: block;
   font-style: italic;
-  display: inline-block;
+  font-weight: 300;
+  /* the dominant word — like "Inhabiting" */
 }
-.hero-sub {
+
+/* Subtitle below headline: "CURATED REAL ESTATE · MUNICH" */
+.hero-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  color: rgba(255,255,255,0.78);
-  line-height: 1.7;
-  max-width: 500px;
-  margin-bottom: 2.2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 2.8rem;
 }
+.hero-subtitle::before {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+
 .hero-ctas {
   display: flex;
-  gap: 1rem;
+  gap: 1.4rem;
+  align-items: center;
   flex-wrap: wrap;
 }
+/* Minimal CTA — text link with arrow, Maison style */
+.hero-cta-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  padding-bottom: 0.2rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hero-cta-text:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+.hero-cta-arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+.hero-cta-text:hover .hero-cta-arrow { transform: translateX(4px); }
 .btn-primary {
   font-family: 'Outfit', sans-serif;
   font-size: 0.82rem;
@@ -1278,26 +1339,44 @@ footer {
 <section class="hero" id="hero">
   <div class="hero-bg-image"></div>
   <div class="hero-overlay"></div>
+
   <div class="hero-content">
-    <span class="section-label">Immobilienmakler · Zwickau</span>
-    <h1 class="hero-title">Finden Sie, was Sie <span class="hero-rotating-word">bewegt.</span></h1>
-    <p class="hero-sub">Ihr persönlicher Immobilienmakler in Zwickau und Umgebung. 150+ erfolgreich vermittelte Objekte. Immer für Sie da.</p>
+    <!-- Brand label — like "Maison" above headline -->
+    <div class="hero-brand-label">Schiwig Immobilien</div>
+
+    <!-- Two-line headline: "The Art of / Inhabiting" structure -->
+    <h1 class="hero-title">
+      <span class="hero-title-line1">Die Kunst,</span>
+      <span class="hero-title-line2">zu wohnen.</span>
+    </h1>
+
+    <!-- "CURATED REAL ESTATE · MUNICH" equivalent -->
+    <div class="hero-subtitle">Immobilienmakler · Zwickau</div>
+
+    <!-- Minimal CTAs -->
     <div class="hero-ctas">
-      <a href="#kontakt" class="btn-primary">Kostenlose Beratung</a>
-      <a href="#leistungen" class="btn-outline">Unsere Leistungen</a>
+      <a href="#kontakt" class="hero-cta-text">
+        Beratung anfragen <span class="hero-cta-arrow">→</span>
+      </a>
+      <a href="#leistungen" class="hero-cta-text">
+        Unsere Leistungen <span class="hero-cta-arrow">→</span>
+      </a>
     </div>
   </div>
+
+  <!-- Floating property card — glassmorphism -->
   <div class="hero-property-card">
     <span class="property-card-tag">Neu eingestellt</span>
     <div class="property-card-title">Einfamilienhaus in Toplage</div>
     <div class="property-card-address">Zwickau-Eckersbach, Sachsen</div>
     <div class="property-card-meta">
-      <span>🏠 142 m²</span>
-      <span>🛏 4 Zi.</span>
-      <span>🌿 615 m²</span>
+      <span>142 m²</span>
+      <span>4 Zi.</span>
+      <span>615 m² Grund</span>
     </div>
     <div class="property-card-price">329.000 €</div>
   </div>
+
   <div class="hero-scroll">
     <span>Scrollen</span>
     <div class="hero-scroll-line"></div>
@@ -1818,11 +1897,18 @@ if (dot && ring && window.matchMedia('(pointer:fine)').matches) {
 // ═══════════════════════════════════════════
 // HERO ANIMATIONS ON LOAD
 // ═══════════════════════════════════════════
-gsap.from('.section-label', { opacity: 0, duration: 0.8, delay: 0.2 });
-gsap.from('.hero-title', { y: 80, opacity: 0, duration: 1.1, ease: 'power4.out', delay: 0.4 });
-gsap.from('.hero-sub', { y: 30, opacity: 0, duration: 0.9, ease: 'power3.out', delay: 0.9 });
-gsap.from('.hero-ctas', { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out', delay: 1.1 });
-gsap.from('.hero-property-card', { x: 60, opacity: 0, duration: 1.0, ease: 'power3.out', delay: 0.7 });
+// Brand label fades first
+gsap.from('.hero-brand-label', { opacity: 0, y: 12, duration: 0.9, ease: 'power3.out', delay: 0.2 });
+// Line 1: slides up
+gsap.from('.hero-title-line1', { y: 60, opacity: 0, duration: 1.1, ease: 'power4.out', delay: 0.45 });
+// Line 2: slides up slightly after, with clip feel
+gsap.from('.hero-title-line2', { y: 80, opacity: 0, duration: 1.1, ease: 'power4.out', delay: 0.6 });
+// Subtitle
+gsap.from('.hero-subtitle', { opacity: 0, y: 14, duration: 0.8, ease: 'power3.out', delay: 1.0 });
+// CTAs
+gsap.from('.hero-ctas', { opacity: 0, y: 12, duration: 0.7, ease: 'power3.out', delay: 1.2 });
+// Property card from right
+gsap.from('.hero-property-card', { x: 60, opacity: 0, duration: 1.0, ease: 'power3.out', delay: 0.8 });
 
 // ═══════════════════════════════════════════
 // HERO PARALLAX
@@ -1847,24 +1933,7 @@ gsap.to('.hero-property-card', {
   y: -10, duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.5
 });
 
-// ═══════════════════════════════════════════
-// ROTATING WORD
-// ═══════════════════════════════════════════
-const rotatingWords = ['bewegt.', 'begeistert.', 'vorwärtsbringt.'];
-let rwi = 0;
-const rwEl = document.querySelector('.hero-rotating-word');
-if (rwEl) {
-  setInterval(() => {
-    gsap.to(rwEl, {
-      y: -30, opacity: 0, duration: 0.4, ease: 'power2.in',
-      onComplete: () => {
-        rwi = (rwi + 1) % rotatingWords.length;
-        rwEl.textContent = rotatingWords[rwi];
-        gsap.fromTo(rwEl, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' });
-      }
-    });
-  }, 2500);
-}
+// Rotating word removed — Maison aesthetic: static, editorial headline
 
 // ═══════════════════════════════════════════
 // NAV SCROLL AWARE
