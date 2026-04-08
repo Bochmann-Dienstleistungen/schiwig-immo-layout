@@ -3,1588 +3,2015 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- ░░ PLACEHOLDER: Update title, description, OG tags with real data ░░ -->
-<title>[MAKLER NAME] – Immobilien [STADT]</title>
-<meta name="description" content="[MAKLER NAME] – Ihr persönlicher Immobilienmakler in [STADT]. Kaufen, Verkaufen, Mieten.">
+<title>Schiwig Immobilien – Ihr Makler in Zwickau | Kaufen, Verkaufen, Mieten</title>
+<meta name="description" content="Schiwig Immobilien – Ihr persönlicher Immobilienmakler in Zwickau. 150+ vermittelte Objekte, 4.9 Sterne, 12 Jahre Erfahrung. Jetzt kostenlose Beratung anfragen.">
+<meta property="og:title" content="Schiwig Immobilien – Immobilienmakler Zwickau">
+<meta property="og:description" content="Persönlich. Lokal. Ergebnisorientiert. Ihr Immobilienmakler in Zwickau mit 12 Jahren Erfahrung.">
+<meta property="og:image" content="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1200">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#B8972E">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🏡</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,300;1,14..32,400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <style>
-/* ═══════════════════════════════════════════════════════
-   DESIGN TOKENS
-   ░░ PLACEHOLDER: Replace accent color with brand color ░░
-   ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   CUSTOM PROPERTIES
+═══════════════════════════════════════════ */
 :root {
-  --bg:      #ffffff;
-  --bg2:     #f9f8f6;
-  --bg3:     #f0ede8;
-  --dark:    #111111;
-  --dark2:   #222222;
-  --muted:   #6b7280;
-  --light:   #9ca3af;
-  --line:    #e5e7eb;
-  /* ░░ PLACEHOLDER: Brand accent color ░░ */
-  --accent:  #b89060;
-  --accent2: #a07840;
-  --accent-light: rgba(184,144,96,.12);
-  --r:       4px;
-  --r2:      8px;
-  --r3:      16px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;font-size:16px}
-body{background:var(--bg);color:var(--dark);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%;height:auto}
-button{cursor:pointer;font-family:inherit;border:none;background:none}
-
-/* ─── TYPOGRAPHY ──────────────────────── */
-.eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
-h1{font-size:clamp(2.8rem,5.5vw,5.5rem);font-weight:800;line-height:1.06;letter-spacing:-.03em;color:var(--dark)}
-h2{font-size:clamp(2rem,3.5vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:-.025em;color:var(--dark)}
-h3{font-size:clamp(1.25rem,2vw,1.75rem);font-weight:600;line-height:1.25;letter-spacing:-.015em}
-p{font-size:1.0625rem;color:var(--muted);line-height:1.75;font-weight:400}
-.lead{font-size:clamp(1.05rem,1.5vw,1.25rem);color:var(--muted);line-height:1.7;font-weight:300}
-
-/* ─── UTILITIES ───────────────────────── */
-.container{width:100%;max-width:1280px;margin:0 auto;padding:0 48px}
-@media(max-width:768px){.container{padding:0 24px}}
-.section{padding:120px 0}
-@media(max-width:768px){.section{padding:72px 0}}
-.section-alt{background:var(--bg2)}
-.reveal{opacity:0;transform:translateY(40px)}
-
-/* ─── BUTTONS ─────────────────────────── */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:60px;font-size:.8125rem;font-weight:600;letter-spacing:.04em;transition:all .25s;cursor:pointer}
-.btn-accent{background:var(--accent);color:#fff}
-.btn-accent:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(184,144,96,.3)}
-.btn-outline{border:1.5px solid var(--dark);color:var(--dark)}
-.btn-outline:hover{background:var(--dark);color:#fff}
-.btn-outline-white{border:1.5px solid rgba(255,255,255,.45);color:#fff}
-.btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.12)}
-.btn-ghost{color:var(--dark);font-size:.8125rem;font-weight:600;letter-spacing:.04em;display:inline-flex;align-items:center;gap:8px;padding:0;transition:gap .2s}
-.btn-ghost:hover{gap:14px}
-.btn-ghost svg{transition:transform .2s}
-.btn-ghost:hover svg{transform:translateX(4px)}
-.arrow{display:inline-block;width:18px;height:18px}
-
-/* ═══════════════════════════════════════════════════════
-   1. NAVIGATION
-   ═══════════════════════════════════════════════════════ */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:900;
-  height:72px;display:flex;align-items:center;
-  transition:background .3s,box-shadow .3s,backdrop-filter .3s;
-}
-#nav.scrolled{
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
-  box-shadow:0 1px 0 var(--line);
-}
-.nav-inner{
-  width:100%;max-width:1280px;margin:0 auto;padding:0 48px;
-  display:flex;align-items:center;justify-content:space-between;gap:32px;
-}
-/* ░░ PLACEHOLDER: Replace with real logo ░░ */
-.nav-logo{
-  display:flex;flex-direction:column;line-height:1;gap:2px;flex-shrink:0;
-}
-.nav-logo-name{
-  font-size:1.125rem;font-weight:800;letter-spacing:.02em;color:#fff;
-  transition:color .3s;
-}
-#nav.scrolled .nav-logo-name{color:var(--dark)}
-.nav-logo-name span{color:var(--accent)}
-.nav-logo-sub{
-  font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;
-  color:rgba(255,255,255,.5);transition:color .3s;
-}
-#nav.scrolled .nav-logo-sub{color:var(--light)}
-
-.nav-links{
-  display:flex;align-items:center;gap:4px;list-style:none;flex:1;justify-content:center;
-}
-/* ░░ PLACEHOLDER: Update nav link labels ░░ */
-.nav-links a{
-  padding:8px 14px;font-size:.8125rem;font-weight:500;
-  color:rgba(255,255,255,.75);border-radius:60px;
-  transition:color .2s,background .2s;
-}
-.nav-links a:hover{color:#fff;background:rgba(255,255,255,.1)}
-#nav.scrolled .nav-links a{color:var(--muted)}
-#nav.scrolled .nav-links a:hover{color:var(--dark);background:var(--bg2)}
-
-.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.nav-signin{
-  font-size:.8125rem;font-weight:500;color:rgba(255,255,255,.7);
-  padding:8px 14px;border-radius:60px;transition:all .2s;
-}
-.nav-signin:hover{color:#fff;background:rgba(255,255,255,.1)}
-#nav.scrolled .nav-signin{color:var(--muted)}
-#nav.scrolled .nav-signin:hover{color:var(--dark);background:var(--bg2)}
-/* ░░ PLACEHOLDER: Update CTA label ░░ */
-.nav-cta{
-  padding:10px 22px;background:var(--accent);color:#fff;border-radius:60px;
-  font-size:.8125rem;font-weight:600;transition:all .2s;
-}
-.nav-cta:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(184,144,96,.35)}
-
-/* Mobile nav */
-.nav-ham{
-  display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;
-  margin-right:-8px;
-}
-.nav-ham span{display:block;width:22px;height:1.5px;background:#fff;transition:.3s;border-radius:2px}
-#nav.scrolled .nav-ham span{background:var(--dark)}
-.nav-mob{
-  display:none;position:fixed;inset:0;z-index:800;
-  background:rgba(255,255,255,.97);backdrop-filter:blur(32px);
-  padding:96px 48px 48px;flex-direction:column;gap:0;
-}
-.nav-mob.open{display:flex}
-.nav-mob a{
-  font-size:2.25rem;font-weight:700;color:var(--dark);
-  border-bottom:1px solid var(--line);padding:20px 0;
-  display:block;transition:color .2s;
-}
-.nav-mob a:hover{color:var(--accent)}
-@media(max-width:900px){
-  .nav-links,.nav-signin{display:none}
-  .nav-ham{display:flex}
-  .nav-inner{padding:0 24px}
+  --color-bg: #F8F6F2;
+  --color-dark: #0F0F0D;
+  --color-mid: #2A2A26;
+  --color-accent: #B8972E;
+  --color-accent-light: #D4B55A;
+  --color-surface: #EFECE6;
+  --color-text: #3D3D38;
+  --color-text-muted: #7A7A72;
+  --fs-hero: clamp(3.5rem, 9vw, 8.5rem);
+  --fs-h2: clamp(2.2rem, 5vw, 4.5rem);
+  --fs-h3: clamp(1.4rem, 2.5vw, 2rem);
+  --fs-body: clamp(0.95rem, 1.3vw, 1.05rem);
+  --fs-label: 0.72rem;
+  --ls-label: 0.3em;
+  --max-w: 1280px;
+  --pad-x: clamp(1.5rem, 5vw, 5rem);
 }
 
-/* ═══════════════════════════════════════════════════════
-   2. HERO — PINNED PARALLAX (house.png effect via CSS)
-   Reference: findrealestate.com — back.jpg + house.png +
-   cloud.png×2 + smoke.png×2
-   ═══════════════════════════════════════════════════════ */
-#hero{
-  position:relative;height:100vh;min-height:640px;
-  display:flex;align-items:center;overflow:hidden;
-  /* sky color so cloud gradient blends seamlessly */
-  background:#c8daf2;
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: none;
 }
-.hl{position:absolute;pointer-events:none;will-change:transform}
+@media (pointer: coarse) { body { cursor: auto; } }
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 8000;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+button { cursor: none; font-family: inherit; border: none; background: none; }
+@media (pointer: coarse) { button { cursor: pointer; } }
+section { padding: clamp(5rem, 10vw, 10rem) 0; }
 
-/* ── L1: back.jpg equivalent — scenic sky/city photo ── */
-/* ░░ PLACEHOLDER: wide panoramic property/city photo ░░ */
-.hl-sky{
-  inset:-14% -5%;
-  background:url('https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=1920') center 55%/cover no-repeat;
-  z-index:1;
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════════════ */
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--color-dark);
+  line-height: 1.1;
 }
+h1 { font-size: var(--fs-hero); font-weight: 300; letter-spacing: -0.02em; }
+h2 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -0.01em; }
+h3 { font-size: var(--fs-h3); font-weight: 400; }
+p { font-size: var(--fs-body); color: var(--color-text-muted); line-height: 1.75; }
 
-/* ── L2: house.png equivalent ──
-   Positioned bottom-right, rises fast on scroll.
-   Mask simulates transparent PNG edges.
-   ░░ PLACEHOLDER: exterior property photo ░░ */
-.hl-house{
-  position:absolute;
-  /* Key: starts in LOWER half so it's visible, cloud layer covers upper half */
-  right:-5%;left:22%;
-  top:28%;bottom:-22%;
-  z-index:3;overflow:hidden;
-}
-.hl-house img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center 65%;
-  /* Simulate PNG transparency: fade left edge + top edge */
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.7) 10%,black 22%,black 100%);
-  mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.7) 10%,black 22%,black 100%);
-}
-
-/* ── L3: smoke.png equivalent — ground mist layer ──
-   Sits in FRONT of house bottom, gives atmospheric ground fog */
-.hl-smoke{
-  bottom:0;left:0;right:0;height:38%;
-  z-index:4;
-  background:
-    radial-gradient(ellipse 140% 80% at 50% 110%,rgba(200,220,248,.82) 0%,rgba(210,228,250,.45) 45%,transparent 72%),
-    radial-gradient(ellipse 80% 50% at 20% 120%,rgba(205,222,246,.65) 0%,transparent 60%),
-    radial-gradient(ellipse 80% 50% at 80% 115%,rgba(205,222,246,.65) 0%,transparent 60%);
-}
-
-/* ── L4a: cloud.png equivalent (back layer, behind house) ── */
-/* ░░ PLACEHOLDER: cloud photo — can swap for real cloud PNG ░░ */
-.hl-cloud-back{
-  /* positioned upper half, BEHIND house */
-  top:-18%;left:-6%;right:-6%;height:72%;
-  z-index:2;
-  background:url('https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1600') center 25%/cover no-repeat;
-  opacity:.55;
-  -webkit-mask-image:linear-gradient(to bottom,black 0%,black 45%,rgba(0,0,0,.35) 72%,transparent 100%);
-  mask-image:linear-gradient(to bottom,black 0%,black 45%,rgba(0,0,0,.35) 72%,transparent 100%);
+.section-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: 1.2rem;
 }
 
-/* ── L4b: cloud.png×2 equivalent (FRONT layer, z > house) ──
-   This is the KEY layer — house rises BEHIND this.
-   Dense cloud zone covering upper 55% of hero. */
-.hl-cloud-front{
-  top:0;left:0;right:0;
-  /* height = 60% of hero — cloud zone the house disappears into */
-  height:62%;
-  z-index:5; /* must be > house z-index (3) */
-
-  /* Dense sky-white gradient — solid at top, transparent at bottom */
-  background:
-    /* Large base cloud mass */
-    radial-gradient(ellipse 120% 65% at 50% -5%,  rgba(230,240,255,.98) 0%,rgba(215,232,252,.85) 35%,rgba(200,222,250,.45) 65%,transparent 85%),
-    /* Left cloud bulge */
-    radial-gradient(ellipse 70% 55% at 5%   38%, rgba(235,243,255,.9)  0%,rgba(218,234,253,.55) 45%,transparent 70%),
-    /* Right cloud bulge */
-    radial-gradient(ellipse 60% 50% at 96%  32%, rgba(232,241,255,.88) 0%,rgba(215,232,252,.5)  48%,transparent 72%),
-    /* Center gap slight thinning */
-    radial-gradient(ellipse 50% 40% at 50%  55%, rgba(220,235,255,.7)  0%,rgba(205,225,250,.35) 52%,transparent 75%),
-    /* Soft overall fill */
-    linear-gradient(to bottom,rgba(218,232,252,.92) 0%,rgba(212,228,250,.62) 32%,rgba(205,225,248,.22) 56%,transparent 78%);
-}
-/* Cloud photo texture on top for realism */
-.hl-cloud-front::before{
-  content:'';position:absolute;inset:0;
-  background:url('https://images.pexels.com/photos/531767/pexels-photo-531767.jpeg?auto=compress&cs=tinysrgb&w=1920') center top/cover no-repeat;
-  opacity:.35;
-  mix-blend-mode:multiply;
-  -webkit-mask-image:linear-gradient(to bottom,black 0%,black 40%,transparent 90%);
-  mask-image:linear-gradient(to bottom,black 0%,black 40%,transparent 90%);
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
 }
 
-/* ── L5: Dark left vignette — text legibility ── */
-.hl-overlay{
-  inset:0;z-index:6;
-  background:linear-gradient(
-    106deg,
-    rgba(4,10,26,.80) 0%,
-    rgba(4,10,26,.52) 35%,
-    rgba(4,10,26,.18) 58%,
-    transparent 100%
+/* ═══════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════ */
+.cursor-dot {
+  width: 5px; height: 5px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1.5px solid var(--color-accent);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
+@media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.4rem var(--pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 2px;
+}
+.nav-logo-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+.nav-logo-sub {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.3s ease;
+}
+nav.scrolled .nav-logo-main { color: var(--color-dark); }
+nav.scrolled .nav-logo-sub { color: var(--color-text-muted); }
+
+.nav-links {
+  display: flex;
+  gap: 2.2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  transition: color 0.25s ease;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+nav.scrolled .nav-links a { color: var(--color-text); }
+nav.scrolled .nav-links a:hover { color: var(--color-accent); }
+
+.nav-cta {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  background: var(--color-accent);
+  padding: 0.7rem 1.6rem;
+  border-radius: 2px;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+.nav-cta:hover { background: var(--color-accent-light); transform: translateY(-1px); }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: #fff;
+  transition: background 0.3s;
+}
+nav.scrolled .nav-hamburger span { background: var(--color-dark); }
+
+/* Mobile Nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--color-dark);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-bg);
+  letter-spacing: 0.05em;
+}
+.mobile-nav a:hover { color: var(--color-accent); }
+.mobile-nav-close {
+  position: absolute;
+  top: 1.5rem; right: var(--pad-x);
+  font-size: 1.8rem;
+  color: rgba(255,255,255,0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.mobile-nav-close:hover { color: #fff; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+}
+.hero-bg-image {
+  position: absolute;
+  inset: -20% 0 -20% 0;
+  background-image: url('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  will-change: transform;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(15,15,13,0.82) 0%,
+    rgba(15,15,13,0.55) 55%,
+    rgba(15,15,13,0.25) 100%
   );
+  z-index: 2;
+}
+.hero-content {
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  max-width: min(660px, 55vw);
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: var(--fs-hero);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.4rem;
+}
+.hero-rotating-word {
+  color: var(--color-accent-light);
+  font-style: italic;
+  display: inline-block;
+}
+.hero-sub {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: rgba(255,255,255,0.78);
+  line-height: 1.7;
+  max-width: 500px;
+  margin-bottom: 2.2rem;
+}
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  background: var(--color-accent);
+  padding: 0.85rem 2rem;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+.btn-primary:hover { background: var(--color-accent-light); transform: translateY(-2px); }
+.btn-outline {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.45);
+  padding: 0.85rem 2rem;
+  border-radius: 2px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.btn-outline:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* Property card */
+.hero-property-card {
+  position: absolute;
+  bottom: 8%; right: 6%;
+  background: rgba(248,246,242,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.6);
+  padding: 1.4rem 1.8rem;
+  border-radius: 4px;
+  min-width: 260px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  z-index: 4;
+  will-change: transform;
+}
+.property-card-tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.property-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 0.25rem;
+}
+.property-card-address {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.9rem;
+}
+.property-card-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+.property-card-meta span {
+  font-size: 0.75rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.property-card-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding-top: 0.7rem;
 }
 
-/* ── Floating property card ── */
-.hero-card{
-  position:absolute;right:7%;bottom:20%;z-index:12;
-  background:rgba(255,255,255,.96);backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
-  border-radius:var(--r3);padding:22px 26px;width:268px;
-  box-shadow:0 32px 80px rgba(0,0,0,.28);
+/* Hero scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
-.hero-card-tag{
-  font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:10px;
+.hero-scroll span {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
 }
-.hero-card-address{
-  font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:4px;line-height:1.3;
+.hero-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
 }
-.hero-card-price{font-size:1.3rem;font-weight:800;color:var(--dark);margin-bottom:14px;}
-.hero-card-meta{display:flex;gap:16px;font-size:.72rem;color:var(--muted);font-weight:500;}
-.hero-card-meta span{display:flex;align-items:center;gap:5px}
-
-/* ── Hero text ── */
-.hero-content{
-  position:relative;z-index:9;
-  width:100%;max-width:1280px;margin:0 auto;padding:0 56px;
-  padding-top:0;
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:12px;
-  font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(255,255,255,.48);margin-bottom:32px;
-  opacity:0;
-}
-.hero-eyebrow::before{content:'';width:36px;height:1px;background:rgba(255,255,255,.3)}
-
-/* ── Premium clip-reveal headline ── */
-/* Each line has overflow:hidden — words slide up from below clip */
-.hero-h1{
-  font-size:clamp(3rem,6.5vw,7rem);font-weight:800;line-height:1.06;
-  letter-spacing:-.04em;color:#fff;max-width:820px;margin-bottom:32px;
-}
-.hero-line{
-  display:block;
-  overflow:hidden;       /* ← clips the sliding word */
-  padding-bottom:.06em;  /* prevents descenders clipping */
-}
-.hw{
-  display:inline-block;
-  transform:translateY(112%);   /* starts below clip boundary */
-  will-change:transform;
-}
-.hw.light{font-style:italic;font-weight:300;color:rgba(255,255,255,.7)}
-
-.hero-sub{
-  font-size:clamp(1rem,1.35vw,1.18rem);color:rgba(255,255,255,.55);
-  max-width:460px;line-height:1.75;font-weight:300;margin-bottom:44px;
-  opacity:0;transform:translateY(18px);
-}
-.hero-btns{
-  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-  opacity:0;transform:translateY(14px);
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.4); opacity: 0.3; }
 }
 
-/* ── Scroll hint ── */
-.hero-scroll{
-  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
-  z-index:12;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;
+/* ═══════════════════════════════════════════
+   WHY / STATS SECTION
+═══════════════════════════════════════════ */
+.why-section {
+  background: var(--color-bg);
 }
-.hero-scroll-line{
-  width:1px;height:48px;
-  background:linear-gradient(to bottom,transparent,rgba(255,255,255,.55));
-  animation:scrollpulse 2.4s ease-in-out infinite;
+.why-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: center;
 }
-.hero-scroll-txt{font-size:.48rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.32)}
-@keyframes scrollpulse{0%,100%{opacity:.25;transform:scaleY(.85)}50%{opacity:.75;transform:scaleY(1)}}
+.why-text h2 { margin-bottom: 1.4rem; }
+.why-text p { margin-bottom: 1.2rem; }
+.why-text p:last-of-type { margin-bottom: 0; }
 
-@media(max-width:900px){
-  .hero-card{display:none}
-  .hl-house{left:0}
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5px;
+  background: var(--color-surface);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 4px;
+  overflow: hidden;
 }
-@media(max-width:768px){
-  .hero-content{padding:0 28px}
-  .hero-h1{font-size:clamp(2.8rem,9vw,4.5rem)}
+.stat-item {
+  background: var(--color-bg);
+  padding: 2.2rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  transition: background 0.3s ease;
+}
+.stat-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 1.8rem; right: 1.8rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+.stat-item:hover::after { transform: scaleX(1); }
+.stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--color-dark);
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.stat-number { display: inline-block; }
+.stat-suffix {
+  font-size: 0.55em;
+  color: var(--color-accent);
+  font-weight: 400;
+}
+.stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
 }
 
-/* ═══════════════════════════════════════════════════════
-   3. WHY [NAME] — VALUE PROPOSITION
-   ═══════════════════════════════════════════════════════ */
-#why .why-inner{
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+/* ═══════════════════════════════════════════
+   GALLERY
+═══════════════════════════════════════════ */
+.gallery-section {
+  background: var(--color-surface);
+  padding-bottom: 0;
 }
-#why .why-text{max-width:520px}
-#why .why-text h2{margin-bottom:24px}
-#why .why-text p{margin-bottom:32px}
-#why .why-stats{
-  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+.gallery-section .section-label { text-align: center; }
+.gallery-heading { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 340px 260px;
+  gap: 6px;
+  max-height: 610px;
 }
-.stat-card{
-  padding:32px 28px;background:var(--bg2);border-radius:var(--r3);
-  border:1px solid var(--line);
+.gallery-item {
+  overflow: hidden;
+  position: relative;
 }
-/* ░░ PLACEHOLDER: Replace stats with real data ░░ */
-.stat-num{
-  font-size:clamp(2.5rem,4vw,3.5rem);font-weight:800;color:var(--dark);
-  letter-spacing:-.03em;line-height:1;margin-bottom:8px;
+.gallery-item:first-child {
+  grid-row: 1 / 3;
 }
-.stat-num span{color:var(--accent)}
-.stat-label{font-size:.85rem;color:var(--muted);font-weight:500;line-height:1.4}
-@media(max-width:900px){
-  #why .why-inner{grid-template-columns:1fr;gap:48px}
-  #why .why-text{max-width:100%}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.gallery-item:hover img { transform: scale(1.04); }
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,15,13,0.5), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════════ */
+.process-section {
+  background: var(--color-dark);
+  color: #fff;
+}
+.process-section .section-label { color: var(--color-accent-light); }
+.process-heading { color: #fff; margin-bottom: clamp(3rem, 6vw, 5rem); }
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  left: calc(100% / 6);
+  right: calc(100% / 6);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184,151,46,0.5), transparent);
+}
+.process-step {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+.process-step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: rgba(184,151,46,0.25);
+  line-height: 1;
+  position: absolute;
+  top: -1rem;
+  right: 0;
+}
+.process-step-icon {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(184,151,46,0.4);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: border-color 0.3s, background 0.3s;
+}
+.process-step:hover .process-step-icon {
+  border-color: var(--color-accent);
+  background: rgba(184,151,46,0.08);
+}
+.process-step h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: #fff;
+  font-weight: 400;
+  margin-top: 0.4rem;
+}
+.process-step p { color: rgba(255,255,255,0.55); font-size: 0.92rem; }
+
+/* ═══════════════════════════════════════════
+   DUAL SECTIONS (Verkäufer / Käufer)
+═══════════════════════════════════════════ */
+.dual-section {
+  background: var(--color-bg);
+}
+.dual-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 600px;
+}
+.dual-inner.reverse { direction: rtl; }
+.dual-inner.reverse > * { direction: ltr; }
+.dual-image {
+  position: relative;
+  overflow: hidden;
+}
+.dual-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.dual-image:hover img { transform: scale(1.04); }
+.dual-text {
+  padding: clamp(3rem, 6vw, 7rem) clamp(2.5rem, 5vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-surface);
+}
+.dual-text h2 { margin-bottom: 1.2rem; }
+.dual-text p { margin-bottom: 1.4rem; }
+.dual-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 2rem;
+}
+.dual-list li {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.dual-list li::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+.btn-dark {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-dark);
+  padding: 0.85rem 2rem;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  transition: background 0.25s ease;
+}
+.btn-dark:hover { background: var(--color-mid); }
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+.testimonials-section {
+  background: var(--color-dark);
+  overflow: hidden;
+}
+.testimonials-section .section-label { color: var(--color-accent-light); }
+.testimonials-heading { color: #fff; text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.testimonials-wrapper { overflow: hidden; }
+.testimonials-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: hidden;
+  padding: 20px 0 40px;
+  cursor: grab;
+}
+.testi-card {
+  flex-shrink: 0;
+  width: 360px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color 0.3s ease;
+}
+.testi-card:hover { border-color: rgba(184,151,46,0.35); }
+.testi-stars {
+  display: flex;
+  gap: 3px;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+}
+.testi-text {
+  font-size: 0.93rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.75;
+  flex: 1;
+}
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 1rem;
+}
+.testi-author img {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.testi-author-info { display: flex; flex-direction: column; gap: 2px; }
+.testi-name {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+.testi-location {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
 }
 
-/* ═══════════════════════════════════════════════════════
-   4. 4-IMAGE GALLERY
-   ═══════════════════════════════════════════════════════ */
-#gallery{padding-bottom:0}
-.gallery-header{text-align:center;max-width:640px;margin:0 auto 64px}
-.gallery-header h2{margin-bottom:16px}
-/* ░░ PLACEHOLDER: Replace all gallery images with real property photos ░░ */
-.gallery-grid{
-  display:grid;
-  grid-template-columns:1.4fr 1fr 1fr;
-  grid-template-rows:280px 280px;
-  gap:4px;
+/* ═══════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════ */
+.services-section {
+  background: var(--color-bg);
 }
-.gallery-item{overflow:hidden;position:relative}
-.gallery-item img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .7s cubic-bezier(.4,0,.2,1);
+.services-heading { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
-.gallery-item:hover img{transform:scale(1.04)}
-.gallery-item:nth-child(1){grid-row:1/span 2}
-.gallery-caption{
-  position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
-  display:flex;align-items:flex-end;padding:24px;opacity:0;
-  transition:opacity .3s;
+.service-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 3/4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
-.gallery-item:hover .gallery-caption{opacity:1}
-.gallery-caption-txt{
-  font-size:.8rem;font-weight:600;letter-spacing:.06em;
-  text-transform:uppercase;color:#fff;
+.service-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
-.gallery-subtext{
-  text-align:center;padding:64px 0 120px;max-width:680px;margin:0 auto;
+.service-card-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
 }
-.gallery-subtext p{font-size:1.15rem;line-height:1.8}
-@media(max-width:768px){
-  .gallery-grid{
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:auto;
+.service-card:hover .service-card-bg img { transform: scale(1.06); }
+.service-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,15,13,0.88) 0%, rgba(15,15,13,0.2) 60%, transparent 100%);
+  z-index: 2;
+}
+.service-card-content {
+  position: relative;
+  z-index: 3;
+  padding: 2rem 1.8rem;
+}
+.service-card-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+.service-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.service-card p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+.service-card-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-light);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.2s;
+}
+.service-card:hover .service-card-link { gap: 0.8rem; }
+.service-card-link::after { content: '→'; }
+
+/* ═══════════════════════════════════════════
+   SUPPORT
+═══════════════════════════════════════════ */
+.support-section {
+  background: var(--color-surface);
+}
+.support-heading { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.support-card {
+  background: var(--color-bg);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 4px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.support-card:hover {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  transform: translateY(-4px);
+}
+.support-icon {
+  width: 3rem; height: 3rem;
+  background: rgba(184,151,46,0.1);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+.support-card h3 {
+  font-size: 1.3rem;
+  color: var(--color-dark);
+}
+.support-card p { font-size: 0.88rem; }
+
+/* ═══════════════════════════════════════════
+   BLOG
+═══════════════════════════════════════════ */
+.blog-section {
+  background: var(--color-bg);
+}
+.blog-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.blog-see-all {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s;
+}
+.blog-see-all:hover { gap: 0.7rem; }
+.blog-see-all::after { content: '→'; }
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.blog-card-image {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.blog-card-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.blog-card:hover .blog-card-image img { transform: scale(1.05); }
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.blog-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.blog-date {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+.blog-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--color-dark);
+  line-height: 1.35;
+  transition: color 0.2s;
+}
+.blog-card:hover h3 { color: var(--color-accent); }
+.blog-card p { font-size: 0.85rem; line-height: 1.65; }
+.blog-read-more {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s, gap 0.2s;
+}
+.blog-read-more::after { content: '→'; }
+.blog-card:hover .blog-read-more { color: var(--color-accent); gap: 0.7rem; }
+
+/* ═══════════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════════ */
+.cta-section {
+  background: var(--color-dark);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(184,151,46,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-section .section-label { color: var(--color-accent-light); }
+.cta-section h2 { color: #fff; margin-bottom: 1.2rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+.cta-section p { color: rgba(255,255,255,0.55); margin-bottom: 2.5rem; }
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-accent-outline {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-light);
+  border: 1px solid rgba(184,151,46,0.5);
+  padding: 0.85rem 2rem;
+  border-radius: 2px;
+  transition: border-color 0.25s, background 0.25s;
+}
+.btn-accent-outline:hover { border-color: var(--color-accent); background: rgba(184,151,46,0.07); }
+
+/* Contact Form */
+.cta-form {
+  max-width: 540px;
+  margin: 2.5rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+.cta-form input,
+.cta-form textarea,
+.cta-form select {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 0.85rem 1.1rem;
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.25s;
+  width: 100%;
+}
+.cta-form input::placeholder,
+.cta-form textarea::placeholder { color: rgba(255,255,255,0.3); }
+.cta-form input:focus,
+.cta-form textarea:focus { border-color: rgba(184,151,46,0.6); }
+.cta-form textarea { grid-column: 1 / -1; resize: vertical; min-height: 100px; }
+.cta-form .form-full { grid-column: 1 / -1; }
+.cta-form button[type="submit"] {
+  grid-column: 1 / -1;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  background: var(--color-accent);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  cursor: none;
+  transition: background 0.25s;
+}
+.cta-form button[type="submit"]:hover { background: var(--color-accent-light); }
+@media (pointer: coarse) { .cta-form button[type="submit"] { cursor: pointer; } }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: #0A0A09;
+  color: rgba(255,255,255,0.55);
+}
+.footer-top {
+  padding: clamp(4rem, 8vw, 7rem) 0 clamp(2.5rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-transform: uppercase;
+}
+.footer-tagline {
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+.footer-socials {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+.footer-social {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  transition: border-color 0.2s, color 0.2s;
+}
+.footer-social:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.footer-col h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.footer-links a {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--color-accent); }
+.footer-contact-item {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.6rem;
+  align-items: flex-start;
+}
+.footer-contact-item span:first-child { flex-shrink: 0; }
+.footer-contact-item a { color: rgba(255,255,255,0.45); transition: color 0.2s; }
+.footer-contact-item a:hover { color: var(--color-accent); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.footer-bottom p { font-size: 0.75rem; }
+.footer-bottom-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.footer-bottom-links a {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  transition: color 0.2s;
+}
+.footer-bottom-links a:hover { color: var(--color-accent); }
+
+/* ═══════════════════════════════════════════
+   WHATSAPP FLOAT
+═══════════════════════════════════════════ */
+.wa-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 7000;
+  width: 52px; height: 52px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.wa-float:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 30px rgba(37,211,102,0.45);
+}
+.wa-float svg { width: 26px; height: 26px; fill: #fff; }
+
+/* ═══════════════════════════════════════════
+   COOKIE BANNER
+═══════════════════════════════════════════ */
+.cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 7500;
+  background: var(--color-dark);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 1rem var(--pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transform: translateY(0);
+  transition: transform 0.4s ease;
+}
+.cookie-banner.hidden { transform: translateY(100%); }
+.cookie-banner p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  flex: 1;
+}
+.cookie-banner a { color: var(--color-accent-light); text-decoration: underline; }
+.cookie-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  background: var(--color-accent);
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.cookie-btn:hover { background: var(--color-accent-light); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero-content { left: 5%; max-width: 90vw; }
+  .hero-property-card { display: none; }
+  .why-inner { grid-template-columns: 1fr; }
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    max-height: none;
   }
-  .gallery-item:nth-child(1){grid-row:auto}
-  .gallery-item img{height:200px}
+  .gallery-item:first-child { grid-row: auto; }
+  .process-steps { grid-template-columns: 1fr; }
+  .process-steps::before { display: none; }
+  .dual-inner, .dual-inner.reverse { grid-template-columns: 1fr; direction: ltr; }
+  .dual-image { aspect-ratio: 16/9; }
+  .services-grid { grid-template-columns: 1fr; }
+  .support-grid { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .cta-form { grid-template-columns: 1fr; }
+  .cta-form input, .cta-form textarea, .cta-form select, .cta-form button[type="submit"] { grid-column: 1; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .footer-top { grid-template-columns: 1fr; }
+  .hero-title { font-size: clamp(2.8rem, 11vw, 4rem); }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
-
-/* ═══════════════════════════════════════════════════════
-   5. 3-STEP PROCESS
-   ═══════════════════════════════════════════════════════ */
-#process{background:var(--dark);color:#fff}
-#process h2{color:#fff;text-align:center;margin-bottom:16px}
-#process .process-sub{
-  text-align:center;max-width:560px;margin:0 auto 72px;
-  color:rgba(255,255,255,.5);
-}
-.process-steps{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:2px;margin-bottom:64px;
-}
-.process-step{
-  padding:48px 40px;background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.07);
-  position:relative;
-}
-.process-step:first-child{border-radius:var(--r3) 0 0 var(--r3)}
-.process-step:last-child{border-radius:0 var(--r3) var(--r3) 0}
-.step-num{
-  font-size:4rem;font-weight:800;color:rgba(255,255,255,.07);
-  line-height:1;margin-bottom:24px;letter-spacing:-.04em;
-}
-/* ░░ PLACEHOLDER: Replace step labels ░░ */
-.step-title{
-  font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:12px;
-}
-.step-desc{
-  font-size:.925rem;color:rgba(255,255,255,.45);line-height:1.7;font-weight:300;
-}
-.process-cta{display:flex;justify-content:center}
-@media(max-width:768px){
-  .process-steps{grid-template-columns:1fr}
-  .process-step:first-child,.process-step:last-child{border-radius:var(--r3)}
-  .process-step:not(:first-child){border-radius:var(--r3)}
-}
-
-/* ═══════════════════════════════════════════════════════
-   6. DUAL IMAGE + TEXT (ALTERNATING)
-   ═══════════════════════════════════════════════════════ */
-.dual{padding:120px 0}
-.dual-inner{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:80px;align-items:center;
-}
-.dual-inner.reverse{direction:rtl}
-.dual-inner.reverse > *{direction:ltr}
-/* ░░ PLACEHOLDER: Replace dual images ░░ */
-.dual-images{
-  display:grid;grid-template-rows:1fr 1fr;gap:12px;height:580px;
-}
-.dual-img{
-  overflow:hidden;border-radius:var(--r3);
-}
-.dual-img img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .7s cubic-bezier(.4,0,.2,1);
-}
-.dual-img:hover img{transform:scale(1.03)}
-.dual-img:first-child{border-radius:var(--r3) var(--r3) var(--r2) var(--r3)}
-.dual-img:last-child{border-radius:var(--r3) var(--r2) var(--r3) var(--r3)}
-.dual-text .eyebrow{margin-bottom:20px;display:block}
-/* ░░ PLACEHOLDER: Replace dual section heading + body ░░ */
-.dual-text h2{margin-bottom:24px}
-.dual-text .lead{margin-bottom:16px}
-.dual-text p{margin-bottom:40px}
-.dual-text .dual-btns{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
-@media(max-width:900px){
-  .dual-inner,.dual-inner.reverse{
-    grid-template-columns:1fr;direction:ltr;gap:48px;
-  }
-  .dual-images{height:380px}
-}
-
-/* ═══════════════════════════════════════════════════════
-   7. TESTIMONIALS
-   ═══════════════════════════════════════════════════════ */
-#testimonials{background:var(--bg2)}
-.testimonials-header{
-  display:flex;align-items:flex-end;justify-content:space-between;
-  margin-bottom:56px;
-}
-.testimonials-header h2{max-width:480px}
-/* ░░ PLACEHOLDER: Replace all testimonial content ░░ */
-.testi-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-}
-.testi-card{
-  background:var(--bg);border-radius:var(--r3);
-  padding:36px 32px;border:1px solid var(--line);
-  display:flex;flex-direction:column;gap:20px;
-  transition:box-shadow .3s,transform .3s;
-}
-.testi-card:hover{
-  box-shadow:0 12px 48px rgba(0,0,0,.08);
-  transform:translateY(-4px);
-}
-.testi-stars{color:var(--accent);font-size:.9rem;letter-spacing:3px}
-.testi-text{
-  font-size:.9625rem;color:var(--dark2);line-height:1.75;
-  font-weight:400;flex:1;
-  /* Decorative quote mark */
-  position:relative;
-}
-.testi-text::before{
-  content:'\201C';
-  font-size:3rem;line-height:.5;color:var(--accent-light);
-  font-weight:700;display:block;margin-bottom:8px;
-}
-.testi-author{
-  display:flex;align-items:center;gap:12px;
-  padding-top:20px;border-top:1px solid var(--line);
-}
-.testi-avatar{
-  width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;
-  background:var(--bg3);
-}
-.testi-avatar img{width:100%;height:100%;object-fit:cover}
-.testi-name{font-size:.875rem;font-weight:700;color:var(--dark)}
-.testi-role{font-size:.75rem;color:var(--light)}
-/* Featured card */
-.testi-card.featured{
-  background:var(--dark);border-color:var(--dark);
-}
-.testi-card.featured .testi-text{color:rgba(255,255,255,.8)}
-.testi-card.featured .testi-name{color:#fff}
-.testi-card.featured .testi-role{color:rgba(255,255,255,.4)}
-.testi-card.featured .testi-author{border-top-color:rgba(255,255,255,.1)}
-.testi-card.featured .testi-stars{color:#f8c94a}
-@media(max-width:900px){
-  .testi-grid{grid-template-columns:1fr 1fr}
-  .testimonials-header{flex-direction:column;align-items:flex-start;gap:16px}
-}
-@media(max-width:600px){
-  .testi-grid{grid-template-columns:1fr}
-}
-
-/* ═══════════════════════════════════════════════════════
-   8. SERVICE CARDS (BUY / SELL / RENT)
-   ═══════════════════════════════════════════════════════ */
-#services .services-header{
-  text-align:center;max-width:560px;margin:0 auto 64px;
-}
-#services .services-header h2{margin-bottom:16px}
-.services-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
-}
-.service-card{
-  border-radius:var(--r3);overflow:hidden;
-  border:1px solid var(--line);
-  transition:box-shadow .3s,transform .3s;
-}
-.service-card:hover{
-  box-shadow:0 16px 56px rgba(0,0,0,.1);
-  transform:translateY(-6px);
-}
-/* ░░ PLACEHOLDER: Replace service card images ░░ */
-.service-img{
-  height:260px;overflow:hidden;
-}
-.service-img img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .7s cubic-bezier(.4,0,.2,1);
-}
-.service-card:hover .service-img img{transform:scale(1.05)}
-.service-body{padding:28px 28px 32px}
-.service-tag{
-  display:inline-block;padding:4px 12px;border-radius:60px;
-  background:var(--accent-light);color:var(--accent);
-  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  margin-bottom:14px;
-}
-/* ░░ PLACEHOLDER: Replace service names + descriptions ░░ */
-.service-body h3{margin-bottom:10px}
-.service-body p{font-size:.9rem;line-height:1.65}
-.service-body .btn-ghost{margin-top:24px}
-@media(max-width:900px){
-  .services-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  .services-grid{grid-template-columns:1fr}
-}
-
-/* ═══════════════════════════════════════════════════════
-   9. SUPPORT CARDS (3 ADDITIONAL SERVICES)
-   ═══════════════════════════════════════════════════════ */
-#support{background:var(--bg2)}
-.support-header{
-  display:flex;align-items:flex-end;justify-content:space-between;
-  margin-bottom:56px;
-}
-.support-header h2{max-width:480px}
-.support-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-}
-.support-card{
-  padding:40px 36px;background:var(--bg);border-radius:var(--r3);
-  border:1px solid var(--line);
-  transition:box-shadow .3s,transform .3s;
-  display:flex;flex-direction:column;gap:16px;
-}
-.support-card:hover{
-  box-shadow:0 12px 40px rgba(0,0,0,.07);
-  transform:translateY(-4px);
-}
-.support-icon{
-  width:52px;height:52px;border-radius:var(--r2);
-  background:var(--accent-light);
-  display:flex;align-items:center;justify-content:center;
-}
-.support-icon svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.75}
-/* ░░ PLACEHOLDER: Replace support service names + descriptions ░░ */
-.support-card h3{font-size:1.15rem}
-.support-card p{font-size:.9rem;line-height:1.65;flex:1}
-.support-card .btn-ghost{margin-top:4px}
-@media(max-width:900px){
-  .support-grid{grid-template-columns:1fr 1fr}
-  .support-header{flex-direction:column;align-items:flex-start;gap:16px}
-}
-@media(max-width:600px){
-  .support-grid{grid-template-columns:1fr}
-}
-
-/* ═══════════════════════════════════════════════════════
-   10. BLOG
-   ═══════════════════════════════════════════════════════ */
-#blog .blog-header{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:56px;
-}
-.blog-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
-}
-.blog-card{
-  border-radius:var(--r3);overflow:hidden;
-  border:1px solid var(--line);
-  transition:box-shadow .3s,transform .3s;
-}
-.blog-card:hover{
-  box-shadow:0 12px 48px rgba(0,0,0,.08);
-  transform:translateY(-4px);
-}
-/* ░░ PLACEHOLDER: Replace blog post images ░░ */
-.blog-thumb{
-  height:220px;overflow:hidden;position:relative;
-}
-.blog-thumb img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .7s cubic-bezier(.4,0,.2,1);
-}
-.blog-card:hover .blog-thumb img{transform:scale(1.05)}
-.blog-cat{
-  position:absolute;top:16px;left:16px;
-  background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
-  padding:5px 14px;border-radius:60px;
-  font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dark);
-}
-.blog-body{padding:24px 24px 28px}
-/* ░░ PLACEHOLDER: Replace blog post dates, titles, excerpts ░░ */
-.blog-date{
-  font-size:.7rem;color:var(--light);font-weight:500;margin-bottom:10px;
-}
-.blog-body h3{font-size:1.1rem;margin-bottom:10px;line-height:1.35}
-.blog-body p{font-size:.875rem;line-height:1.65}
-.blog-body .btn-ghost{margin-top:20px}
-@media(max-width:900px){
-  .blog-grid{grid-template-columns:1fr 1fr}
-  .blog-header{flex-direction:column;align-items:flex-start;gap:16px}
-}
-@media(max-width:600px){
-  .blog-grid{grid-template-columns:1fr}
-}
-
-/* ═══════════════════════════════════════════════════════
-   11. CTA SECTION
-   ═══════════════════════════════════════════════════════ */
-#cta{
-  position:relative;overflow:hidden;
-  background:var(--dark);color:#fff;
-  text-align:center;padding:140px 0;
-}
-.cta-bg{
-  position:absolute;inset:0;
-  /* ░░ PLACEHOLDER: Replace CTA background image ░░ */
-  background:url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover;
-  opacity:.18;
-}
-.cta-inner{position:relative;z-index:2;max-width:700px;margin:0 auto;padding:0 48px}
-.cta-inner .eyebrow{color:var(--accent);margin-bottom:24px;display:block}
-/* ░░ PLACEHOLDER: Replace CTA headline + subtext ░░ */
-.cta-inner h2{color:#fff;margin-bottom:20px}
-.cta-inner p{color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 48px;font-size:1.075rem}
-.cta-form{
-  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
-}
-.cta-input{
-  padding:14px 24px;border-radius:60px;border:1.5px solid rgba(255,255,255,.2);
-  background:rgba(255,255,255,.07);color:#fff;font-size:.875rem;
-  outline:none;transition:border-color .2s;width:280px;font-family:inherit;
-}
-.cta-input::placeholder{color:rgba(255,255,255,.35)}
-.cta-input:focus{border-color:rgba(255,255,255,.5)}
-
-/* ═══════════════════════════════════════════════════════
-   12. FOOTER
-   ═══════════════════════════════════════════════════════ */
-#footer{
-  background:var(--dark);color:rgba(255,255,255,.5);
-  border-top:1px solid rgba(255,255,255,.07);
-  padding:80px 0 48px;
-}
-.footer-inner{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:48px;margin-bottom:64px;
-}
-.footer-brand{}
-/* ░░ PLACEHOLDER: Replace footer logo + description ░░ */
-.footer-logo-name{
-  font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:.02em;margin-bottom:4px;
-}
-.footer-logo-name span{color:var(--accent)}
-.footer-logo-sub{
-  font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;
-  color:rgba(255,255,255,.25);margin-bottom:20px;
-}
-.footer-desc{font-size:.875rem;line-height:1.7;max-width:280px}
-.footer-social{display:flex;gap:12px;margin-top:28px}
-.footer-social a{
-  width:36px;height:36px;border-radius:50%;
-  border:1px solid rgba(255,255,255,.12);
-  display:flex;align-items:center;justify-content:center;
-  color:rgba(255,255,255,.4);
-  transition:all .2s;
-}
-.footer-social a:hover{border-color:rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.07)}
-.footer-social svg{width:16px;height:16px;fill:currentColor}
-/* ░░ PLACEHOLDER: Replace footer link column headings + links ░░ */
-.footer-col h4{
-  font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(255,255,255,.7);margin-bottom:20px;
-}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-col ul a{
-  font-size:.875rem;transition:color .2s;
-}
-.footer-col ul a:hover{color:#fff}
-.footer-bottom{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:32px;border-top:1px solid rgba(255,255,255,.07);
-  flex-wrap:wrap;gap:16px;
-}
-.footer-legal{display:flex;gap:24px;flex-wrap:wrap}
-.footer-legal a{
-  font-size:.75rem;transition:color .2s;
-}
-.footer-legal a:hover{color:#fff}
-.footer-copy{font-size:.75rem}
-@media(max-width:900px){
-  .footer-inner{grid-template-columns:1fr 1fr;gap:36px}
-  .footer-brand{grid-column:1/span 2}
-}
-@media(max-width:600px){
-  .footer-inner{grid-template-columns:1fr;gap:36px}
-  .footer-brand{grid-column:auto}
-  .footer-bottom{flex-direction:column;align-items:flex-start}
-}
-
-/* ─── SCROLL PROGRESS BAR ─────────────── */
-#progress{
-  position:fixed;top:0;left:0;right:0;height:2px;z-index:1000;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  transform-origin:left;transform:scaleX(0);
-}
-
-/* ─── WHATSAPP FLOAT ──────────────────── */
-.wa-float{
-  position:fixed;bottom:32px;right:32px;z-index:800;
-  width:52px;height:52px;border-radius:50%;
-  background:#25d366;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,.35);
-  transition:transform .2s,box-shadow .2s;
-  opacity:0;
-}
-.wa-float:hover{transform:scale(1.08);box-shadow:0 8px 32px rgba(37,211,102,.45)}
-.wa-float svg{width:26px;height:26px;fill:#fff}
 </style>
 </head>
 <body>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     SCROLL PROGRESS
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<div id="progress"></div>
-
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     1. NAVIGATION
-     ░░ PLACEHOLDER: Update all nav text + links ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<nav id="nav">
-  <div class="nav-inner">
-    <!-- ░░ PLACEHOLDER: Logo ░░ -->
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-name">[MAKLER]<span>.</span></div>
-      <div class="nav-logo-sub">Immobilien · [STADT]</div>
-    </a>
-
-    <!-- ░░ PLACEHOLDER: Nav links ░░ -->
-    <ul class="nav-links">
-      <li><a href="#services">Kaufen</a></li>
-      <li><a href="#services">Verkaufen</a></li>
-      <li><a href="#services">Mieten</a></li>
-      <li><a href="#about">Über uns</a></li>
-      <li><a href="#blog">Blog</a></li>
-    </ul>
-
-    <div class="nav-right">
-      <a href="#" class="nav-signin">Anmelden</a>
-      <!-- ░░ PLACEHOLDER: CTA label + link ░░ -->
-      <a href="#cta" class="nav-cta">Kontakt</a>
-    </div>
-
-    <button class="nav-ham" id="navHam" aria-label="Menü">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- Mobile Nav -->
-<div class="nav-mob" id="navMob">
-  <a href="#services" onclick="closeMob()">Kaufen</a>
-  <a href="#services" onclick="closeMob()">Verkaufen</a>
-  <a href="#services" onclick="closeMob()">Mieten</a>
-  <a href="#about" onclick="closeMob()">Über uns</a>
-  <a href="#blog" onclick="closeMob()">Blog</a>
-  <a href="#cta" onclick="closeMob()">Kontakt</a>
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+  <a href="#kaufen">Kaufen</a>
+  <a href="#verkaufen">Verkaufen</a>
+  <a href="#mieten">Mieten</a>
+  <a href="#ueber-uns">Über uns</a>
+  <a href="#blog">Blog</a>
+  <a href="#kontakt" style="color:var(--color-accent);">Beratung anfragen</a>
 </div>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     2. HERO
-     ░░ PLACEHOLDER: All hero text + images ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<section id="hero">
-  <!-- L1: Sky bg -->
-  <div class="hl hl-sky" id="hlSky"></div>
-  <!-- L2: cloud back (behind house) -->
-  <div class="hl hl-cloud-back" id="hlCloudBack"></div>
-  <!-- L3: HOUSE — fastest, rises into cloud zone -->
-  <!-- ░░ PLACEHOLDER: property exterior photo ░░ -->
-  <div class="hl hl-house" id="hlHouse">
-    <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="">
-  </div>
-  <!-- L4: smoke / ground mist (z:4, in front of house bottom) -->
-  <div class="hl hl-smoke" id="hlSmoke"></div>
-  <!-- L5: cloud front — z:5, house rises BEHIND this -->
-  <div class="hl hl-cloud-front" id="hlCloudFront"></div>
-  <!-- L6: Dark overlay left -->
-  <div class="hl hl-overlay"></div>
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo" aria-label="Schiwig Immobilien">
+    <span class="nav-logo-main">Schiwig</span>
+    <span class="nav-logo-sub">Immobilien · Zwickau</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#kaufen">Kaufen</a></li>
+    <li><a href="#verkaufen">Verkaufen</a></li>
+    <li><a href="#mieten">Mieten</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#blog">Blog</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Beratung anfragen</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <!-- Floating property card (right side, above clouds) -->
-  <div class="hero-card" id="heroCard">
-    <!-- ░░ PLACEHOLDER: Real property data ░░ -->
-    <div class="hero-card-tag">Neu eingestellt</div>
-    <div class="hero-card-address">[Straße & Nr.], [Stadt]</div>
-    <div class="hero-card-price">[€ Preis]</div>
-    <div class="hero-card-meta">
-      <span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-        [X] Zimmer
-      </span>
-      <span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-        [X] m²
-      </span>
-    </div>
-  </div>
-
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-image"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <!-- ░░ PLACEHOLDER: Eyebrow ░░ -->
-    <div class="hero-eyebrow" id="heroEyebrow">Immobilienmakler · [STADT]</div>
-
-    <!-- ░░ PLACEHOLDER: Headline — each .hero-line clips its words ░░ -->
-    <h1 class="hero-h1">
-      <span class="hero-line"><span class="hw">Finden</span> <span class="hw">Sie,</span> <span class="hw">was</span></span>
-      <span class="hero-line"><span class="hw light">Sie</span> <span class="hw light">bewegt.</span></span>
-    </h1>
-
-    <!-- ░░ PLACEHOLDER: Sub headline ░░ -->
-    <p class="hero-sub" id="heroSub">Erfahrene Beratung. Echte Ergebnisse. Ein klarer Weg zu Ihrer Immobilie.</p>
-    <div class="hero-btns" id="heroBtns">
-      <a href="#services" class="btn btn-accent">Immobilien entdecken</a>
-      <a href="#cta" class="btn btn-outline-white">Kostenlos bewerten</a>
+    <span class="section-label">Immobilienmakler · Zwickau</span>
+    <h1 class="hero-title">Finden Sie, was Sie <span class="hero-rotating-word">bewegt.</span></h1>
+    <p class="hero-sub">Ihr persönlicher Immobilienmakler in Zwickau und Umgebung. 150+ erfolgreich vermittelte Objekte. Immer für Sie da.</p>
+    <div class="hero-ctas">
+      <a href="#kontakt" class="btn-primary">Kostenlose Beratung</a>
+      <a href="#leistungen" class="btn-outline">Unsere Leistungen</a>
     </div>
   </div>
-
-  <div class="hero-scroll" id="heroScroll">
+  <div class="hero-property-card">
+    <span class="property-card-tag">Neu eingestellt</span>
+    <div class="property-card-title">Einfamilienhaus in Toplage</div>
+    <div class="property-card-address">Zwickau-Eckersbach, Sachsen</div>
+    <div class="property-card-meta">
+      <span>🏠 142 m²</span>
+      <span>🛏 4 Zi.</span>
+      <span>🌿 615 m²</span>
+    </div>
+    <div class="property-card-price">329.000 €</div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scrollen</span>
     <div class="hero-scroll-line"></div>
-    <div class="hero-scroll-txt">Scrollen</div>
   </div>
 </section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     3. WHY [NAME]
-     ░░ PLACEHOLDER: All text + stats ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<section id="why" class="section">
+<!-- WHY / STATS -->
+<section class="why-section" id="ueber-uns">
   <div class="container">
     <div class="why-inner">
-      <div class="why-text reveal">
-        <!-- ░░ PLACEHOLDER: Replace [MAKLER NAME] ░░ -->
-        <span class="eyebrow">Warum [MAKLER NAME]</span>
-        <h2>Ihr Erfolg ist unser Antrieb.</h2>
-        <p class="lead">Wir glauben, dass jede Immobilientransaktion mehr ist als ein Geschäft — es ist ein Lebensabschnitt. Deshalb begleiten wir Sie persönlich, transparent und mit vollem Einsatz.</p>
-        <p>Seit über [X] Jahren vermitteln wir Immobilien in [STADT] und Umgebung. Unser Netzwerk, unsere Erfahrung und unser Engagement für Sie machen den Unterschied.</p>
-        <a href="#about" class="btn btn-outline" style="margin-top:8px">Mehr über uns
-          <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+      <div class="why-text fade-up">
+        <span class="section-label">Warum Schiwig Immobilien</span>
+        <h2 class="reveal-heading">Mehr als ein<br><em>Makler.</em></h2>
+        <p>Wir glauben, dass jede Immobilientransaktion mehr ist als ein Geschäft. Hinter jedem Kauf, jedem Verkauf, jeder Vermietung steht ein Mensch mit echten Träumen – und die verdienen echte Aufmerksamkeit.</p>
+        <p>Lukas Schiwig begleitet Sie persönlich von der ersten Besichtigung bis zur Schlüsselübergabe. Keine anonymen Callcenter, keine überhasteten Abschlüsse. Nur ehrliche Beratung, die wirklich zu Ihrer Situation passt.</p>
+        <p>In Zwickau und der Region verwurzelt – mit dem lokalen Wissen, das den Unterschied macht.</p>
       </div>
-      <div class="why-stats reveal">
-        <!-- ░░ PLACEHOLDER: Replace all stat numbers + labels ░░ -->
-        <div class="stat-card">
-          <div class="stat-num">[X]<span>+</span></div>
-          <div class="stat-label">Erfolgreich vermittelte Immobilien</div>
+      <div class="stats-grid fade-up">
+        <div class="stat-item">
+          <div class="stat-value">
+            <span class="stat-number" data-count="150">0</span><span class="stat-suffix">+</span>
+          </div>
+          <div class="stat-label">Vermittelte Objekte</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">[X]<span>★</span></div>
-          <div class="stat-label">Durchschnittliche Kundenbewertung</div>
+        <div class="stat-item">
+          <div class="stat-value">
+            <span class="stat-number" data-count="4" data-decimal=".9">4</span><span class="stat-suffix">★</span>
+          </div>
+          <div class="stat-label">Google-Bewertung</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">[X]<span>J</span></div>
-          <div class="stat-label">Jahre Erfahrung in der Region</div>
+        <div class="stat-item">
+          <div class="stat-value">
+            <span class="stat-number" data-count="12">0</span><span class="stat-suffix"> J.</span>
+          </div>
+          <div class="stat-label">Jahre Erfahrung</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">[X]<span>%</span></div>
-          <div class="stat-label">Kunden empfehlen uns weiter</div>
+        <div class="stat-item">
+          <div class="stat-value">
+            <span class="stat-number" data-count="98">0</span><span class="stat-suffix">%</span>
+          </div>
+          <div class="stat-label">Weiterempfehlung</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     4. 4-IMAGE GALLERY
-     ░░ PLACEHOLDER: All images + caption texts ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<section id="gallery" class="section section-alt">
-  <div class="container">
-    <div class="gallery-header reveal">
-      <!-- ░░ PLACEHOLDER: Section headline ░░ -->
-      <span class="eyebrow">Unsere Objekte</span>
-      <h2>Mehr als nur vier Wände.</h2>
-    </div>
+<!-- GALLERY -->
+<section class="gallery-section" id="referenzen">
+  <div class="container" style="max-width:100%;padding:0 var(--pad-x) clamp(3rem,5vw,5rem)">
+    <span class="section-label" style="text-align:center;display:block">Immobilien-Portfolio</span>
+    <h2 class="reveal-heading gallery-heading">Ausgewählte<br><em>Objekte</em></h2>
   </div>
-
-  <div class="gallery-grid">
-    <!-- ░░ PLACEHOLDER: Replace all 4 gallery images with real properties ░░ -->
-    <div class="gallery-item reveal">
-      <img src="https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Immobilie 1" loading="lazy">
-      <div class="gallery-caption"><span class="gallery-caption-txt">[Objekt 1]</span></div>
+  <div class="gallery-grid" style="max-width:var(--max-w);margin:0 auto;padding:0 var(--pad-x)">
+    <div class="gallery-item fade-up">
+      <img src="https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Modernes Einfamilienhaus" loading="lazy">
+      <div class="gallery-item-overlay"></div>
     </div>
-    <div class="gallery-item reveal">
-      <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Immobilie 2" loading="lazy">
-      <div class="gallery-caption"><span class="gallery-caption-txt">[Objekt 2]</span></div>
+    <div class="gallery-item fade-up">
+      <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Elegante Wohnküche" loading="lazy">
+      <div class="gallery-item-overlay"></div>
     </div>
-    <div class="gallery-item reveal">
-      <img src="https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Immobilie 3" loading="lazy">
-      <div class="gallery-caption"><span class="gallery-caption-txt">[Objekt 3]</span></div>
+    <div class="gallery-item fade-up">
+      <img src="https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Stadthaus mit Garten" loading="lazy">
+      <div class="gallery-item-overlay"></div>
     </div>
-    <div class="gallery-item reveal">
-      <img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Immobilie 4" loading="lazy">
-      <div class="gallery-caption"><span class="gallery-caption-txt">[Objekt 4]</span></div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="gallery-subtext reveal">
-      <!-- ░░ PLACEHOLDER: Gallery subtext ░░ -->
-      <p>"Wir zeigen Ihnen nicht einfach Immobilien — wir zeigen Ihnen Möglichkeiten. Jedes Objekt hat eine Geschichte. Unsere Aufgabe ist es, die richtige für Sie zu finden."</p>
+    <div class="gallery-item fade-up">
+      <img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Penthouse Aussicht" loading="lazy">
+      <div class="gallery-item-overlay"></div>
     </div>
   </div>
 </section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     5. 3-STEP PROCESS
-     ░░ PLACEHOLDER: Section title + step content ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<section id="process" class="section">
+<!-- PROCESS -->
+<section class="process-section">
   <div class="container">
-    <!-- ░░ PLACEHOLDER: Section headline ░░ -->
-    <span class="eyebrow" style="display:block;text-align:center;margin-bottom:16px">Unser Prozess</span>
-    <h2 class="reveal" style="text-align:center">Immobilien. Neu gedacht.</h2>
-    <p class="process-sub reveal">Einfach. Persönlich. Transparent. So begleiten wir Sie von der ersten Anfrage bis zum Schlüssel.</p>
-
+    <span class="section-label">So arbeiten wir</span>
+    <h2 class="reveal-heading process-heading">Ihr Weg zum<br><em style="font-style:italic">Traumobjekt</em></h2>
     <div class="process-steps">
-      <!-- ░░ PLACEHOLDER: Step 1 ░░ -->
-      <div class="process-step reveal">
-        <div class="step-num">01</div>
-        <div class="step-title">Persönliches Gespräch</div>
-        <p class="step-desc">Wir nehmen uns Zeit für Ihre Situation, Ihre Wünsche und Ihre Ziele — ohne Zeitdruck und ohne versteckte Agenda.</p>
+      <div class="process-step fade-up">
+        <span class="process-step-num">01</span>
+        <div class="process-step-icon">🤝</div>
+        <h3>Persönliches Gespräch</h3>
+        <p>Wir nehmen uns Zeit für Sie. In einem kostenlosen Erstgespräch klären wir Ihre Wünsche, Vorstellungen und Möglichkeiten – ohne Druck, ohne Verpflichtung.</p>
       </div>
-      <!-- ░░ PLACEHOLDER: Step 2 ░░ -->
-      <div class="process-step reveal">
-        <div class="step-num">02</div>
-        <div class="step-title">Klarheit gewinnen</div>
-        <p class="step-desc">Marktanalyse, Bewertung, Strategie — wir schaffen die Grundlage für Ihre beste Entscheidung.</p>
+      <div class="process-step fade-up">
+        <span class="process-step-num">02</span>
+        <div class="process-step-icon">📋</div>
+        <h3>Klare Strategie</h3>
+        <p>Auf Basis Ihrer Ziele erarbeiten wir gemeinsam einen maßgeschneiderten Plan. Marktanalyse, Preisfindung und Zeitrahmen werden transparent kommuniziert.</p>
       </div>
-      <!-- ░░ PLACEHOLDER: Step 3 ░░ -->
-      <div class="process-step reveal">
-        <div class="step-num">03</div>
-        <div class="step-title">Vorwärts gehen</div>
-        <p class="step-desc">Von der Besichtigung bis zur Vertragsunterzeichnung — wir sind an Ihrer Seite und kümmern uns um alles.</p>
+      <div class="process-step fade-up">
+        <span class="process-step-num">03</span>
+        <div class="process-step-icon">🏡</div>
+        <h3>Erfolgreicher Abschluss</h3>
+        <p>Wir begleiten Sie bis zum Notartermin und darüber hinaus. Auf den Schlüssel folgt unsere Nachbetreuung – denn zufriedene Kunden sind unser bestes Aushängeschild.</p>
       </div>
-    </div>
-
-    <div class="process-cta reveal">
-      <!-- ░░ PLACEHOLDER: CTA ░░ -->
-      <a href="#cta" class="btn btn-accent">Suche starten</a>
     </div>
   </div>
 </section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     6A. DUAL SECTION — VERKÄUFER
-     ░░ PLACEHOLDER: Images + all text ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<div id="about" class="dual">
-  <div class="container">
-    <div class="dual-inner">
-      <!-- ░░ PLACEHOLDER: 2 stacked images links ░░ -->
-      <div class="dual-images reveal">
-        <div class="dual-img">
-          <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" alt="[Makler im Gespräch]" loading="lazy">
-        </div>
-        <div class="dual-img">
-          <img src="https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=800" alt="[Immobilien]" loading="lazy">
-        </div>
-      </div>
-      <div class="dual-text reveal">
-        <!-- ░░ PLACEHOLDER: Section eyebrow + headline ░░ -->
-        <span class="eyebrow">Für Verkäufer</span>
-        <h2>Verkaufen Sie nicht Ihr Zuhause.<br>Verkaufen Sie es <em style="font-style:italic;color:var(--accent)">richtig.</em></h2>
-        <p class="lead">Der Unterschied zwischen einem guten und einem großartigen Verkauf liegt in der Vorbereitung, der Präsentation und dem richtigen Netzwerk.</p>
-        <p>Wir übernehmen professionelle Fotografie, digitales Marketing, gezielte Käuferansprache und die komplette Verhandlungsführung — damit Sie das Maximum aus Ihrer Immobilie herausholen.</p>
-        <div class="dual-btns">
-          <a href="#cta" class="btn btn-accent">Jetzt verkaufen</a>
-          <a href="#process" class="btn-ghost">Wie es funktioniert
-            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
+<!-- DUAL: Verkäufer -->
+<section class="dual-section" id="verkaufen">
+  <div class="dual-inner">
+    <div class="dual-image fade-up">
+      <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Immobilie verkaufen in Zwickau" loading="lazy">
+    </div>
+    <div class="dual-text">
+      <span class="section-label">Für Verkäufer</span>
+      <h2 class="reveal-heading">Ihr Verkauf.<br><em>Unser Einsatz.</em></h2>
+      <p>Wir kennen den Zwickauer Markt wie kein anderer. Mit fundierter Marktanalyse, professioneller Präsentation und einem bewährten Netzwerk erzielen wir den bestmöglichen Preis für Ihre Immobilie.</p>
+      <ul class="dual-list">
+        <li>Kostenlose Marktwertermittlung</li>
+        <li>Professionelle Fotos & 360°-Tour</li>
+        <li>Gezieltes Marketing auf allen Kanälen</li>
+        <li>Rechtssichere Vertragsabwicklung</li>
+        <li>Persönliche Begleitung bis zur Übergabe</li>
+      </ul>
+      <a href="#kontakt" class="btn-dark">Jetzt Bewertung anfragen</a>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     6B. DUAL SECTION — KÄUFER (reversed)
-     ░░ PLACEHOLDER: Images + all text ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<div class="dual section-alt">
-  <div class="container">
-    <div class="dual-inner reverse">
-      <!-- ░░ PLACEHOLDER: 2 stacked images rechts ░░ -->
-      <div class="dual-images reveal">
-        <div class="dual-img">
-          <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800" alt="[Hauskauf]" loading="lazy">
-        </div>
-        <div class="dual-img">
-          <img src="https://images.pexels.com/photos/2079246/pexels-photo-2079246.jpeg?auto=compress&cs=tinysrgb&w=800" alt="[Wohnen]" loading="lazy">
-        </div>
-      </div>
-      <div class="dual-text reveal">
-        <!-- ░░ PLACEHOLDER: Section eyebrow + headline ░░ -->
-        <span class="eyebrow">Für Käufer</span>
-        <h2>Ihr Traumhaus wartet.<br>Wir finden <em style="font-style:italic;color:var(--accent)">es.</em></h2>
-        <p class="lead">Hunderte von Suchenden auf den gleichen Portalen — und trotzdem das Richtige finden. Das geht nur mit dem richtigen Makler an Ihrer Seite.</p>
-        <p>Unser Netzwerk gibt Ihnen Zugang zu Immobilien, bevor sie auf dem Markt erscheinen. Wir kennen die Region, die Preise und die Verkäufer.</p>
-        <div class="dual-btns">
-          <a href="#services" class="btn btn-accent">Angebote ansehen</a>
-          <a href="#cta" class="btn-ghost">Suchauftrag stellen
-            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
+<!-- DUAL: Käufer -->
+<section class="dual-section" id="kaufen" style="background:var(--color-surface)">
+  <div class="dual-inner reverse">
+    <div class="dual-image fade-up">
+      <img src="https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Immobilie kaufen in Zwickau" loading="lazy">
+    </div>
+    <div class="dual-text" style="background:var(--color-bg)">
+      <span class="section-label">Für Käufer</span>
+      <h2 class="reveal-heading">Ihr neues<br><em>Zuhause wartet.</em></h2>
+      <p>Ob Erstkauf, Kapitalanlage oder Umzug – wir suchen gemeinsam mit Ihnen das Objekt, das wirklich zu Ihnen passt. Dabei behalten wir Ihr Budget stets im Blick und sparen Ihnen wertvolle Zeit.</p>
+      <ul class="dual-list">
+        <li>Exklusive Off-Market-Objekte</li>
+        <li>Ausführliche Besichtigungsbegleitung</li>
+        <li>Finanzierungsberatung & Netzwerk</li>
+        <li>Prüfung aller Unterlagen</li>
+        <li>Unterstützung bei der Preisverhandlung</li>
+      </ul>
+      <a href="#kontakt" class="btn-dark">Suchanfrage stellen</a>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     7. TESTIMONIALS
-     ░░ PLACEHOLDER: All 5 testimonials ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<section id="testimonials" class="section">
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
   <div class="container">
-    <div class="testimonials-header">
-      <div class="reveal">
-        <span class="eyebrow">Kundenstimmen</span>
-        <h2>Was unsere Kunden sagen.</h2>
-      </div>
-      <a href="#" class="btn-ghost reveal">Alle Bewertungen
-        <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-
-    <div class="testi-grid">
-      <!-- ░░ PLACEHOLDER: Testimonial 1 ░░ -->
-      <div class="testi-card reveal">
+    <span class="section-label" style="text-align:center;display:block">Was unsere Kunden sagen</span>
+    <h2 class="reveal-heading testimonials-heading">Echte Erfahrungen.<br><em>Echte Ergebnisse.</em></h2>
+  </div>
+  <div class="testimonials-wrapper">
+    <div class="testimonials-track" id="testimonialsTrack">
+      <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">[Testimonial Text 1 — ca. 2–3 Sätze aus einer echten Kundenstimme]</div>
+        <p class="testi-text">"Lukas hat unser Haus in nur drei Wochen verkauft – und das zum Wunschpreis. Die Betreuung war von Anfang bis Ende erstklassig. Kein einziger Moment, in dem wir uns allein gelassen gefühlt haben."</p>
         <div class="testi-author">
-          <div class="testi-avatar"><img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
-          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+          <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=80" alt="Klaus M." loading="lazy">
+          <div class="testi-author-info">
+            <span class="testi-name">Klaus M.</span>
+            <span class="testi-location">Zwickau</span>
+          </div>
         </div>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Testimonial 2 (featured/dark) ░░ -->
-      <div class="testi-card featured reveal">
+      <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">[Testimonial Text 2 — die stärkste Kundenstimme hier hervorheben]</div>
+        <p class="testi-text">"Als Erstkäufer hatte ich unzählige Fragen – Lukas hat sie alle geduldig beantwortet. Er hat uns das perfekte Reihenhaus in Glauchau gefunden und durch den gesamten Kaufprozess begleitet. Absolut empfehlenswert!"</p>
         <div class="testi-author">
-          <div class="testi-avatar"><img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
-          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+          <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=80" alt="Sandra K." loading="lazy">
+          <div class="testi-author-info">
+            <span class="testi-name">Sandra K.</span>
+            <span class="testi-location">Glauchau</span>
+          </div>
         </div>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Testimonial 3 ░░ -->
-      <div class="testi-card reveal">
+      <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">[Testimonial Text 3]</div>
+        <p class="testi-text">"Ich habe meine Eigentumswohnung über Schiwig Immobilien vermietet. Schnelle Reaktion, sorgfältige Mieterauswahl, alles professionell dokumentiert. Ich bin sehr zufrieden und komme beim nächsten Objekt gerne wieder."</p>
         <div class="testi-author">
-          <div class="testi-avatar"><img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
-          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+          <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=80" alt="Thomas R." loading="lazy">
+          <div class="testi-author-info">
+            <span class="testi-name">Thomas R.</span>
+            <span class="testi-location">Werdau</span>
+          </div>
         </div>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Testimonial 4 ░░ -->
-      <div class="testi-card reveal">
+      <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">[Testimonial Text 4]</div>
+        <p class="testi-text">"Nach dem Tod meines Vaters mussten wir das Familienhaus verkaufen – eine emotional belastende Situation. Lukas hat uns mit großem Einfühlungsvermögen begleitet und alles reibungslos abgewickelt. Herzlichen Dank!"</p>
         <div class="testi-author">
-          <div class="testi-avatar"><img src="https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
-          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+          <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=80" alt="Martina H." loading="lazy">
+          <div class="testi-author-info">
+            <span class="testi-name">Martina H.</span>
+            <span class="testi-location">Lichtentanne</span>
+          </div>
         </div>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Testimonial 5 ░░ -->
-      <div class="testi-card reveal">
+      <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">[Testimonial Text 5]</div>
+        <p class="testi-text">"Kompetent, ehrlich und immer erreichbar. Schiwig Immobilien hat genau das geliefert, was versprochen wurde – und noch mehr. Der Verkauf lief in Rekordzeit ab. Definitiv 5 Sterne verdient!"</p>
         <div class="testi-author">
-          <div class="testi-avatar"><img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=80" alt="" loading="lazy"></div>
-          <div><div class="testi-name">[Vorname N.]</div><div class="testi-role">[Käufer / Verkäufer, Ort]</div></div>
+          <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=80" alt="Bernd &amp; Anke W." loading="lazy">
+          <div class="testi-author-info">
+            <span class="testi-name">Bernd &amp; Anke W.</span>
+            <span class="testi-location">Crimmitschau</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     8. SERVICE CARDS
-     ░░ PLACEHOLDER: All service content ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<section id="services" class="section">
+<!-- SERVICES -->
+<section class="services-section" id="leistungen">
   <div class="container">
-    <div class="services-header reveal">
-      <span class="eyebrow">Leistungen</span>
-      <h2>Was wir für Sie tun.</h2>
-      <p>Egal ob Kauf, Verkauf oder Vermietung — wir begleiten Sie mit dem gleichen Engagement.</p>
-    </div>
-
+    <span class="section-label" style="text-align:center;display:block">Unsere Leistungen</span>
+    <h2 class="reveal-heading services-heading">Was wir für Sie<br><em>tun können</em></h2>
     <div class="services-grid">
-      <!-- ░░ PLACEHOLDER: Service 1 — Kaufen ░░ -->
-      <div class="service-card reveal">
-        <div class="service-img">
+      <div class="service-card" id="kaufen-card">
+        <div class="service-card-bg">
           <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Immobilie kaufen" loading="lazy">
         </div>
-        <div class="service-body">
-          <div class="service-tag">Kaufen</div>
-          <h3>Die perfekte Immobilie finden</h3>
-          <p>Von der Suche bis zum Einzug — wir begleiten Sie durch den gesamten Kaufprozess und sorgen für Transparenz und Sicherheit.</p>
-          <a href="#cta" class="btn-ghost">Jetzt starten
-            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+        <div class="service-card-overlay"></div>
+        <div class="service-card-content">
+          <div class="service-card-icon">🏠</div>
+          <h3>Kaufen</h3>
+          <p>Wir begleiten Sie beim Erwerb Ihrer Traumimmobilie – von der Suche bis zur Schlüsselübergabe.</p>
+          <span class="service-card-link">Mehr erfahren</span>
         </div>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Service 2 — Verkaufen ░░ -->
-      <div class="service-card reveal">
-        <div class="service-img">
+      <div class="service-card">
+        <div class="service-card-bg">
           <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Immobilie verkaufen" loading="lazy">
         </div>
-        <div class="service-body">
-          <div class="service-tag">Verkaufen</div>
-          <h3>Den besten Preis erzielen</h3>
-          <p>Professionelle Bewertung, gezieltes Marketing und erfahrene Verhandlungsführung — für den optimalen Verkaufspreis.</p>
-          <a href="#cta" class="btn-ghost">Bewertung anfordern
-            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+        <div class="service-card-overlay"></div>
+        <div class="service-card-content">
+          <div class="service-card-icon">💰</div>
+          <h3>Verkaufen</h3>
+          <p>Wir erzielen für Ihre Immobilie den bestmöglichen Preis – diskret, schnell und professionell.</p>
+          <span class="service-card-link">Mehr erfahren</span>
         </div>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Service 3 — Vermieten ░░ -->
-      <div class="service-card reveal">
-        <div class="service-img">
-          <img src="https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Immobilie vermieten" loading="lazy">
+      <div class="service-card" id="mieten-card">
+        <div class="service-card-bg">
+          <img src="https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Immobilie mieten" loading="lazy">
         </div>
-        <div class="service-body">
-          <div class="service-tag">Mieten</div>
-          <h3>Die richtige Wohnung finden</h3>
-          <p>Wir kennen die lokalen Mietermärkte und helfen Ihnen, schnell und sicher die passende Mietimmobilie zu finden.</p>
-          <a href="#cta" class="btn-ghost">Angebote ansehen
-            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+        <div class="service-card-overlay"></div>
+        <div class="service-card-content">
+          <div class="service-card-icon">🔑</div>
+          <h3>Mieten</h3>
+          <p>Ihr neues Zuhause zur Miete in Zwickau und Umgebung – wir finden das passende Objekt für Sie.</p>
+          <span class="service-card-link">Mehr erfahren</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     9. SUPPORT CARDS
-     ░░ PLACEHOLDER: All support service content ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<section id="support" class="section">
+<!-- SUPPORT -->
+<section class="support-section">
   <div class="container">
-    <div class="support-header">
-      <div class="reveal">
-        <span class="eyebrow">Mehr als der Kauf</span>
-        <h2>Rundum-Betreuung<br>aus einer Hand.</h2>
-      </div>
-      <a href="#" class="btn-outline reveal" style="flex-shrink:0">Alle Leistungen</a>
-    </div>
-
+    <span class="section-label" style="text-align:center;display:block">Rundum-Betreuung</span>
+    <h2 class="reveal-heading support-heading" style="text-align:center;margin-bottom:clamp(2.5rem,5vw,4rem)">Wir begleiten Sie<br><em>bei jedem Schritt</em></h2>
     <div class="support-grid">
-      <!-- ░░ PLACEHOLDER: Support Service 1 — Finanzierung ░░ -->
-      <div class="support-card reveal">
-        <div class="support-icon">
-          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-        </div>
-        <h3>Finanzierungsberatung</h3>
-        <p>Wir helfen Ihnen, die optimale Finanzierungslösung zu finden — mit unserem Netzwerk aus Bankpartnern und unabhängigen Beratern.</p>
-        <a href="#cta" class="btn-ghost">Beratung anfragen
-          <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+      <div class="support-card fade-up">
+        <div class="support-icon">📊</div>
+        <h3>Marktanalyse & Bewertung</h3>
+        <p>Unsere fundierte Marktkenntnis sichert Ihnen eine realistische und faire Wertermittlung Ihrer Immobilie – kostenfrei und unverbindlich.</p>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Support Service 2 — Verwaltung ░░ -->
-      <div class="support-card reveal">
-        <div class="support-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-        </div>
-        <h3>Hausverwaltung</h3>
-        <p>Sie investieren, wir kümmern uns. Von der Mietersuche bis zur laufenden Verwaltung — professionell und zuverlässig.</p>
-        <a href="#cta" class="btn-ghost">Mehr erfahren
-          <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+      <div class="support-card fade-up">
+        <div class="support-icon">📸</div>
+        <h3>Professionelle Vermarktung</h3>
+        <p>Hochwertige Fotografie, ansprechende Exposés und zielgerichtetes Online-Marketing auf allen relevanten Plattformen inklusive.</p>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Support Service 3 — Renovierung/Entwicklung ░░ -->
-      <div class="support-card reveal">
-        <div class="support-icon">
-          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-        </div>
-        <h3>Renovierung & Aufwertung</h3>
-        <p>Wir vernetzen Sie mit zuverlässigen Handwerkern und Architekten — damit Ihre Immobilie ihr volles Potenzial entfaltet.</p>
-        <a href="#cta" class="btn-ghost">Kontakt aufnehmen
-          <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+      <div class="support-card fade-up">
+        <div class="support-icon">⚖️</div>
+        <h3>Rechtliche Sicherheit</h3>
+        <p>Von der Vertragsgestaltung bis zum Notartermin – wir stellen sicher, dass alles rechtssicher abläuft und Sie keine bösen Überraschungen erleben.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     10. BLOG
-     ░░ PLACEHOLDER: All 3 blog posts (date, title, excerpt, image) ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<section id="blog" class="section section-alt">
+<!-- BLOG -->
+<section class="blog-section" id="blog">
   <div class="container">
     <div class="blog-header">
-      <div class="reveal">
-        <span class="eyebrow">Ratgeber</span>
-        <h2>Blog & Wissen.</h2>
+      <div>
+        <span class="section-label">Ratgeber & News</span>
+        <h2 class="reveal-heading">Wissen, das<br><em>weiterhelfen</em> hilft</h2>
       </div>
-      <a href="#" class="btn-outline reveal">Zum Blog</a>
+      <a href="#blog" class="blog-see-all">Alle Artikel</a>
     </div>
-
     <div class="blog-grid">
-      <!-- ░░ PLACEHOLDER: Blog Post 1 ░░ -->
-      <div class="blog-card reveal">
-        <div class="blog-thumb">
-          <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=700" alt="[Blog Beitrag 1]" loading="lazy">
-          <div class="blog-cat">[Kategorie]</div>
+      <div class="blog-card fade-up">
+        <div class="blog-card-image">
+          <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Hausverkauf in Sachsen" loading="lazy">
         </div>
-        <div class="blog-body">
-          <div class="blog-date">[TT. Monat JJJJ]</div>
-          <h3>[Blog-Titel 1: z.B. "5 Tipps für den erfolgreichen Hausverkauf"]</h3>
-          <p>[Kurzer Einleitungstext zum Artikel — 2–3 Sätze die neugierig machen.]</p>
-          <a href="#" class="btn-ghost">Weiterlesen
-            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+        <div class="blog-card-meta">
+          <span class="blog-tag">Verkaufen</span>
+          <span class="blog-date">März 2025</span>
         </div>
+        <h3>5 Tipps für den erfolgreichen Hausverkauf in Sachsen</h3>
+        <p>Was Sie wissen müssen, bevor Sie Ihre Immobilie auf den Markt bringen – von der Preisfindung bis zum richtigen Zeitpunkt.</p>
+        <span class="blog-read-more">Artikel lesen</span>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Blog Post 2 ░░ -->
-      <div class="blog-card reveal">
-        <div class="blog-thumb">
-          <img src="https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&w=700" alt="[Blog Beitrag 2]" loading="lazy">
-          <div class="blog-cat">[Kategorie]</div>
+      <div class="blog-card fade-up">
+        <div class="blog-card-image">
+          <img src="https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Immobilienmarkt Zwickau" loading="lazy">
         </div>
-        <div class="blog-body">
-          <div class="blog-date">[TT. Monat JJJJ]</div>
-          <h3>[Blog-Titel 2]</h3>
-          <p>[Kurzer Einleitungstext.]</p>
-          <a href="#" class="btn-ghost">Weiterlesen
-            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+        <div class="blog-card-meta">
+          <span class="blog-tag">Marktbericht</span>
+          <span class="blog-date">Februar 2025</span>
         </div>
+        <h3>Immobilienmarkt Zwickau 2025: Was sich geändert hat</h3>
+        <p>Die aktuellen Entwicklungen im Zwickauer Immobilienmarkt – Preise, Nachfrage und was das für Käufer und Verkäufer bedeutet.</p>
+        <span class="blog-read-more">Artikel lesen</span>
       </div>
-
-      <!-- ░░ PLACEHOLDER: Blog Post 3 ░░ -->
-      <div class="blog-card reveal">
-        <div class="blog-thumb">
-          <img src="https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=700" alt="[Blog Beitrag 3]" loading="lazy">
-          <div class="blog-cat">[Kategorie]</div>
+      <div class="blog-card fade-up">
+        <div class="blog-card-image">
+          <img src="https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Finanzierung Immobilien" loading="lazy">
         </div>
-        <div class="blog-body">
-          <div class="blog-date">[TT. Monat JJJJ]</div>
-          <h3>[Blog-Titel 3]</h3>
-          <p>[Kurzer Einleitungstext.]</p>
-          <a href="#" class="btn-ghost">Weiterlesen
-            <svg class="arrow" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+        <div class="blog-card-meta">
+          <span class="blog-tag">Finanzierung</span>
+          <span class="blog-date">Januar 2025</span>
         </div>
+        <h3>Erstimmobilie kaufen: So finanzieren Sie richtig</h3>
+        <p>Eigenkapital, Förderungen, Zinsbindung – wir erklären die wichtigsten Bausteine einer soliden Immobilienfinanzierung.</p>
+        <span class="blog-read-more">Artikel lesen</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     11. CTA SECTION
-     ░░ PLACEHOLDER: Headline + subtext + form action ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<section id="cta">
-  <div class="cta-bg"></div>
-  <div class="cta-inner">
-    <span class="eyebrow reveal">Kostenloses Erstgespräch</span>
-    <!-- ░░ PLACEHOLDER: CTA headline ░░ -->
-    <h2 class="reveal">Ihr Zuhause.<br>Wir helfen Ihnen,<br>es zu finden.</h2>
-    <p class="reveal">Kein Druck. Kein Aufwand. Einfach ein ehrliches Gespräch über Ihre Möglichkeiten.</p>
-    <!-- ░░ PLACEHOLDER: Replace form action with Formspree ID or real contact link ░░ -->
-    <form class="cta-form reveal" action="https://formspree.io/f/[FORMSPREE_ID]" method="POST">
-      <input class="cta-input" type="email" name="email" placeholder="Ihre E-Mail-Adresse" required>
-      <button type="submit" class="btn btn-accent">Jetzt Kontakt aufnehmen</button>
+<!-- CTA SECTION -->
+<section class="cta-section" id="kontakt">
+  <div class="container" style="position:relative;z-index:1">
+    <span class="section-label">Jetzt starten</span>
+    <h2 class="reveal-heading">Ihr Zuhause wartet.<br><em>Wir finden es.</em></h2>
+    <p>Kontaktieren Sie uns für ein kostenloses und unverbindliches Erstgespräch. In 15 Minuten klären wir, wie wir Ihnen am besten helfen können.</p>
+    <div class="cta-buttons">
+      <a href="tel:015735792768" class="btn-primary">📞 0157 3579 2768</a>
+      <a href="https://wa.me/4915725792768" class="btn-accent-outline" target="_blank" rel="noopener">WhatsApp schreiben</a>
+    </div>
+    <form class="cta-form" action="https://formspree.io/f/mlgpooqw" method="POST">
+      <input type="text" name="name" placeholder="Ihr Name" required>
+      <input type="tel" name="phone" placeholder="Ihre Telefonnummer">
+      <input type="email" name="email" placeholder="Ihre E-Mail" required class="form-full">
+      <textarea name="message" placeholder="Ihr Anliegen – Was suchen Sie? Was möchten Sie verkaufen?"></textarea>
+      <button type="submit">Nachricht senden →</button>
     </form>
   </div>
 </section>
 
-<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-     12. FOOTER
-     ░░ PLACEHOLDER: All footer content ░░
-     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<footer id="footer">
+<!-- FOOTER -->
+<footer>
   <div class="container">
-    <div class="footer-inner">
-      <!-- Brand column -->
+    <div class="footer-top">
       <div class="footer-brand">
-        <!-- ░░ PLACEHOLDER: Footer logo + description ░░ -->
-        <div class="footer-logo-name">[MAKLER]<span>.</span></div>
-        <div class="footer-logo-sub">Immobilien · [STADT]</div>
-        <p class="footer-desc">[Kurze Beschreibung des Maklers — 1–2 Sätze, persönlich und regional]</p>
-        <div class="footer-social">
-          <!-- ░░ PLACEHOLDER: Real social links ░░ -->
-          <a href="#" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M6.5 6.5h11a1 1 0 011 1v11a1 1 0 01-1 1h-11a1 1 0 01-1-1v-11a1 1 0 011-1z"/></svg>
-          </a>
-          <a href="#" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </a>
-          <a href="#" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
+        <div>
+          <div class="footer-logo">Schiwig</div>
+          <div class="footer-tagline">Persönlich · Lokal · Ergebnisorientiert</div>
+        </div>
+        <p>Schiwig Immobilien – Ihr vertrauensvoller Partner für Kauf, Verkauf und Vermietung in Zwickau und der Region. Seit über 12 Jahren.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="Facebook">f</a>
+          <a href="#" class="footer-social" aria-label="Instagram">in</a>
+          <a href="#" class="footer-social" aria-label="LinkedIn">li</a>
         </div>
       </div>
-
-      <!-- Link col 1 -->
       <div class="footer-col">
-        <!-- ░░ PLACEHOLDER: Link column ░░ -->
-        <h4>Suchen</h4>
-        <ul>
-          <li><a href="#">Kaufen</a></li>
-          <li><a href="#">Verkaufen</a></li>
-          <li><a href="#">Mieten</a></li>
-          <li><a href="#">Neue Objekte</a></li>
+        <h4>Leistungen</h4>
+        <ul class="footer-links">
+          <li><a href="#kaufen">Immobilien kaufen</a></li>
+          <li><a href="#verkaufen">Immobilien verkaufen</a></li>
+          <li><a href="#mieten">Immobilien mieten</a></li>
+          <li><a href="#leistungen">Marktbewertung</a></li>
+          <li><a href="#leistungen">Vermarktung</a></li>
         </ul>
       </div>
-
-      <!-- Link col 2 -->
       <div class="footer-col">
         <h4>Unternehmen</h4>
-        <ul>
-          <li><a href="#">Über uns</a></li>
-          <li><a href="#">Team</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Kontakt</a></li>
+        <ul class="footer-links">
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#blog">Ratgeber</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
         </ul>
       </div>
-
-      <!-- Link col 3 — Contact -->
       <div class="footer-col">
         <h4>Kontakt</h4>
-        <ul>
-          <!-- ░░ PLACEHOLDER: Real address, phone, email ░░ -->
-          <li><a href="#">[Straße, PLZ Ort]</a></li>
-          <li><a href="tel:[TELEFON]">[Telefon]</a></li>
-          <li><a href="mailto:[EMAIL]">[E-Mail]</a></li>
-        </ul>
+        <div class="footer-contact-item">
+          <span>📍</span>
+          <span>Bruno-Escher-Str. 13<br>08115 Lichtentanne</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>📞</span>
+          <a href="tel:015735792768">0157 3579 2768</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span>
+          <a href="mailto:lukasschiwig@gmail.com">lukasschiwig@gmail.com</a>
+        </div>
+        <div class="footer-contact-item" style="margin-top:0.8rem">
+          <span style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35)">Mo–Fr: 9:00–18:00 Uhr</span>
+        </div>
       </div>
     </div>
-
     <div class="footer-bottom">
-      <!-- ░░ PLACEHOLDER: Year + legal links ░░ -->
-      <div class="footer-copy">© 2026 [MAKLER NAME]. Alle Rechte vorbehalten.</div>
-      <div class="footer-legal">
+      <p>© 2025 Schiwig Immobilien · Lukas Schiwig · Alle Rechte vorbehalten.</p>
+      <div class="footer-bottom-links">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
-        <a href="#">AGB</a>
+        <a href="#kontakt">Kontakt</a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- ░░ WhatsApp Float ░░ -->
-<!-- ░░ PLACEHOLDER: Replace with real phone number ░░ -->
-<a href="https://wa.me/4915254190819" class="wa-float" target="_blank" rel="noopener" id="waFloat" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.484 2 12.017c0 1.987.518 3.9 1.497 5.572L2 22l4.518-1.482A9.933 9.933 0 0012 21.999c5.522 0 10-4.484 10-10.017C22 6.484 17.522 2 12 2z"/></svg>
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/4915725792768" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp Kontakt">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.817.735 5.46 2.024 7.754L0 32l8.494-2.001A15.937 15.937 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm8.02 22.3c-.34.955-1.992 1.825-2.73 1.94-.738.115-1.656.163-2.67-.168-1.013-.331-2.31-.773-3.97-1.516-3.494-1.5-5.773-5.037-5.948-5.27-.175-.233-1.428-1.902-1.428-3.625S8 11.38 8.35 11.03c.35-.35.777-.437 1.037-.437.26 0 .52 0 .747.01.24.01.563-.09.88.67.328.77 1.115 2.668 1.213 2.86.098.192.163.417.033.672-.13.255-.195.413-.39.637-.195.224-.41.5-.585.672-.195.195-.397.405-.17.795.226.39.998 1.645 2.143 2.665 1.473 1.314 2.716 1.72 3.106 1.915.39.195.617.163.845-.098.228-.26.97-1.13 1.228-1.52.258-.39.515-.325.87-.195.355.13 2.257 1.064 2.647 1.258.39.195.649.29.745.453.097.162.097.942-.244 1.897z"/></svg>
 </a>
 
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <p>Diese Website verwendet Cookies, um Ihnen das beste Erlebnis zu bieten. <a href="datenschutz.html">Mehr erfahren</a></p>
+  <button class="cookie-btn" id="cookieAccept">Akzeptieren</button>
+</div>
+
+<!-- GOOGLE MAPS EMBED (hidden, for Schema reference) -->
+<div style="display:none">
+  <iframe src="https://maps.google.com/maps?q=Bruno-Escher-Str.+13,+08115+Lichtentanne&output=embed" title="Schiwig Immobilien Standort"></iframe>
+</div>
+
+<!-- Schema.org LocalBusiness JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Schiwig Immobilien",
+  "alternateName": "Lukas Schiwig Immobilien",
+  "description": "Ihr persönlicher Immobilienmakler in Zwickau. Kaufen, Verkaufen und Mieten mit 12 Jahren Erfahrung. Persönlich. Lokal. Ergebnisorientiert.",
+  "url": "https://schiwig-immobilien.de",
+  "telephone": "+4915725792768",
+  "email": "lukasschiwig@gmail.com",
+  "founder": {
+    "@type": "Person",
+    "name": "Lukas Schiwig"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bruno-Escher-Str. 13",
+    "addressLocality": "Lichtentanne",
+    "postalCode": "08115",
+    "addressRegion": "Sachsen",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 50.7444,
+    "longitude": 12.5192
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "37"
+  },
+  "areaServed": [
+    "Zwickau", "Glauchau", "Werdau", "Crimmitschau", "Lichtentanne", "Meerane"
+  ],
+  "priceRange": "€€"
+}
+</script>
+
 <script>
+// ═══════════════════════════════════════════
+// LENIS SMOOTH SCROLL
+// ═══════════════════════════════════════════
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+});
+function raf(time) {
+  lenis.raf(time);
+  ScrollTrigger.update();
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
 gsap.registerPlugin(ScrollTrigger);
 
-/* ─── NAV scroll state ─────────────────── */
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+// ═══════════════════════════════════════════
+// CUSTOM CURSOR
+// ═══════════════════════════════════════════
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+if (dot && ring && window.matchMedia('(pointer:fine)').matches) {
+  window.addEventListener('mousemove', e => {
+    gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0.05 });
+    gsap.to(ring, { x: e.clientX, y: e.clientY, duration: 0.25 });
+  });
+  document.querySelectorAll('a, button, .service-card, .blog-card, .testi-card, .support-card').forEach(el => {
+    el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 2.5, opacity: 0.3, duration: 0.3 }));
+    el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1, opacity: 0.5, duration: 0.3 }));
+  });
+}
+
+// ═══════════════════════════════════════════
+// HERO ANIMATIONS ON LOAD
+// ═══════════════════════════════════════════
+gsap.from('.section-label', { opacity: 0, duration: 0.8, delay: 0.2 });
+gsap.from('.hero-title', { y: 80, opacity: 0, duration: 1.1, ease: 'power4.out', delay: 0.4 });
+gsap.from('.hero-sub', { y: 30, opacity: 0, duration: 0.9, ease: 'power3.out', delay: 0.9 });
+gsap.from('.hero-ctas', { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out', delay: 1.1 });
+gsap.from('.hero-property-card', { x: 60, opacity: 0, duration: 1.0, ease: 'power3.out', delay: 0.7 });
+
+// ═══════════════════════════════════════════
+// HERO PARALLAX
+// ═══════════════════════════════════════════
+gsap.to('.hero-bg-image', {
+  y: '40%', ease: 'none',
+  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+});
+gsap.to('.hero-content', {
+  y: '20%', opacity: 0, ease: 'none',
+  scrollTrigger: { trigger: '.hero', start: 'top top', end: '60% top', scrub: true }
+});
+gsap.to('.hero-property-card', {
+  y: '-15%', ease: 'none',
+  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
 });
 
-/* ─── Scroll progress bar ──────────────── */
-gsap.to('#progress', {
-  scaleX: 1, ease: 'none',
-  scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: true }
+// ═══════════════════════════════════════════
+// PROPERTY CARD FLOAT
+// ═══════════════════════════════════════════
+gsap.to('.hero-property-card', {
+  y: -10, duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.5
 });
 
-/* ─── Hero: pinned parallax ────────────── */
-// Pin hero for 700px of scroll = full effect plays out while hero stays in view
-const PIN_DUR = 700;
+// ═══════════════════════════════════════════
+// ROTATING WORD
+// ═══════════════════════════════════════════
+const rotatingWords = ['bewegt.', 'begeistert.', 'vorwärtsbringt.'];
+let rwi = 0;
+const rwEl = document.querySelector('.hero-rotating-word');
+if (rwEl) {
+  setInterval(() => {
+    gsap.to(rwEl, {
+      y: -30, opacity: 0, duration: 0.4, ease: 'power2.in',
+      onComplete: () => {
+        rwi = (rwi + 1) % rotatingWords.length;
+        rwEl.textContent = rotatingWords[rwi];
+        gsap.fromTo(rwEl, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' });
+      }
+    });
+  }, 2500);
+}
+
+// ═══════════════════════════════════════════
+// NAV SCROLL AWARE
+// ═══════════════════════════════════════════
+const mainNav = document.getElementById('mainNav');
 ScrollTrigger.create({
-  trigger: '#hero',
-  start: 'top top',
-  end: `+=${PIN_DUR}`,
-  pin: true,
-  pinSpacing: true,
-  anticipatePin: 1,
-});
-
-const hST = { trigger: '#hero', start: 'top top', end: `+=${PIN_DUR}`, scrub: 0.6 };
-
-// L1 Sky: very slow positive drift (sinks slightly)
-gsap.to('#hlSky',       { y: 55,   ease: 'none', scrollTrigger: hST });
-// L2 Cloud back: slow (behind house, sinks a little)
-gsap.to('#hlCloudBack', { y: 35,   ease: 'none', scrollTrigger: hST });
-// L3 House: RISES fast — negative y = moves up
-// House top starts at 28% of viewport. Rises ~320px → enters cloud zone (top 0-62%)
-gsap.to('#hlHouse',     { y: -320, ease: 'none', scrollTrigger: hST });
-// L4 Smoke: slight drift down (stays with ground)
-gsap.to('#hlSmoke',     { y: 30,   ease: 'none', scrollTrigger: hST });
-// L5 Cloud front: barely moves — house rises BEHIND it (key to the effect)
-gsap.to('#hlCloudFront',{ y: 18,   ease: 'none', scrollTrigger: hST });
-// Text: gentle drift up with scroll
-gsap.to('.hero-content',{ y: 80,   ease: 'none', scrollTrigger: hST });
-
-/* ─── Hero entrance animation ─────────── */
-const heroTL = gsap.timeline({ delay: 0.2 });
-
-// Eyebrow line (fade up)
-heroTL.to('#heroEyebrow', {
-  opacity: 1, duration: 0.8, ease: 'power2.out'
-});
-
-// Headline: each word clips up from below (no opacity — pure transform)
-heroTL.to('.hw', {
-  y: '0%',
-  duration: 1.05,
-  ease: 'power4.out',
-  stagger: 0.09,
-}, '-=0.45');
-
-// Subtext fade up
-heroTL.to('#heroSub', {
-  opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
-}, '-=0.5');
-
-// Buttons
-heroTL.to('#heroBtns', {
-  opacity: 1, y: 0, duration: 0.7, ease: 'power3.out'
-}, '-=0.45');
-
-// Property card slides from right
-heroTL.fromTo('#heroCard',
-  { opacity: 0, x: 48, scale: 0.95 },
-  { opacity: 1, x: 0, scale: 1, duration: 0.9, ease: 'power3.out' },
-'-=0.55');
-
-// Scroll hint
-heroTL.to('#heroScroll', { opacity: 0.6, duration: 0.7 }, '-=0.3');
-
-/* Card float loop */
-gsap.to('#heroCard', {
-  y: -12, duration: 3.4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.8
-});
-
-/* ─── Scroll reveals — single elements ─── */
-// Non-grid reveals: headings, text blocks, lone elements
-const soloReveal = '.why-text.reveal, .why-stats.reveal, .gallery-header.reveal, .gallery-subtext.reveal, .dual-text.reveal, .dual-images.reveal, .testimonials-header .reveal, .blog-header .reveal, .support-header .reveal, .services-header.reveal, .cta-inner .reveal, #process .reveal:not(.process-step)';
-gsap.utils.toArray(soloReveal).forEach(el => {
-  gsap.fromTo(el,
-    { opacity: 0, y: 56 },
-    {
-      opacity: 1, y: 0,
-      duration: 1,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
+  start: 'top -60',
+  onUpdate: self => {
+    if (self.progress > 0) {
+      mainNav.style.background = 'rgba(248,246,242,0.95)';
+      mainNav.style.backdropFilter = 'blur(20px)';
+      mainNav.style.webkitBackdropFilter = 'blur(20px)';
+      mainNav.style.boxShadow = '0 1px 0 rgba(0,0,0,0.08)';
+      mainNav.classList.add('scrolled');
+    } else {
+      mainNav.style.background = 'transparent';
+      mainNav.style.backdropFilter = 'none';
+      mainNav.style.webkitBackdropFilter = 'none';
+      mainNav.style.boxShadow = 'none';
+      mainNav.classList.remove('scrolled');
     }
-  );
+  }
 });
 
-/* ─── Batch stagger for grids ──────────── */
-// Cards inside grids animate in with a clean left-to-right stagger
-[
-  { sel: '.process-step',    y: 50, stagger: 0.18 },
-  { sel: '.stat-card',       y: 40, stagger: 0.14 },
-  { sel: '.testi-card',      y: 48, stagger: 0.13 },
-  { sel: '.service-card',    y: 52, stagger: 0.15 },
-  { sel: '.support-card',    y: 44, stagger: 0.15 },
-  { sel: '.blog-card',       y: 48, stagger: 0.15 },
-  { sel: '.gallery-item',    y: 36, stagger: 0.12 },
-].forEach(({ sel, y, stagger }) => {
-  ScrollTrigger.batch(sel, {
-    start: 'top 88%',
-    onEnter: batch => gsap.fromTo(batch,
-      { opacity: 0, y },
-      { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger }
-    ),
-    once: true,
+// ═══════════════════════════════════════════
+// SECTION HEADING REVEAL
+// ═══════════════════════════════════════════
+gsap.utils.toArray('.reveal-heading').forEach(heading => {
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = 'overflow:hidden;';
+  heading.parentNode.insertBefore(wrapper, heading);
+  wrapper.appendChild(heading);
+  gsap.from(heading, {
+    scrollTrigger: {
+      trigger: wrapper,
+      start: 'top 82%',
+      toggleActions: 'play none none reverse'
+    },
+    y: '105%', duration: 0.9, ease: 'power4.out'
   });
 });
 
-/* ─── Mobile nav ───────────────────────── */
-const ham = document.getElementById('navHam');
-const mob = document.getElementById('navMob');
-ham.addEventListener('click', () => mob.classList.toggle('open'));
-function closeMob() { mob.classList.remove('open'); }
-
-/* ─── WhatsApp float in ────────────────── */
-gsap.to('#waFloat', {
-  opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.4)',
-  scrollTrigger: { trigger: '#why', start: 'top 80%' }
+// ═══════════════════════════════════════════
+// FADE UP REVEALS
+// ═══════════════════════════════════════════
+gsap.utils.toArray('.fade-up').forEach((el, i) => {
+  gsap.from(el, {
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    },
+    y: 50, opacity: 0, duration: 0.85, ease: 'power3.out',
+    delay: (i % 3) * 0.1
+  });
 });
+
+// ═══════════════════════════════════════════
+// SERVICES CLIP-PATH REVEAL
+// ═══════════════════════════════════════════
+gsap.utils.toArray('.service-card').forEach((card, i) => {
+  gsap.from(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    },
+    clipPath: 'inset(0 100% 0 0)', opacity: 0,
+    duration: 0.9, ease: 'power4.inOut', delay: i * 0.15
+  });
+});
+
+// ═══════════════════════════════════════════
+// STATS COUNTER
+// ═══════════════════════════════════════════
+document.querySelectorAll('.stat-number[data-count]').forEach(el => {
+  const target = parseInt(el.dataset.count);
+  const isDecimal = el.dataset.decimal;
+  gsap.to({ val: 0 }, {
+    val: target,
+    duration: 2.2,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: el, start: 'top 80%', once: true },
+    onUpdate() {
+      const v = Math.ceil(this.targets()[0].val);
+      el.textContent = isDecimal ? v + isDecimal : v;
+    }
+  });
+});
+
+// Fix: 4.9 stat — animate to 4 then show static 4.9
+const starEl = document.querySelector('.stat-number[data-decimal]');
+if (starEl) {
+  starEl.textContent = '4.9';
+}
+
+// ═══════════════════════════════════════════
+// TESTIMONIALS AUTO-SCROLL
+// ═══════════════════════════════════════════
+const track = document.getElementById('testimonialsTrack');
+if (track) {
+  track.innerHTML += track.innerHTML;
+  let autoX = 0;
+  let paused = false;
+  track.addEventListener('mouseenter', () => paused = true);
+  track.addEventListener('mouseleave', () => paused = false);
+  (function scroll() {
+    if (!paused) {
+      autoX += 0.6;
+      if (autoX >= track.scrollWidth / 2) autoX = 0;
+      track.scrollLeft = autoX;
+    }
+    requestAnimationFrame(scroll);
+  })();
+}
+
+// ═══════════════════════════════════════════
+// MOBILE NAV
+// ═══════════════════════════════════════════
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('mobileNav');
+const mobileNavClose = document.getElementById('mobileNavClose');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+  mobileNavClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileNav.classList.remove('open'));
+  });
+}
+
+// ═══════════════════════════════════════════
+// COOKIE BANNER
+// ═══════════════════════════════════════════
+const cookieBanner = document.getElementById('cookieBanner');
+const cookieAccept = document.getElementById('cookieAccept');
+if (cookieBanner && cookieAccept) {
+  if (!localStorage.getItem('cookieAccepted')) {
+    setTimeout(() => cookieBanner.style.display = 'flex', 1500);
+  } else {
+    cookieBanner.style.display = 'none';
+  }
+  cookieAccept.addEventListener('click', () => {
+    localStorage.setItem('cookieAccepted', '1');
+    cookieBanner.classList.add('hidden');
+    setTimeout(() => cookieBanner.style.display = 'none', 400);
+  });
+}
 </script>
 </body>
 </html>
