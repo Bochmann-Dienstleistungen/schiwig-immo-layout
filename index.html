@@ -53,9 +53,7 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  cursor: none;
 }
-@media (pointer: coarse) { body { cursor: auto; } }
 body::after {
   content: '';
   position: fixed;
@@ -67,8 +65,7 @@ body::after {
 }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; height: auto; }
-button { cursor: none; font-family: inherit; border: none; background: none; }
-@media (pointer: coarse) { button { cursor: pointer; } }
+button { font-family: inherit; border: none; background: none; }
 section { padding: clamp(5rem, 10vw, 10rem) 0; }
 
 /* ═══════════════════════════════════════════
@@ -100,27 +97,6 @@ p { font-size: var(--fs-body); color: var(--color-text-muted); line-height: 1.75
   padding: 0 var(--pad-x);
 }
 
-/* ═══════════════════════════════════════════
-   CUSTOM CURSOR
-═══════════════════════════════════════════ */
-.cursor-dot {
-  width: 5px; height: 5px;
-  background: var(--color-accent);
-  border-radius: 50%;
-  position: fixed; top: 0; left: 0;
-  pointer-events: none; z-index: 9999;
-  transform: translate(-50%, -50%);
-}
-.cursor-ring {
-  width: 32px; height: 32px;
-  border: 1.5px solid var(--color-accent);
-  border-radius: 50%;
-  position: fixed; top: 0; left: 0;
-  pointer-events: none; z-index: 9998;
-  transform: translate(-50%, -50%);
-  opacity: 0.5;
-}
-@media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
 
 /* ═══════════════════════════════════════════
    NAV
@@ -319,6 +295,7 @@ nav.scrolled .nav-hamburger span { background: var(--color-dark); }
   line-height: 0.98;
   letter-spacing: -0.025em;
   margin-bottom: 2.4rem;
+  overflow: hidden;
 }
 .hero-title-line1 {
   display: block;
@@ -1089,11 +1066,10 @@ nav.scrolled .nav-hamburger span { background: var(--color-dark); }
   border: none;
   padding: 1rem 2rem;
   border-radius: 2px;
-  cursor: none;
+  cursor: pointer;
   transition: background 0.25s;
 }
 .cta-form button[type="submit"]:hover { background: var(--color-accent-light); }
-@media (pointer: coarse) { .cta-form button[type="submit"] { cursor: pointer; } }
 
 /* ═══════════════════════════════════════════
    FOOTER
@@ -1297,13 +1273,154 @@ footer {
   .hero-title { font-size: clamp(2.8rem, 11vw, 4rem); }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
+
+/* ═══════════════════════════════════════════
+   WERTRECHNER
+═══════════════════════════════════════════ */
+.rechner-section {
+  background: var(--color-surface);
+  padding: clamp(5rem, 10vw, 10rem) 0;
+}
+.rechner-section .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.rechner-intro .section-label { margin-bottom: 1.2rem; }
+.rechner-form { display: flex; flex-direction: column; gap: 1.6rem; }
+.rcl-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+.rcl-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.rcl-pill {
+  padding: 0.5rem 1.1rem;
+  border-radius: 100px;
+  border: 1px solid rgba(26,63,143,0.2);
+  background: #fff;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.25s;
+  font-family: 'Outfit', sans-serif;
+}
+.rcl-pill:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.rcl-pill.active { border-color: var(--color-accent); background: var(--color-accent); color: #fff; }
+.rcl-slider-wrap { display: flex; flex-direction: column; gap: 0.4rem; }
+.rcl-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 2px;
+  background: rgba(26,63,143,0.15);
+  border-radius: 2px;
+  outline: none;
+}
+.rcl-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+.rcl-readout {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+.rcl-options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.rcl-option {
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid rgba(26,63,143,0.2);
+  background: #fff;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.25s;
+  font-family: 'Outfit', sans-serif;
+}
+.rcl-option:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.rcl-option.active { border-color: var(--color-accent); background: rgba(26,63,143,0.08); color: var(--color-accent); font-weight: 500; }
+.rechner-result {
+  background: var(--color-dark);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: sticky;
+  top: 100px;
+}
+.rr-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  display: block;
+  margin-bottom: 1rem;
+}
+.rr-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.rr-range {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.4rem;
+}
+.rr-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 1.4rem auto;
+}
+.rr-note {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  margin-bottom: 1.8rem;
+}
+.rr-cta {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background 0.25s;
+  cursor: pointer;
+}
+.rr-cta:hover { background: var(--color-accent-light); }
+.rr-disclaimer {
+  font-size: 0.62rem;
+  color: var(--color-text-muted);
+  margin-top: 0.8rem;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .rechner-section .container { grid-template-columns: 1fr; gap: 3rem; }
+  .rechner-result { position: static; }
+}
 </style>
 </head>
 <body>
 
-<!-- Custom Cursor -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav">
@@ -1635,6 +1752,66 @@ footer {
   </div>
 </section>
 
+<!-- WERTRECHNER -->
+<section class="rechner-section" id="bewertung">
+  <div class="container">
+    <div class="rechner-intro">
+      <span class="section-label">Immobilienbewertung</span>
+      <h2 class="reveal-heading" style="margin-top:1.2rem;margin-bottom:1rem">Was ist Ihre<br><em>Immobilie wert?</em></h2>
+      <p style="color:var(--color-text-muted);font-size:var(--fs-body);line-height:1.8;margin-bottom:2.5rem;max-width:42ch">Erhalten Sie in Sekunden eine erste Einschätzung des Marktwerts – basierend auf aktuellen Daten aus der Region Zwickau.</p>
+
+      <div class="rechner-form">
+        <div>
+          <span class="rcl-label">Immobilientyp</span>
+          <div class="rcl-pills">
+            <span class="rcl-pill active" data-type="haus">Haus</span>
+            <span class="rcl-pill" data-type="wohnung">Wohnung</span>
+            <span class="rcl-pill" data-type="mfh">Mehrfamilienhaus</span>
+            <span class="rcl-pill" data-type="grundstueck">Grundstück</span>
+          </div>
+        </div>
+        <div>
+          <span class="rcl-label">Wohnfläche</span>
+          <div class="rcl-slider-wrap">
+            <input type="range" class="rcl-slider" id="areaSlider" min="40" max="400" value="120" step="5">
+            <span class="rcl-readout" id="areaReadout">120 m²</span>
+          </div>
+        </div>
+        <div>
+          <span class="rcl-label">Baujahr</span>
+          <div class="rcl-options">
+            <span class="rcl-option active" data-year="alt">vor 1970</span>
+            <span class="rcl-option" data-year="mid">1970–1990</span>
+            <span class="rcl-option" data-year="neu">1990–2010</span>
+            <span class="rcl-option" data-year="modern">ab 2010</span>
+          </div>
+        </div>
+        <div>
+          <span class="rcl-label">Zustand</span>
+          <div class="rcl-options">
+            <span class="rcl-option active" data-cond="renovierungsbedarf">Renovierungsbedarf</span>
+            <span class="rcl-option" data-cond="gepflegt">Gepflegt</span>
+            <span class="rcl-option" data-cond="modernisiert">Modernisiert</span>
+            <span class="rcl-option" data-cond="neubau">Neubauqualität</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="rechner-result fade-up">
+        <span class="rr-eyebrow">Geschätzter Marktwert</span>
+        <div class="rr-value" id="rrValue">192.000 €</div>
+        <div class="rr-range" id="rrRange">Bandbreite: 177.000 – 209.000 €</div>
+        <div class="rr-divider"></div>
+        <p class="rr-note">Diese Schätzung basiert auf aktuellen Marktdaten für die Region Zwickau. Für eine präzise Bewertung empfehle ich ein persönliches Gespräch.</p>
+        <a href="#kontakt" class="rr-cta">Jetzt kostenlos bewerten lassen</a>
+      </div>
+      <p class="rr-disclaimer">Unverbindliche Schätzung · Kostenlose Präzisionsbewertung auf Anfrage</p>
+    </div>
+  </div>
+</section>
+
 <!-- SUPPORT -->
 <section class="support-section">
   <div class="container">
@@ -1878,31 +2055,16 @@ requestAnimationFrame(raf);
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ═══════════════════════════════════════════
-// CUSTOM CURSOR
-// ═══════════════════════════════════════════
-const dot = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-if (dot && ring && window.matchMedia('(pointer:fine)').matches) {
-  window.addEventListener('mousemove', e => {
-    gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0.05 });
-    gsap.to(ring, { x: e.clientX, y: e.clientY, duration: 0.25 });
-  });
-  document.querySelectorAll('a, button, .service-card, .blog-card, .testi-card, .support-card').forEach(el => {
-    el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 2.5, opacity: 0.3, duration: 0.3 }));
-    el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1, opacity: 0.5, duration: 0.3 }));
-  });
-}
 
 // ═══════════════════════════════════════════
 // HERO ANIMATIONS ON LOAD
 // ═══════════════════════════════════════════
 // Brand label fades first
 gsap.from('.hero-brand-label', { opacity: 0, y: 12, duration: 0.9, ease: 'power3.out', delay: 0.2 });
-// Line 1: slides up
-gsap.from('.hero-title-line1', { y: 60, opacity: 0, duration: 1.1, ease: 'power4.out', delay: 0.45 });
-// Line 2: slides up slightly after, with clip feel
-gsap.from('.hero-title-line2', { y: 80, opacity: 0, duration: 1.1, ease: 'power4.out', delay: 0.6 });
+// Line 1: slides in from left
+gsap.from('.hero-title-line1', { x: '-120%', opacity: 0, duration: 1.2, ease: 'power4.out', delay: 0.4 });
+// Line 2: slides in from right
+gsap.from('.hero-title-line2', { x: '120%', opacity: 0, duration: 1.2, ease: 'power4.out', delay: 0.55 });
 // Subtitle
 gsap.from('.hero-subtitle', { opacity: 0, y: 14, duration: 0.8, ease: 'power3.out', delay: 1.0 });
 // CTAs
@@ -2081,6 +2243,59 @@ if (cookieBanner && cookieAccept) {
     setTimeout(() => cookieBanner.style.display = 'none', 400);
   });
 }
+
+// ═══════════════════════════════════════════
+// WERTRECHNER
+// ═══════════════════════════════════════════
+function calcWert() {
+  const type = document.querySelector('#bewertung .rcl-pill.active')?.dataset.type || 'haus';
+  const area = parseInt(document.getElementById('areaSlider')?.value || 120);
+  const year = document.querySelector('#bewertung .rcl-option[data-year].active')?.dataset.year || 'alt';
+  const cond = document.querySelector('#bewertung .rcl-option[data-cond].active')?.dataset.cond || 'gepflegt';
+
+  const base = { haus: 1350, wohnung: 1180, mfh: 1050, grundstueck: 180 };
+  const yearMult = { alt: 0.8, mid: 0.9, neu: 1.0, modern: 1.15 };
+  const condMult = { renovierungsbedarf: 0.82, gepflegt: 1.0, modernisiert: 1.1, neubau: 1.22 };
+
+  const pricePerSqm = base[type] * yearMult[year] * condMult[cond];
+  const value = Math.round(pricePerSqm * area / 1000) * 1000;
+  const low = Math.round(value * 0.92 / 1000) * 1000;
+  const high = Math.round(value * 1.09 / 1000) * 1000;
+  const fmt = v => v.toLocaleString('de-DE') + ' €';
+
+  const valEl = document.getElementById('rrValue');
+  const rangeEl = document.getElementById('rrRange');
+  if (valEl) {
+    const current = parseFloat(valEl.textContent.replace(/[^0-9]/g,'')) || value;
+    gsap.to({ val: current }, {
+      val: value, duration: 0.55, ease: 'power2.out',
+      onUpdate: function() { valEl.textContent = fmt(Math.round(this.targets()[0].val / 1000) * 1000); }
+    });
+  }
+  if (rangeEl) rangeEl.textContent = 'Bandbreite: ' + fmt(low) + ' – ' + fmt(high);
+}
+
+(function setupWertrechner() {
+  document.querySelectorAll('#bewertung .rcl-pill').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('#bewertung .rcl-pill').forEach(x => x.classList.remove('active'));
+    p.classList.add('active'); calcWert();
+  }));
+  document.querySelectorAll('#bewertung .rcl-option[data-year]').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('#bewertung .rcl-option[data-year]').forEach(x => x.classList.remove('active'));
+    p.classList.add('active'); calcWert();
+  }));
+  document.querySelectorAll('#bewertung .rcl-option[data-cond]').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('#bewertung .rcl-option[data-cond]').forEach(x => x.classList.remove('active'));
+    p.classList.add('active'); calcWert();
+  }));
+  const slider = document.getElementById('areaSlider');
+  if (slider) slider.addEventListener('input', () => {
+    const ro = document.getElementById('areaReadout');
+    if (ro) ro.textContent = slider.value + ' m²';
+    calcWert();
+  });
+  calcWert();
+})();
 </script>
 </body>
 </html>
